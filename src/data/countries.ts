@@ -1057,6 +1057,1371 @@ export const countries: CountryData[] = [
       { label: "Wikipedia — Culture of Australia", url: "https://en.wikipedia.org/wiki/Culture_of_Australia" },
       { label: "WHO Australia", url: "https://www.who.int/countries/aus" }
     ]
+  },
+  // ─── IRAN ──────────────────────────────────────────────────────────
+  {
+    name: "Iran",
+    isoCode: "ir",
+    lat: 35.69, lng: 51.39,
+    languages: ["Persian (Farsi)", "Azerbaijani", "Kurdish", "Arabic"],
+    primaryLanguageFamily: "other",
+    religions: ["Islam (Shia)", "Islam (Sunni)", "Zoroastrianism", "Christianity"],
+    region: "Middle East",
+    cultural: {
+      communication: [
+        "Taarof (elaborate politeness rituals) dominates social interaction — expect repeated declining before accepting",
+        "Indirect communication style; patients may say 'yes' out of politeness rather than agreement",
+        "Use formal titles (Dr., Mr., Mrs.) and show respect for hierarchy",
+        "Direct eye contact between genders can be seen as inappropriate",
+        "Patients may describe symptoms metaphorically — 'my heart is heavy' can mean emotional distress"
+      ],
+      familyDecisionMaking: [
+        "Family is deeply involved in medical decisions — eldest male or senior family member often has authority",
+        "Bad news should ideally be communicated to the family first, who will decide how to tell the patient",
+        "Visiting the sick is a strong religious and cultural duty — expect large groups of visitors",
+        "Children's medical decisions are made by fathers or grandfathers in traditional families",
+        "Wives may defer to husbands in medical discussions even if they disagree"
+      ],
+      religiousSpiritual: [
+        "Shia Islam is the state religion — prayer times, Ramadan fasting, and Muharram mourning are critical",
+        "Fasting patients may refuse oral medications during Ramadan (offer alternatives)",
+        "Modesty is paramount — female patients require female providers or a chaperone",
+        "Nazr (religious vows) may involve dietary restrictions during illness",
+        "Death rituals require body washing, shrouding, and burial facing Mecca within 24 hours"
+      ],
+      healthBeliefs: [
+        "Traditional Unani/Galenic 'hot and cold' food theory is widely followed for health management",
+        "Mental illness carries significant stigma — often described as 'nerves' or stress",
+        "Herbal medicine (attari) is commonly used alongside or instead of Western medicine",
+        "Evil eye (cheshm-e bad) is believed to cause illness — amulets may be worn",
+        "Pain may be expressed dramatically or stoically depending on gender expectations"
+      ],
+      genderContact: [
+        "Male doctors should not examine female patients without a female chaperone present",
+        "Handshaking between genders is generally avoided — wait for the patient to initiate",
+        "Female patients may request all-female medical teams",
+        "Physical examinations should be minimized and explained beforehand",
+        "Head coverings should not be removed unless medically necessary"
+      ],
+      doList: [
+        "Show respect through formal greetings and taarof exchanges",
+        "Allow family involvement in care discussions",
+        "Provide same-gender providers when possible",
+        "Ask about fasting during Ramadan and Muharram",
+        "Be patient with indirect communication styles"
+      ],
+      dontList: [
+        "Don't give bad news directly to the patient without consulting the family",
+        "Don't shake hands with the opposite gender without being offered first",
+        "Don't dismiss traditional 'hot/cold' dietary beliefs",
+        "Don't schedule non-urgent procedures during Muharram mourning period",
+        "Don't assume all Iranians are strictly religious — there is wide variation"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Iran", url: "https://en.wikipedia.org/wiki/Culture_of_Iran" },
+      { label: "WHO Iran", url: "https://www.who.int/countries/irn" }
+    ]
+  },
+  // ─── PAKISTAN ───────────────────────────────────────────────────────
+  {
+    name: "Pakistan",
+    isoCode: "pk",
+    lat: 33.69, lng: 73.04,
+    languages: ["Urdu", "Punjabi", "Sindhi", "Pashto", "Balochi", "English"],
+    primaryLanguageFamily: "hindi",
+    religions: ["Islam (Sunni)", "Islam (Shia)", "Christianity", "Hinduism"],
+    region: "South Asia",
+    cultural: {
+      communication: [
+        "Respect and formality are essential — use titles (Sahib, Madam, Doctor)",
+        "Indirect communication is common; 'Inshallah' (God willing) may indicate uncertainty, not agreement",
+        "Eye contact with elders or opposite gender may be avoided as a sign of respect",
+        "Patients may nod or say 'yes' even when they don't understand — check comprehension gently",
+        "Family translators are preferred but may filter information"
+      ],
+      familyDecisionMaking: [
+        "Patriarchal decision-making is common — male head of household often makes medical decisions",
+        "Extended family involvement is expected and considered supportive, not intrusive",
+        "Mothers-in-law often have significant influence over younger women's healthcare",
+        "In rural areas, community elders may need to approve treatment plans",
+        "Bad news should be shared with family members first"
+      ],
+      religiousSpiritual: [
+        "Islam guides daily life — prayer times (5 daily) and Ramadan fasting must be accommodated",
+        "Halal dietary requirements are strict — ensure all medications and food are halal",
+        "Spiritual healing through Quran recitation (ruqyah) is common alongside medicine",
+        "After death, body must be washed by same-gender persons and buried within 24 hours",
+        "Circumcision of male infants is a religious and cultural norm"
+      ],
+      healthBeliefs: [
+        "Traditional healers (hakeem) using Unani medicine are widely consulted",
+        "Jinn possession may be cited as a cause of mental illness or seizures",
+        "Evil eye (nazar) is a widely held belief — amulets and prayers are protective",
+        "Mental health stigma is severe — psychiatric conditions may be hidden",
+        "Pain is often endured stoically, especially by men; women may be more expressive"
+      ],
+      genderContact: [
+        "Female patients strongly prefer female doctors — this is often non-negotiable",
+        "Physical examinations by opposite-gender providers require careful explanation",
+        "Handshaking across genders is generally inappropriate",
+        "Purdah (seclusion) may limit women's ability to attend appointments independently",
+        "Breastfeeding support should be provided by female staff only"
+      ],
+      doList: [
+        "Provide same-gender healthcare providers whenever possible",
+        "Include family in care discussions",
+        "Respect prayer times and fasting schedules",
+        "Ask about traditional medicine use without judgment",
+        "Use professional interpreters for critical conversations"
+      ],
+      dontList: [
+        "Don't insist on mixed-gender examinations without consent",
+        "Don't dismiss spiritual explanations of illness",
+        "Don't provide non-halal food or medications without informing",
+        "Don't rush consultations — relationship-building is important",
+        "Don't assume literacy — use visual aids for instructions"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Pakistan", url: "https://en.wikipedia.org/wiki/Culture_of_Pakistan" },
+      { label: "WHO Pakistan", url: "https://www.who.int/countries/pak" }
+    ]
+  },
+  // ─── PHILIPPINES ───────────────────────────────────────────────────
+  {
+    name: "Philippines",
+    isoCode: "ph",
+    lat: 14.60, lng: 120.98,
+    languages: ["Filipino (Tagalog)", "English", "Cebuano", "Ilocano"],
+    primaryLanguageFamily: "malay",
+    religions: ["Christianity (Catholic)", "Islam", "Iglesia ni Cristo"],
+    region: "Southeast Asia",
+    cultural: {
+      communication: [
+        "Filipinos value 'pakikisama' (smooth interpersonal relationships) — avoid confrontation",
+        "Hiya (shame/embarrassment) may prevent patients from asking questions or expressing disagreement",
+        "Use 'po' and 'opo' when addressing elders — shows respect",
+        "Smiling or laughing may indicate discomfort, not agreement or happiness",
+        "English proficiency is generally high but medical jargon should still be simplified"
+      ],
+      familyDecisionMaking: [
+        "Extended family is deeply involved — 'family conference' before major medical decisions is expected",
+        "Eldest child or eldest son often acts as spokesperson and decision-maker",
+        "Utang na loob (debt of gratitude) means families will go to extraordinary lengths for sick members",
+        "OFW (overseas worker) family members may need to be consulted by phone for decisions",
+        "Bayanihan (communal help) — community and church may organize support"
+      ],
+      religiousSpiritual: [
+        "Catholicism is deeply ingrained — patients may request prayer, rosaries, or last rites",
+        "Santo Niño devotion and religious festivals are central to cultural identity",
+        "Faith healing and 'albularyo' (folk healers) may be consulted alongside doctors",
+        "Muslim Filipinos (Moro) in Mindanao have distinct practices — halal food, prayer times",
+        "Novenas and prayers for healing are common — don't discourage these practices"
+      ],
+      healthBeliefs: [
+        "'Usog' (a hex transmitted through greetings) is believed to cause illness in children",
+        "'Pasma' — cold or wind entering the body is believed to cause illness",
+        "Hilot (traditional massage therapy) is widely used for various conditions",
+        "Mental illness may be attributed to spiritual causes or 'kulam' (witchcraft)",
+        "Self-medication with antibiotics and herbal remedies is extremely common"
+      ],
+      genderContact: [
+        "Generally open to cross-gender medical care, but modesty is still valued",
+        "Female patients may prefer female providers for OB/GYN care",
+        "Physical affection in medical contexts (hand-holding, shoulder touch) can be comforting",
+        "LGBTQ+ individuals may face family stigma but Filipino culture has traditional third-gender roles (bakla)",
+        "Mano po (hand-to-forehead) gesture for elders shows deep respect"
+      ],
+      doList: [
+        "Include the whole family in discussions — they are a support system",
+        "Be warm and personal in your approach — build rapport",
+        "Respect religious practices and allow chaplain visits",
+        "Ask about traditional remedies with genuine interest",
+        "Use visual aids and simple language for medication instructions"
+      ],
+      dontList: [
+        "Don't be overly blunt or clinical — soften difficult news",
+        "Don't dismiss folk beliefs about usog, pasma, or hilot",
+        "Don't exclude family from medical discussions",
+        "Don't mistake smiling or laughter for lack of concern",
+        "Don't assume all Filipinos speak Tagalog — there are 170+ languages"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of the Philippines", url: "https://en.wikipedia.org/wiki/Culture_of_the_Philippines" },
+      { label: "WHO Philippines", url: "https://www.who.int/countries/phl" }
+    ]
+  },
+  // ─── VIETNAM ───────────────────────────────────────────────────────
+  {
+    name: "Vietnam",
+    isoCode: "vn",
+    lat: 21.03, lng: 105.85,
+    languages: ["Vietnamese"],
+    primaryLanguageFamily: "other",
+    religions: ["Buddhism", "Catholicism", "Cao Dai", "None/Secular", "Ancestor Worship"],
+    region: "Southeast Asia",
+    cultural: {
+      communication: [
+        "Indirect communication is the norm — silence or vague answers may indicate disagreement",
+        "Respect for hierarchy is paramount — always address elders and authority figures formally",
+        "Nodding may mean 'I hear you' not 'I agree'",
+        "Patients may smile when embarrassed or in pain — don't interpret as comfort",
+        "Avoid raising voice or showing frustration — loss of face (mất mặt) is deeply shaming"
+      ],
+      familyDecisionMaking: [
+        "Family-centered decision-making — eldest son or family patriarch often has final say",
+        "Three-generation households are common; grandparents heavily influence childcare decisions",
+        "Filial piety (hiếu) is a core value — children are expected to care for aging parents",
+        "Family may withhold terminal diagnosis from patient to protect them emotionally",
+        "Healthcare costs may be shared across extended family networks"
+      ],
+      religiousSpiritual: [
+        "Buddhist, Confucian, and Taoist beliefs blend in daily life",
+        "Ancestor worship is practiced widely — altars in homes and hospital rooms may be requested",
+        "Lunar calendar events (Tet, Ghost Month) may affect healthcare decisions",
+        "Catholic Vietnamese follow standard Catholic medical ethics",
+        "Numbers and colors have spiritual significance — avoid inauspicious combinations"
+      ],
+      healthBeliefs: [
+        "Traditional Vietnamese medicine (thuốc nam) is widely practiced alongside Western medicine",
+        "Coining (cạo gió) and cupping leave marks that should not be mistaken for abuse",
+        "Hot/cold food theory influences diet during illness and postpartum period",
+        "Mental illness is heavily stigmatized — often described as 'thinking too much'",
+        "Postpartum practices include strict dietary rules and rest for 30-100 days"
+      ],
+      genderContact: [
+        "Modesty is important — minimize exposure during examinations",
+        "Female patients generally prefer female providers for intimate examinations",
+        "Touching someone's head is disrespectful — it is considered the highest part of the body",
+        "Pointing with feet or showing soles of feet is offensive",
+        "Physical affection between providers and patients should be minimal"
+      ],
+      doList: [
+        "Use formal titles and show respect for age hierarchy",
+        "Allow family to be present and involved in care",
+        "Ask about traditional medicine use — coining and cupping are common",
+        "Provide written instructions in Vietnamese when possible",
+        "Be patient with indirect communication"
+      ],
+      dontList: [
+        "Don't mistake coining/cupping marks for signs of abuse",
+        "Don't touch the patient's head casually",
+        "Don't deliver bad news directly without family involvement",
+        "Don't dismiss traditional hot/cold dietary practices",
+        "Don't assume silence means agreement or understanding"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Vietnam", url: "https://en.wikipedia.org/wiki/Culture_of_Vietnam" },
+      { label: "WHO Vietnam", url: "https://www.who.int/countries/vnm" }
+    ]
+  },
+  // ─── ETHIOPIA ──────────────────────────────────────────────────────
+  {
+    name: "Ethiopia",
+    isoCode: "et",
+    lat: 9.01, lng: 38.75,
+    languages: ["Amharic", "Oromo", "Tigrinya", "Somali", "English"],
+    primaryLanguageFamily: "other",
+    religions: ["Ethiopian Orthodox Christianity", "Islam", "Protestantism", "Traditional beliefs"],
+    region: "East Africa",
+    cultural: {
+      communication: [
+        "Greetings are elaborate and important — inquire about family and health before medical discussion",
+        "Elders are highly respected — stand when they enter the room",
+        "Direct 'no' is avoided — listen for hesitation, qualifiers, or topic changes",
+        "Amharic is the federal language but many ethnic groups speak different languages",
+        "Eye contact with authority figures may be limited as a sign of respect"
+      ],
+      familyDecisionMaking: [
+        "Extended family and community elders are central to medical decisions",
+        "Male family head typically authorizes treatment, especially for women and children",
+        "Coffee ceremony is a bonding ritual — offering coffee shows respect",
+        "Community organizations (edir) provide social support during illness",
+        "Bad news should be delivered gently and gradually through family intermediaries"
+      ],
+      religiousSpiritual: [
+        "Ethiopian Orthodox Christians fast over 200 days per year — vegan diet during fasts",
+        "Holy water (tsebel) is believed to have healing properties — don't discourage its use",
+        "Muslim Ethiopians follow standard Islamic practices — halal food, prayer times, Ramadan",
+        "Traditional spiritual beliefs coexist with organized religion — buda (evil eye) beliefs",
+        "Saturday is the Sabbath for some Orthodox communities"
+      ],
+      healthBeliefs: [
+        "Traditional medicine is the first line of treatment for many — herbalists and bone-setters",
+        "Buda (evil eye) or spirit possession (zar) may be cited as disease causes",
+        "Mental illness is highly stigmatized — attributed to spiritual causes",
+        "Injections are often perceived as more effective than oral medications",
+        "Postpartum women observe strict rest and dietary rules"
+      ],
+      genderContact: [
+        "Female patients, especially Muslim women, strongly prefer female providers",
+        "Physical modesty is important across all religious groups",
+        "Husbands may insist on being present during wife's examinations",
+        "FGM/C is practiced in some communities — approach with sensitivity",
+        "Same-gender care teams are ideal for sensitive examinations"
+      ],
+      doList: [
+        "Take time for proper greetings and rapport-building",
+        "Ask about fasting practices before prescribing medications",
+        "Involve family and community in care planning",
+        "Respect traditional healing practices alongside Western medicine",
+        "Provide interpretation services for non-Amharic speakers"
+      ],
+      dontList: [
+        "Don't skip greetings or rush into medical discussions",
+        "Don't prescribe medications to be taken with food during fasting periods without discussion",
+        "Don't dismiss traditional healing — work alongside it",
+        "Don't assume one ethnic group's practices apply to all Ethiopians",
+        "Don't discuss FGM/C in a judgmental manner"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Ethiopia", url: "https://en.wikipedia.org/wiki/Culture_of_Ethiopia" },
+      { label: "WHO Ethiopia", url: "https://www.who.int/countries/eth" }
+    ]
+  },
+  // ─── ITALY ─────────────────────────────────────────────────────────
+  {
+    name: "Italy",
+    isoCode: "it",
+    lat: 41.90, lng: 12.50,
+    languages: ["Italian"],
+    primaryLanguageFamily: "other",
+    religions: ["Christianity (Catholic)"],
+    region: "Europe",
+    cultural: {
+      communication: [
+        "Expressive communication with gestures is standard — not a sign of agitation",
+        "Family-oriented approach is appreciated; patients expect warmth and empathy from providers",
+        "Titles matter — use 'Dottore/Dottoressa' for physicians",
+        "Patients may describe symptoms with emotional intensity — listen attentively",
+        "Privacy is valued but trust is built through personal connection"
+      ],
+      familyDecisionMaking: [
+        "Family plays a central role — major medical decisions often involve spouse, children, and parents",
+        "Mamma is a powerful figure in Italian families — mothers often coordinate care",
+        "Extended family visits to hospitalized patients are expected and frequent",
+        "Adult children feel strong obligation to care for elderly parents at home",
+        "Food brought from home is an expression of love and care"
+      ],
+      religiousSpiritual: [
+        "Catholicism influences end-of-life decisions — last rites, saints' medals, prayer",
+        "Catholic medical ethics may influence views on contraception, abortion, and end-of-life care",
+        "Saint patron devotion — patients may carry religious medals or images",
+        "Chaplain visits are welcome and appreciated",
+        "Growing secular population in younger generations"
+      ],
+      healthBeliefs: [
+        "Strong belief in the quality of Italian healthcare — may resist unfamiliar treatments",
+        "'Colpo d'aria' (hit of air/draft) is believed to cause illness — patients may avoid open windows",
+        "Diet and food quality are considered central to health — 'mangiare bene' (eating well)",
+        "Mental health stigma is decreasing but still present, especially in southern Italy",
+        "Patients may seek second and third opinions — this reflects engagement, not distrust"
+      ],
+      genderContact: [
+        "Generally comfortable with cross-gender medical care",
+        "Physical warmth (handshake, touch on arm) is appropriate and appreciated",
+        "Older patients from southern Italy may have more conservative views on modesty",
+        "Italian men may express pain more openly than northern European cultures",
+        "Close physical proximity during conversation is normal"
+      ],
+      doList: [
+        "Be warm, empathetic, and take time for personal connection",
+        "Involve family in care discussions",
+        "Allow food from home — it's an expression of love",
+        "Respect the patient's desire for multiple opinions",
+        "Use formal titles until invited to be informal"
+      ],
+      dontList: [
+        "Don't be overly clinical or detached — this reads as cold",
+        "Don't dismiss 'colpo d'aria' concerns about drafts",
+        "Don't restrict family visits excessively",
+        "Don't rush meal times — food is central to recovery in Italian culture",
+        "Don't assume younger Italians share traditional views"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Italy", url: "https://en.wikipedia.org/wiki/Culture_of_Italy" },
+      { label: "WHO Italy", url: "https://www.who.int/countries/ita" }
+    ]
+  },
+  // ─── SPAIN ─────────────────────────────────────────────────────────
+  {
+    name: "Spain",
+    isoCode: "es",
+    lat: 40.42, lng: -3.70,
+    languages: ["Spanish (Castilian)", "Catalan", "Basque", "Galician"],
+    primaryLanguageFamily: "spanish",
+    religions: ["Christianity (Catholic)", "None/Secular", "Islam"],
+    region: "Europe",
+    cultural: {
+      communication: [
+        "Warm, personal communication style — handshakes and cheek kisses are standard greetings",
+        "Conversation is expressive and may include interruptions — this is engagement, not rudeness",
+        "Patients expect doctors to show warmth and genuine concern",
+        "Siesta culture means afternoon appointments may be preferred after 5pm",
+        "Regional languages (Catalan, Basque, Galician) may be preferred in those communities"
+      ],
+      familyDecisionMaking: [
+        "Family involvement in healthcare is strong — especially in southern Spain",
+        "Elderly parents are typically cared for by family, not nursing homes",
+        "Multiple family members may attend appointments and ask questions",
+        "Medical decisions for children involve both parents and often grandparents",
+        "Immigrant communities (Latin American, Moroccan) have their own family dynamics"
+      ],
+      religiousSpiritual: [
+        "Catholic traditions influence views on birth, death, and suffering",
+        "Growing secularism, especially among younger generations",
+        "Muslim immigrant community follows Islamic practices — halal food, prayer times",
+        "Saint patron festivals are important cultural events — not just religious",
+        "End-of-life care may involve Catholic sacraments"
+      ],
+      healthBeliefs: [
+        "Strong public healthcare system — Spaniards are generally medically literate",
+        "Mediterranean diet is considered foundational to health",
+        "Herbal remedies (herboristería) are used alongside conventional medicine",
+        "Mental health awareness is growing but stigma persists in rural areas",
+        "Afternoon rest (siesta) is considered important for health"
+      ],
+      genderContact: [
+        "Generally comfortable with cross-gender medical care",
+        "Physical warmth and touch are normal in social and medical contexts",
+        "Spanish men may be more expressive about pain than other European cultures",
+        "Gender equality is strong in urban areas; rural areas may be more traditional",
+        "LGBTQ+ rights are well-established — inclusive language is appreciated"
+      ],
+      doList: [
+        "Be warm, friendly, and take time for social conversation",
+        "Accommodate afternoon scheduling preferences when possible",
+        "Respect regional identities — Catalan, Basque, Galician",
+        "Allow family participation in medical discussions",
+        "Learn basic greetings in regional languages if treating those communities"
+      ],
+      dontList: [
+        "Don't be overly formal or cold — this creates distance",
+        "Don't schedule important procedures during siesta hours without asking",
+        "Don't assume all Spaniards speak Castilian — respect regional languages",
+        "Don't dismiss Mediterranean diet beliefs",
+        "Don't confuse Spanish cultural norms with Latin American ones"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Spain", url: "https://en.wikipedia.org/wiki/Culture_of_Spain" },
+      { label: "WHO Spain", url: "https://www.who.int/countries/esp" }
+    ]
+  },
+  // ─── CANADA ────────────────────────────────────────────────────────
+  {
+    name: "Canada",
+    isoCode: "ca",
+    lat: 45.42, lng: -75.69,
+    languages: ["English", "French"],
+    primaryLanguageFamily: "english",
+    religions: ["Christianity", "Islam", "Sikhism", "Hinduism", "None/Secular"],
+    region: "North America",
+    cultural: {
+      communication: [
+        "Polite, respectful communication — Canadians value 'please', 'thank you', and apologies",
+        "Bilingual reality — French-speaking patients in Quebec may prefer or require French",
+        "Multicultural society — expect wide variation in communication norms based on heritage",
+        "Shared decision-making is expected — patients want to be active partners",
+        "Indigenous patients may use storytelling as a communication style — allow time"
+      ],
+      familyDecisionMaking: [
+        "Individual autonomy is highly valued — patient makes their own decisions",
+        "For immigrant communities, traditional family decision-making structures may apply",
+        "Indigenous communities may involve elders and band councils in health decisions",
+        "Advance care planning and living wills are common and encouraged",
+        "LGBTQ+ families and chosen families should be recognized equally"
+      ],
+      religiousSpiritual: [
+        "Highly diverse — accommodate all major world religions",
+        "Growing secularism, especially in British Columbia and Quebec",
+        "Sikh patients may wear the five articles of faith — handle with care",
+        "Indigenous spiritual practices (smudging, ceremony) should be accommodated in hospitals",
+        "Multifaith chaplaincy services are standard in major hospitals"
+      ],
+      healthBeliefs: [
+        "Universal healthcare system — patients expect care without financial barriers",
+        "Indigenous communities may use traditional medicine alongside Western approaches",
+        "Chinese, South Asian, and Middle Eastern communities bring traditional health practices",
+        "Mental health awareness is high — but stigma exists in some cultural communities",
+        "Cannabis is legal and used medicinally — ask about use without judgment"
+      ],
+      genderContact: [
+        "Generally open to cross-gender medical care",
+        "Immigrant communities may have specific preferences — always ask",
+        "Trans and non-binary patients expect appropriate pronoun use and respect",
+        "Indigenous women may have experienced medical trauma — approach with sensitivity",
+        "MAID (Medical Assistance in Dying) is legal — discuss wishes openly"
+      ],
+      doList: [
+        "Ask about cultural background and preferences early in care",
+        "Offer interpretation services proactively — especially French",
+        "Accommodate diverse religious and spiritual practices",
+        "Recognize Indigenous patients' historical medical trauma",
+        "Use inclusive language for gender and family structures"
+      ],
+      dontList: [
+        "Don't assume all Canadians share the same cultural background",
+        "Don't speak English to Francophone patients without asking",
+        "Don't dismiss Indigenous traditional medicine",
+        "Don't ignore culturally specific mental health presentations",
+        "Don't assume familiarity with the healthcare system for newcomers"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Canada", url: "https://en.wikipedia.org/wiki/Culture_of_Canada" },
+      { label: "WHO Canada", url: "https://www.who.int/countries/can" }
+    ]
+  },
+  // ─── ARGENTINA ─────────────────────────────────────────────────────
+  {
+    name: "Argentina",
+    isoCode: "ar",
+    lat: -34.60, lng: -58.38,
+    languages: ["Spanish"],
+    primaryLanguageFamily: "spanish",
+    religions: ["Christianity (Catholic)", "None/Secular", "Judaism", "Islam"],
+    region: "South America",
+    cultural: {
+      communication: [
+        "Warm, expressive communication — cheek kisses and embraces are standard greetings",
+        "Argentines value long, personal conversations — don't rush medical consultations",
+        "Voseo (use of 'vos' instead of 'tú') is standard Argentine Spanish",
+        "Patients expect emotional engagement from doctors — clinical detachment seems cold",
+        "Mate (shared tea) is a bonding ritual — offering mate is a sign of trust"
+      ],
+      familyDecisionMaking: [
+        "Strong family bonds — mother and eldest daughter often coordinate care",
+        "Italian and Spanish heritage influences family-centered approach",
+        "Adult children typically care for aging parents at home",
+        "Family visits are frequent and expected during hospitalization",
+        "Medical decisions often discussed as a family unit"
+      ],
+      religiousSpiritual: [
+        "Predominantly Catholic — religious medals, prayer, and sacraments are important",
+        "Pope Francis is Argentine — Catholicism has special cultural significance",
+        "Jewish community in Buenos Aires is the largest in Latin America",
+        "Growing evangelical Protestant movement, especially in lower-income areas",
+        "Folk Catholicism includes devotion to non-canonical saints (Gauchito Gil)"
+      ],
+      healthBeliefs: [
+        "Psychoanalysis is deeply embedded in culture — Buenos Aires has more psychoanalysts per capita than any city",
+        "Herbal medicine (yuyos) including yerba mate is considered health-promoting",
+        "Curanderos (folk healers) are consulted in rural areas",
+        "Argentine patients are generally medically literate and engaged",
+        "Diet is meat-heavy (asado culture) — dietary changes may face resistance"
+      ],
+      genderContact: [
+        "Generally comfortable with cross-gender medical care",
+        "Physical warmth (handshake, touch on arm, cheek kiss) is normal",
+        "Machismo culture exists but is evolving, especially in cities",
+        "Women's rights movement is strong — respect patient autonomy",
+        "LGBTQ+ rights are legally protected — inclusive care expected"
+      ],
+      doList: [
+        "Be warm, personal, and take time for conversation",
+        "Allow family involvement — it's a source of strength",
+        "Understand the cultural importance of psychotherapy",
+        "Respect mate-sharing traditions in appropriate settings",
+        "Use Argentine Spanish conventions"
+      ],
+      dontList: [
+        "Don't be formal or distant — it creates distrust",
+        "Don't compare Argentina to other Latin American countries",
+        "Don't restrict family visits excessively",
+        "Don't dismiss herbal remedies without discussion",
+        "Don't overlook mental health — Argentines are generally open to therapy"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Argentina", url: "https://en.wikipedia.org/wiki/Culture_of_Argentina" },
+      { label: "WHO Argentina", url: "https://www.who.int/countries/arg" }
+    ]
+  },
+  // ─── COLOMBIA ──────────────────────────────────────────────────────
+  {
+    name: "Colombia",
+    isoCode: "co",
+    lat: 4.71, lng: -74.07,
+    languages: ["Spanish"],
+    primaryLanguageFamily: "spanish",
+    religions: ["Christianity (Catholic)", "Protestantism"],
+    region: "South America",
+    cultural: {
+      communication: [
+        "Colombians are warm and friendly — personal rapport is essential before medical talk",
+        "Address patients as 'Don/Doña' + first name as a sign of respect",
+        "Indirect communication — negative news should be delivered gently and gradually",
+        "Regional dialects vary significantly — Costeño (coast) vs Cachaco (Bogotá)",
+        "Humor and warmth are appreciated in medical settings"
+      ],
+      familyDecisionMaking: [
+        "Family-centered culture — entire families may arrive for consultations",
+        "Mother figures (la mamá) are often the primary health decision-makers",
+        "Compadrazgo (godparent) system extends family decision-making networks",
+        "Children are expected to care for elderly parents",
+        "Community solidarity is strong, especially in rural areas"
+      ],
+      religiousSpiritual: [
+        "Strong Catholic faith — saints, rosaries, and prayer are common comfort measures",
+        "Evangelical Christianity is rapidly growing",
+        "Indigenous communities have distinct spiritual healing traditions",
+        "Afro-Colombian communities blend Catholic and African spiritual practices",
+        "Religious fatalism ('si Dios quiere') may influence treatment compliance"
+      ],
+      healthBeliefs: [
+        "Traditional medicine varies by region — Amazonian, Andean, and Caribbean traditions",
+        "Sobandero (traditional bonesetter/healer) is widely consulted",
+        "Herbal remedies (aromáticas) are first-line treatment for many conditions",
+        "Hot/cold food classification influences illness management",
+        "Mental health stigma is significant — 'nervios' is a common idiom of distress"
+      ],
+      genderContact: [
+        "Generally comfortable with cross-gender care but modesty is valued",
+        "Machismo influences health-seeking behavior — men may delay care",
+        "Women in rural areas may have limited healthcare access and autonomy",
+        "Physical warmth in medical settings is appreciated",
+        "Gender-based violence is a health concern — screen sensitively"
+      ],
+      doList: [
+        "Build personal rapport before clinical discussions",
+        "Include family in care planning",
+        "Ask about herbal medicine and traditional remedies",
+        "Be aware of regional cultural differences within Colombia",
+        "Use respectful titles (Don/Doña)"
+      ],
+      dontList: [
+        "Don't be impersonal or rush consultations",
+        "Don't dismiss religious coping mechanisms",
+        "Don't assume all Colombians share the same cultural background",
+        "Don't ignore potential trauma from conflict/displacement history",
+        "Don't overlook herbal interactions with prescribed medications"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Colombia", url: "https://en.wikipedia.org/wiki/Culture_of_Colombia" },
+      { label: "WHO Colombia", url: "https://www.who.int/countries/col" }
+    ]
+  },
+  // ─── KENYA ─────────────────────────────────────────────────────────
+  {
+    name: "Kenya",
+    isoCode: "ke",
+    lat: -1.29, lng: 36.82,
+    languages: ["Swahili", "English", "Kikuyu", "Luo", "Kalenjin"],
+    primaryLanguageFamily: "english",
+    religions: ["Christianity (Protestant)", "Christianity (Catholic)", "Islam", "Traditional beliefs"],
+    region: "East Africa",
+    cultural: {
+      communication: [
+        "Greetings are essential — 'Habari' (How are you?) before any discussion",
+        "Respect for age and authority is paramount — use 'Mzee' for elders",
+        "English and Swahili are official but many prefer their ethnic language",
+        "Indirect communication is common — patients may agree to be polite",
+        "Community health workers are trusted intermediaries"
+      ],
+      familyDecisionMaking: [
+        "Extended family involvement in medical decisions is standard",
+        "Clan and ethnic community (Kikuyu, Luo, Kalenjin, etc.) influence health practices",
+        "Male elders often make decisions for the family",
+        "Harambee (communal fundraising) may be organized for medical costs",
+        "Urban Kenyans may have more individualized decision-making"
+      ],
+      religiousSpiritual: [
+        "Christianity is predominant — prayer and church support are key coping mechanisms",
+        "Coastal and northeastern Kenya is predominantly Muslim",
+        "Traditional beliefs about ancestral spirits coexist with organized religion",
+        "Faith healing services are widely attended",
+        "Witchcraft beliefs influence some communities — illness may be attributed to curses"
+      ],
+      healthBeliefs: [
+        "Traditional herbalists (mganga) are widely consulted",
+        "HIV/AIDS carries significant stigma despite high prevalence",
+        "Mental illness is often attributed to spiritual causes",
+        "Childbirth practices include traditional birth attendants (TBAs)",
+        "Malaria and infectious disease dominate health concerns"
+      ],
+      genderContact: [
+        "Female patients may prefer female providers, especially in Muslim communities",
+        "FGM/C is practiced in some ethnic groups — approach sensitively",
+        "Gender roles are changing rapidly in urban areas",
+        "Women may need permission from husbands to seek medical care in rural areas",
+        "Male circumcision is culturally important in many communities"
+      ],
+      doList: [
+        "Greet patients properly and ask about their family",
+        "Learn basic Swahili greetings",
+        "Involve community health workers when appropriate",
+        "Ask about traditional medicine use",
+        "Be sensitive to ethnic diversity and intra-community differences"
+      ],
+      dontList: [
+        "Don't skip greetings — it's disrespectful",
+        "Don't assume all Kenyans have the same cultural practices",
+        "Don't dismiss witchcraft beliefs — engage with them respectfully",
+        "Don't ignore the role of community health workers",
+        "Don't stigmatize HIV/AIDS patients"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Kenya", url: "https://en.wikipedia.org/wiki/Culture_of_Kenya" },
+      { label: "WHO Kenya", url: "https://www.who.int/countries/ken" }
+    ]
+  },
+  // ─── SOUTH AFRICA ──────────────────────────────────────────────────
+  {
+    name: "South Africa",
+    isoCode: "za",
+    lat: -33.93, lng: 18.42,
+    languages: ["Zulu", "Xhosa", "Afrikaans", "English", "Sotho", "Tswana"],
+    primaryLanguageFamily: "english",
+    religions: ["Christianity", "Traditional African beliefs", "Islam", "Hinduism"],
+    region: "Sub-Saharan Africa",
+    cultural: {
+      communication: [
+        "Ubuntu ('I am because we are') shapes communal care and relationship-building",
+        "11 official languages — always ask which language the patient prefers",
+        "Respect for elders is fundamental — use titles and deferential language",
+        "Patients may be reserved initially — build trust gradually",
+        "Historical medical mistrust due to apartheid-era healthcare discrimination"
+      ],
+      familyDecisionMaking: [
+        "Extended family and community are central to health decisions",
+        "Traditional leaders (induna, chief) may need to be consulted in rural areas",
+        "Mothers and grandmothers are key healthcare decision-makers for families",
+        "Stokvel (savings clubs) may be organized to cover medical expenses",
+        "LGBT families exist but face discrimination in some communities"
+      ],
+      religiousSpiritual: [
+        "Christianity blended with traditional African beliefs is common",
+        "Sangoma (traditional diviner) and inyanga (herbalist) are widely consulted",
+        "Ancestor veneration is central to Zulu, Xhosa, and other cultures",
+        "Zion Christian Church and other African-initiated churches have specific health practices",
+        "Muslim and Hindu communities follow their respective traditions"
+      ],
+      healthBeliefs: [
+        "Traditional healers are recognized by law and widely consulted",
+        "HIV/AIDS is a major concern — stigma persists but awareness is high",
+        "Muti (traditional medicine) may interact with prescribed medications",
+        "Witchcraft and sorcery may be cited as causes of illness",
+        "Tuberculosis is endemic — community health approaches are important"
+      ],
+      genderContact: [
+        "Preferences vary by community — always ask",
+        "Gender-based violence is a significant health concern",
+        "Rural women may have limited healthcare autonomy",
+        "Male circumcision (ulwaluko) in Xhosa culture is a rite of passage",
+        "LGBTQ+ rights are constitutionally protected but social acceptance varies"
+      ],
+      doList: [
+        "Embrace Ubuntu principles — show communal respect",
+        "Ask about language preferences — don't assume English",
+        "Inquire about traditional medicine use without judgment",
+        "Be sensitive to apartheid-era medical trauma",
+        "Work with traditional healers when appropriate"
+      ],
+      dontList: [
+        "Don't dismiss sangoma or traditional healer consultations",
+        "Don't assume all South Africans speak English comfortably",
+        "Don't ignore the diversity of South African cultures",
+        "Don't stigmatize HIV/AIDS or TB patients",
+        "Don't underestimate the impact of historical healthcare discrimination"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of South Africa", url: "https://en.wikipedia.org/wiki/Culture_of_South_Africa" },
+      { label: "WHO South Africa", url: "https://www.who.int/countries/zaf" }
+    ]
+  },
+  // ─── IRAQ ──────────────────────────────────────────────────────────
+  {
+    name: "Iraq",
+    isoCode: "iq",
+    lat: 33.31, lng: 44.37,
+    languages: ["Arabic", "Kurdish", "Turkmen"],
+    primaryLanguageFamily: "arabic",
+    religions: ["Islam (Shia)", "Islam (Sunni)", "Christianity", "Yazidism"],
+    region: "Middle East",
+    cultural: {
+      communication: [
+        "Hospitality and warmth are central — offer tea or coffee before discussions",
+        "Honor (sharaf) is paramount — avoid anything that could be seen as shaming",
+        "Use formal Arabic greetings — 'As-salamu alaykum' shows respect",
+        "Bad news must be delivered gradually and often through a family elder first",
+        "War trauma and PTSD are widespread — approach mental health carefully"
+      ],
+      familyDecisionMaking: [
+        "Patriarchal family structure — eldest male makes medical decisions",
+        "Tribal (ashira) affiliations influence healthcare access and decisions",
+        "Women's healthcare decisions often require male family member approval",
+        "Extended family visits to hospitalized patients are expected and large",
+        "Kurdish communities may have different family dynamics than Arab communities"
+      ],
+      religiousSpiritual: [
+        "Islam guides daily life — prayer times, Ramadan fasting, halal dietary laws",
+        "Shia-Sunni distinctions are important — religious mourning periods differ",
+        "Yazidi patients have unique beliefs — they are not Muslim and should not be treated as such",
+        "Christian Iraqis (Chaldean, Assyrian) follow Eastern Christian traditions",
+        "Body must be buried within 24 hours; autopsy is generally opposed"
+      ],
+      healthBeliefs: [
+        "War-related trauma and PTSD are extremely common but stigmatized",
+        "Traditional medicine (al-tibb al-sha'bi) is used alongside Western medicine",
+        "Evil eye (al-ayn) and jinn are believed to cause illness",
+        "Mental illness is heavily stigmatized — often hidden from community",
+        "Pain expression is culturally acceptable and may be vocal"
+      ],
+      genderContact: [
+        "Female patients must have female providers whenever possible",
+        "Male doctors should not be alone with female patients without a chaperone",
+        "Physical modesty is paramount — minimize exposure during examinations",
+        "Handshaking between genders is inappropriate in conservative communities",
+        "Head coverings should not be removed unless medically essential"
+      ],
+      doList: [
+        "Show warmth and hospitality — offer tea if possible",
+        "Provide same-gender medical staff for female patients",
+        "Be sensitive to war trauma and PTSD symptoms",
+        "Respect Shia/Sunni/Kurdish/Yazidi differences",
+        "Include family in all medical discussions"
+      ],
+      dontList: [
+        "Don't deliver bad news directly without family consultation",
+        "Don't assume all Iraqis are Arab or Muslim",
+        "Don't shake hands with opposite-gender patients without their initiation",
+        "Don't dismiss PTSD symptoms or trauma history",
+        "Don't schedule procedures during Muharram or Ramadan without discussion"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Iraq", url: "https://en.wikipedia.org/wiki/Culture_of_Iraq" },
+      { label: "WHO Iraq", url: "https://www.who.int/countries/irq" }
+    ]
+  },
+  // ─── ISRAEL ────────────────────────────────────────────────────────
+  {
+    name: "Israel",
+    isoCode: "il",
+    lat: 31.77, lng: 35.22,
+    languages: ["Hebrew", "Arabic", "Russian", "English"],
+    primaryLanguageFamily: "other",
+    religions: ["Judaism", "Islam", "Christianity", "Druze"],
+    region: "Middle East",
+    cultural: {
+      communication: [
+        "Direct communication style (dugri/tachles) — Israelis appreciate straightforwardness",
+        "Informality is common — first names are used quickly, even with doctors",
+        "Patients may be assertive and ask many questions — this shows engagement",
+        "Arabic-speaking patients may prefer indirect communication styles",
+        "Russian-speaking immigrants may have different expectations from Soviet-era healthcare"
+      ],
+      familyDecisionMaking: [
+        "Family involvement varies by community — secular, Orthodox, Arab, Druze",
+        "Ultra-Orthodox (Haredi) families may consult a rabbi before medical decisions",
+        "Arab-Israeli families often have patriarchal decision-making structures",
+        "Military service creates strong peer support networks",
+        "Holocaust survivor families may have generational trauma affecting healthcare interactions"
+      ],
+      religiousSpiritual: [
+        "Shabbat (Friday sunset to Saturday sunset) — Orthodox patients cannot use electronics or sign forms",
+        "Kosher dietary laws — separate meat and dairy, no pork, no shellfish",
+        "Jewish law (halacha) has specific rules about end-of-life care, autopsy, and organ donation",
+        "Muslim and Druze patients follow their respective religious practices",
+        "Jewish patients may request visits from a rabbi; Muslim patients from an imam"
+      ],
+      healthBeliefs: [
+        "Israelis are generally highly medically literate and engaged",
+        "Universal healthcare system — patients expect high-quality, accessible care",
+        "Complementary medicine is popular — acupuncture, naturopathy, homeopathy",
+        "Trauma and PTSD from conflict are widespread — normalize mental health support",
+        "Ethiopian Jewish and Russian immigrant communities may have distinct health beliefs"
+      ],
+      genderContact: [
+        "Orthodox Jewish patients require same-gender providers",
+        "Ultra-Orthodox women should not be touched by male providers",
+        "Arab-Israeli women may require female providers and chaperones",
+        "Secular Israelis are generally comfortable with cross-gender care",
+        "Niddah (menstrual purity laws) may affect Orthodox women's interactions"
+      ],
+      doList: [
+        "Be direct and clear — Israelis appreciate straightforwardness",
+        "Ask about religious observance level — it varies greatly",
+        "Accommodate Shabbat observance for Orthodox patients",
+        "Provide kosher food options",
+        "Be sensitive to trauma and security-related stress"
+      ],
+      dontList: [
+        "Don't assume all Israelis have the same religious practices",
+        "Don't schedule procedures on Shabbat for Orthodox patients without discussion",
+        "Don't serve non-kosher food to observant patients",
+        "Don't touch Orthodox patients of the opposite gender",
+        "Don't make assumptions about political views"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Israel", url: "https://en.wikipedia.org/wiki/Culture_of_Israel" },
+      { label: "WHO Israel", url: "https://www.who.int/countries/isr" }
+    ]
+  },
+  // ─── POLAND ────────────────────────────────────────────────────────
+  {
+    name: "Poland",
+    isoCode: "pl",
+    lat: 52.23, lng: 21.01,
+    languages: ["Polish"],
+    primaryLanguageFamily: "other",
+    religions: ["Christianity (Catholic)"],
+    region: "Europe",
+    cultural: {
+      communication: [
+        "Formal communication — use 'Pan/Pani' (Mr./Mrs.) until invited otherwise",
+        "Polish patients may be reserved but expect thorough explanations",
+        "Directness is valued but delivered with politeness",
+        "Hand-kissing for women is a traditional greeting among older generations",
+        "Patients expect professional competence and may challenge doctors respectfully"
+      ],
+      familyDecisionMaking: [
+        "Family involvement is important — especially spouse and adult children",
+        "Catholic values influence family roles and medical ethics",
+        "Elderly parents are increasingly cared for at home",
+        "Women often coordinate family healthcare decisions",
+        "Young Poles are more individualistic in healthcare decisions"
+      ],
+      religiousSpiritual: [
+        "Catholicism is deeply embedded in Polish culture and identity",
+        "Catholic medical ethics strongly influence views on contraception, abortion, and end-of-life",
+        "Saint and angel devotion is common — religious items in hospital rooms",
+        "Chaplain visits and last rites are important for seriously ill patients",
+        "All Saints' Day (November 1) is very important culturally"
+      ],
+      healthBeliefs: [
+        "Strong faith in conventional medicine but herbal remedies (zioła) are also popular",
+        "Spa and sanatorium culture — 'taking the waters' is a health tradition",
+        "Mental health stigma is decreasing but still significant",
+        "Polish patients may self-medicate with antibiotics obtained without prescription",
+        "Vodka may be used as a folk remedy — ask about alcohol use"
+      ],
+      genderContact: [
+        "Generally comfortable with cross-gender medical care",
+        "Older patients may be more modest — explain procedures clearly",
+        "Chivalry traditions mean older Polish men may be deferential to female doctors",
+        "Women are generally empowered in healthcare decisions",
+        "Physical examination modesty should be respected"
+      ],
+      doList: [
+        "Use formal titles and show professional competence",
+        "Respect Catholic beliefs and practices",
+        "Allow family involvement in care",
+        "Provide thorough explanations — Polish patients value information",
+        "Ask about herbal supplement use"
+      ],
+      dontList: [
+        "Don't be informal too quickly — respect formality",
+        "Don't dismiss Catholic beliefs about end-of-life care",
+        "Don't assume Poland is 'Eastern European' — many Poles identify as Central European",
+        "Don't overlook herbal remedy interactions",
+        "Don't be surprised by direct questioning — it shows engagement"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Poland", url: "https://en.wikipedia.org/wiki/Culture_of_Poland" },
+      { label: "WHO Poland", url: "https://www.who.int/countries/pol" }
+    ]
+  },
+  // ─── SWEDEN ────────────────────────────────────────────────────────
+  {
+    name: "Sweden",
+    isoCode: "se",
+    lat: 59.33, lng: 18.07,
+    languages: ["Swedish"],
+    primaryLanguageFamily: "other",
+    religions: ["Christianity (Lutheran)", "None/Secular", "Islam"],
+    region: "Europe",
+    cultural: {
+      communication: [
+        "Reserved, understated communication style — avoid exaggeration or emotional displays",
+        "Lagom ('just the right amount') is a core cultural value — moderation in all things",
+        "Patients expect evidence-based, thorough explanations",
+        "First names are used almost universally — formality is rare",
+        "Swedes value personal space and may seem distant initially"
+      ],
+      familyDecisionMaking: [
+        "Individual autonomy is paramount — patients make their own decisions",
+        "Gender equality is among the highest globally — both parents are equally involved",
+        "Elderly care is primarily through public services, not family caregiving",
+        "Children's rights are strongly protected — children's voices are heard in medical care",
+        "Immigrant families may have more collective decision-making styles"
+      ],
+      religiousSpiritual: [
+        "One of the most secular countries globally — religion is private and rarely discussed",
+        "Growing Muslim community — accommodate halal food and prayer needs",
+        "Lutheran traditions remain culturally important for life ceremonies",
+        "Midsummer and Christmas are cultural rather than religious celebrations",
+        "Spiritual but not religious is a common self-identification"
+      ],
+      healthBeliefs: [
+        "Universal healthcare (vårdcentralen) — patients expect evidence-based care",
+        "Preventive care and healthy lifestyle are culturally valued",
+        "Friskvård (wellness) culture — exercise and outdoor activities are central",
+        "Mental health is openly discussed — Sweden has strong mental health services",
+        "Antibiotic stewardship is well-understood — patients don't expect antibiotics for viral infections"
+      ],
+      genderContact: [
+        "Gender is rarely a factor in medical provider selection",
+        "Strong LGBTQ+ rights — inclusive language and practices expected",
+        "Immigrant patients may have gender-specific care preferences",
+        "Physical examination is matter-of-fact — less modesty concern than many cultures",
+        "Parental leave for both parents means both may attend children's appointments"
+      ],
+      doList: [
+        "Be evidence-based and thorough in explanations",
+        "Respect individual autonomy and privacy",
+        "Be straightforward but not aggressive in communication",
+        "Accommodate diverse immigrant population needs",
+        "Support preventive care and healthy lifestyle discussions"
+      ],
+      dontList: [
+        "Don't be overly emotional or dramatic in delivery",
+        "Don't make assumptions based on gender roles",
+        "Don't be excessively formal — it creates distance",
+        "Don't ignore immigrant patients' cultural needs",
+        "Don't assume secularity — ask about spiritual needs"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Sweden", url: "https://en.wikipedia.org/wiki/Culture_of_Sweden" },
+      { label: "WHO Sweden", url: "https://www.who.int/countries/swe" }
+    ]
+  },
+  // ─── BANGLADESH ────────────────────────────────────────────────────
+  {
+    name: "Bangladesh",
+    isoCode: "bd",
+    lat: 23.81, lng: 90.41,
+    languages: ["Bengali (Bangla)", "English"],
+    primaryLanguageFamily: "other",
+    religions: ["Islam (Sunni)", "Hinduism", "Buddhism", "Christianity"],
+    region: "South Asia",
+    cultural: {
+      communication: [
+        "Respectful, formal communication — use 'Bhai' (brother) or 'Apa' (sister) as respectful address",
+        "Indirect communication is common — 'maybe' or 'we'll see' often means no",
+        "Eye contact with authority figures may be limited as a sign of respect",
+        "Bengali is deeply tied to national identity — speaking it shows respect",
+        "Patients may not volunteer information about symptoms — ask specific questions"
+      ],
+      familyDecisionMaking: [
+        "Male family head (husband, father, eldest brother) typically makes healthcare decisions",
+        "Women may need permission from male relatives to seek medical care",
+        "Extended family is deeply involved in care — expect large family groups",
+        "Dowry and economic factors may influence willingness to invest in healthcare",
+        "Rural patients may rely on community leaders for medical guidance"
+      ],
+      religiousSpiritual: [
+        "Islam is the dominant religion — prayer times, halal food, Ramadan fasting",
+        "Hindu patients observe different dietary and ritual practices",
+        "Purdah (seclusion of women) may limit women's access to healthcare",
+        "Religious amulets (tabiz) may be worn for protection — don't remove",
+        "After death, Islamic burial practices require prompt burial"
+      ],
+      healthBeliefs: [
+        "Traditional healers (kabiraj) and homeopathy are widely used",
+        "Ayurvedic and Unani medicine are popular — 'hot/cold' food classifications",
+        "Mental illness is heavily stigmatized — attributed to jinn or black magic",
+        "Waterborne diseases and malnutrition are common health concerns",
+        "Patients may prefer injections over oral medications"
+      ],
+      genderContact: [
+        "Female patients require female providers — this is very strictly observed",
+        "Male doctors examining female patients need female chaperones and family consent",
+        "Handshaking between genders is not customary",
+        "Women may be reluctant to undress for examinations — explain necessity carefully",
+        "Menstruation-related health issues may be taboo to discuss openly"
+      ],
+      doList: [
+        "Provide female healthcare providers for female patients",
+        "Involve male family members in care decisions respectfully",
+        "Ask about traditional medicine use — kabiraj and homeopathy",
+        "Accommodate prayer times and halal dietary needs",
+        "Use visual aids — literacy rates vary"
+      ],
+      dontList: [
+        "Don't insist on male providers for female patients",
+        "Don't dismiss traditional healing practices outright",
+        "Don't schedule procedures during Ramadan without discussion",
+        "Don't assume literacy — provide pictorial medication instructions",
+        "Don't ignore purdah practices — work within cultural frameworks"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Bangladesh", url: "https://en.wikipedia.org/wiki/Culture_of_Bangladesh" },
+      { label: "WHO Bangladesh", url: "https://www.who.int/countries/bgd" }
+    ]
+  },
+  // ─── MALAYSIA ──────────────────────────────────────────────────────
+  {
+    name: "Malaysia",
+    isoCode: "my",
+    lat: 3.14, lng: 101.69,
+    languages: ["Malay (Bahasa Malaysia)", "English", "Mandarin", "Tamil"],
+    primaryLanguageFamily: "malay",
+    religions: ["Islam", "Buddhism", "Christianity", "Hinduism", "Taoism"],
+    region: "Southeast Asia",
+    cultural: {
+      communication: [
+        "Multicultural society — communication norms vary between Malay, Chinese, and Indian communities",
+        "Face-saving is important — avoid public criticism or embarrassment",
+        "Use titles — 'Encik/Puan' for Malay, 'Mr/Mrs' for Chinese and Indian",
+        "Malay patients may be indirect; Chinese Malaysian patients may be more direct",
+        "English is widely spoken as a second language"
+      ],
+      familyDecisionMaking: [
+        "Family involvement varies by ethnicity — Malay and Indian families are more collective",
+        "Chinese Malaysian families may defer to the eldest son",
+        "Malay families consult with extended family and sometimes religious leaders",
+        "Indian Malaysian families may consult with community or temple leaders",
+        "Urban Malaysians tend toward more individual decision-making"
+      ],
+      religiousSpiritual: [
+        "Islam is the official religion — Malay patients require halal food and gender-separated care",
+        "Buddhist Chinese Malaysians may have vegetarian dietary preferences",
+        "Hindu Indian Malaysians may have dietary restrictions and festival observances",
+        "Religious diversity means providers must be culturally versatile",
+        "Traditional Malay beliefs (bomoh/pawang) coexist with Islam"
+      ],
+      healthBeliefs: [
+        "Traditional Malay medicine (perubatan Melayu) includes bomoh (healer) consultations",
+        "Chinese traditional medicine (TCM) is widely practiced by Chinese Malaysians",
+        "Ayurvedic medicine is used by Indian Malaysian communities",
+        "Angin (wind in the body) is a common Malay illness concept",
+        "All three major communities may use traditional alongside modern medicine"
+      ],
+      genderContact: [
+        "Malay Muslim women require female providers and chaperones",
+        "Chinese and Indian Malaysian women are generally more flexible",
+        "Physical modesty is important across all communities",
+        "Handshaking between genders may be avoided by Muslim Malaysians",
+        "Left hand is considered unclean — use right hand for giving/receiving"
+      ],
+      doList: [
+        "Ask about ethnic and religious background to tailor care",
+        "Provide halal food for Muslim patients",
+        "Accommodate traditional medicine preferences from all communities",
+        "Offer same-gender providers for Muslim patients",
+        "Learn basic greetings in Malay, Mandarin, and Tamil"
+      ],
+      dontList: [
+        "Don't assume all Malaysians are Malay or Muslim",
+        "Don't serve non-halal food to Muslim patients",
+        "Don't use the left hand for giving items or touching patients",
+        "Don't point with your index finger — use whole hand or thumb",
+        "Don't make assumptions based on appearance about ethnicity"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Malaysia", url: "https://en.wikipedia.org/wiki/Culture_of_Malaysia" },
+      { label: "WHO Malaysia", url: "https://www.who.int/countries/mys" }
+    ]
+  },
+  // ─── MOROCCO ───────────────────────────────────────────────────────
+  {
+    name: "Morocco",
+    isoCode: "ma",
+    lat: 34.02, lng: -6.84,
+    languages: ["Arabic", "Berber (Amazigh)", "French"],
+    primaryLanguageFamily: "arabic",
+    religions: ["Islam (Sunni)"],
+    region: "North Africa",
+    cultural: {
+      communication: [
+        "Warm, hospitality-driven communication — mint tea is offered before any discussion",
+        "Darija (Moroccan Arabic) differs significantly from Modern Standard Arabic",
+        "Berber communities speak Tamazight — not Arabic",
+        "French is widely used in medical and professional settings",
+        "Indirect communication — saving face is essential"
+      ],
+      familyDecisionMaking: [
+        "Family patriarchs traditionally make medical decisions",
+        "Women's autonomy is increasing, especially in urban areas (Casablanca, Rabat)",
+        "Extended family network is deeply involved in care",
+        "Community solidarity is strong, especially in rural areas",
+        "Royal family and national identity influence cultural norms"
+      ],
+      religiousSpiritual: [
+        "Sunni Islam (Maliki school) guides daily life — prayer, fasting, dietary laws",
+        "Ramadan fasting affects medication schedules",
+        "Belief in jinn and evil eye (l-ayn) is widespread",
+        "Marabout shrines (saints' tombs) are visited for healing",
+        "Islamic end-of-life practices — burial within 24 hours, facing Mecca"
+      ],
+      healthBeliefs: [
+        "Traditional medicine includes herbal remedies from souks (markets)",
+        "Hammam (bathhouse) is used for health and purification",
+        "Cupping (hijama) is practiced as prophetic medicine",
+        "Mental illness is attributed to jinn or spiritual causes in traditional communities",
+        "Hot/cold food classification is used in illness management"
+      ],
+      genderContact: [
+        "Female patients strongly prefer female providers",
+        "Physical modesty is important — minimize body exposure",
+        "Handshaking between genders varies — follow patient's lead",
+        "Male doctors should have chaperones with female patients",
+        "Hijab should not be removed unless medically necessary"
+      ],
+      doList: [
+        "Accept tea when offered — it's a sign of hospitality",
+        "Provide female providers for female patients",
+        "Ask about fasting during Ramadan",
+        "Be aware of Berber language and cultural differences",
+        "Accommodate Islamic dietary requirements"
+      ],
+      dontList: [
+        "Don't refuse hospitality (tea, food) — it's considered rude",
+        "Don't assume all Moroccans speak Arabic — many are Berber",
+        "Don't dismiss traditional healing practices",
+        "Don't schedule elective procedures during Ramadan",
+        "Don't eat, drink, or smoke in front of fasting patients"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Morocco", url: "https://en.wikipedia.org/wiki/Culture_of_Morocco" },
+      { label: "WHO Morocco", url: "https://www.who.int/countries/mar" }
+    ]
+  },
+  // ─── GREECE ────────────────────────────────────────────────────────
+  {
+    name: "Greece",
+    isoCode: "gr",
+    lat: 37.98, lng: 23.73,
+    languages: ["Greek"],
+    primaryLanguageFamily: "other",
+    religions: ["Christianity (Greek Orthodox)"],
+    region: "Europe",
+    cultural: {
+      communication: [
+        "Warm, expressive communication — gestures and emotion are part of normal conversation",
+        "Nodding upward means 'no' and downward means 'yes' — opposite of many cultures",
+        "Philotimo (sense of honor and duty) shapes social interactions",
+        "Personal space is closer than Northern European norms",
+        "Patients expect warm, personal rapport with their doctor"
+      ],
+      familyDecisionMaking: [
+        "Family is the core social unit — deep involvement in healthcare decisions",
+        "Mother (mama) is often the central figure in family health coordination",
+        "Children are expected to care for elderly parents",
+        "Extended family networks mobilize during illness",
+        "Name days are as important as birthdays — know your patient's name day"
+      ],
+      religiousSpiritual: [
+        "Greek Orthodox Christianity is deeply tied to national identity",
+        "Fasting periods (Great Lent, etc.) involve vegan diets — affects nutrition",
+        "Holy oil and holy water may be used for healing",
+        "Saints are believed to intercede for the sick — icons may be brought to hospital",
+        "End-of-life care involves prayers, last rites, and candle lighting"
+      ],
+      healthBeliefs: [
+        "Mediterranean diet is foundational to health beliefs",
+        "Evil eye (mati) is a widespread folk belief — blue eye amulets are protective",
+        "Herbal remedies (mountain tea, oregano oil, honey) are first-line treatments",
+        "Mental health stigma persists, especially in rural areas and islands",
+        "Greek patients are generally engaged and may seek multiple medical opinions"
+      ],
+      genderContact: [
+        "Generally comfortable with cross-gender care",
+        "Older women from villages may prefer female providers for intimate exams",
+        "Physical warmth (handshake, arm touch) is appreciated",
+        "Greek men may express pain vocally — this is culturally normal",
+        "Modesty varies by generation and urban/rural setting"
+      ],
+      doList: [
+        "Be warm and personable — show genuine concern",
+        "Allow family to be present and involved",
+        "Respect fasting periods and dietary practices",
+        "Know that an upward nod means 'no'",
+        "Allow time for relationship-building before clinical discussion"
+      ],
+      dontList: [
+        "Don't be cold or clinical — Greeks value warmth",
+        "Don't restrict family visits excessively",
+        "Don't dismiss evil eye beliefs",
+        "Don't confuse Greek head nod meanings",
+        "Don't assume younger Greeks are non-religious"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Greece", url: "https://en.wikipedia.org/wiki/Culture_of_Greece" },
+      { label: "WHO Greece", url: "https://www.who.int/countries/grc" }
+    ]
+  },
+  // ─── PERU ──────────────────────────────────────────────────────────
+  {
+    name: "Peru",
+    isoCode: "pe",
+    lat: -12.05, lng: -77.04,
+    languages: ["Spanish", "Quechua", "Aymara"],
+    primaryLanguageFamily: "spanish",
+    religions: ["Christianity (Catholic)", "Evangelical Christianity"],
+    region: "South America",
+    cultural: {
+      communication: [
+        "Warm, personal communication — greetings and small talk before business",
+        "Indigenous communities may speak Quechua or Aymara — Spanish may be limited",
+        "Indirect communication — 'maybe' or 'tomorrow' can mean 'no'",
+        "Trust is built through relationship, not credentials alone",
+        "Regional identity matters — Limeño (Lima), Serrano (highlands), Selvático (jungle)"
+      ],
+      familyDecisionMaking: [
+        "Strong family networks — healthcare decisions involve extended family",
+        "Compadrazgo (godparent) system extends family obligations",
+        "In indigenous communities, community leaders may influence health decisions",
+        "Mothers are central to children's healthcare decisions",
+        "Migration patterns mean family may be dispersed — phone consultation is common"
+      ],
+      religiousSpiritual: [
+        "Catholicism blended with indigenous Andean spirituality (syncretism)",
+        "Pachamama (Mother Earth) reverence influences health and wellbeing beliefs",
+        "Despacho offerings for healing are common in Andean communities",
+        "Growing evangelical movement, especially in urban areas",
+        "Religious fatalism — 'Dios dirá' (God will say) may influence treatment adherence"
+      ],
+      healthBeliefs: [
+        "Traditional Andean medicine (curanderismo) is widely practiced",
+        "Coca leaf tea is used medicinally and culturally — not associated with cocaine",
+        "Susto (fright sickness) is a recognized cultural illness",
+        "Hot/cold classification of foods and illness is fundamental",
+        "Altitude sickness in highland communities is managed with traditional remedies"
+      ],
+      genderContact: [
+        "Generally comfortable with cross-gender care in urban areas",
+        "Rural and indigenous women may strongly prefer female providers",
+        "Machismo culture exists but is evolving",
+        "Domestic violence is a health concern — screen sensitively",
+        "Modesty varies by region and community"
+      ],
+      doList: [
+        "Learn about the patient's regional and ethnic background",
+        "Offer interpretation for Quechua or Aymara speakers",
+        "Ask about traditional remedies and coca tea use",
+        "Build personal rapport before clinical discussions",
+        "Respect Andean spiritual practices alongside Catholic faith"
+      ],
+      dontList: [
+        "Don't assume all Peruvians are Spanish-speaking",
+        "Don't dismiss coca tea as drug use",
+        "Don't ignore susto, empacho, or other cultural illness concepts",
+        "Don't overlook altitude-related health issues",
+        "Don't treat indigenous patients without cultural awareness"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Peru", url: "https://en.wikipedia.org/wiki/Culture_of_Peru" },
+      { label: "WHO Peru", url: "https://www.who.int/countries/per" }
+    ]
   }
 ];
 
