@@ -1,6 +1,14 @@
-import { useCallback, useEffect, useRef } from "react";
-import createGlobe from "cobe";
-import { countries, getLanguageFamilyColor } from "@/data/countries";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import GlobeGL from "react-globe.gl";
+import { feature } from "topojson-client";
+import type { Topology } from "topojson-specification";
+import { getLanguageFamilyColor } from "@/data/countries";
+import {
+  numericToAlpha2,
+  numericToName,
+  countryLanguageFamily,
+  regionalLanguages,
+} from "@/data/languageMap";
 
 interface GlobeViewProps {
   focusLat?: number;
@@ -9,166 +17,228 @@ interface GlobeViewProps {
   selectedCountry?: string | null;
 }
 
-function latLngToAngles(lat: number, lng: number): [number, number] {
-  return [
-    (Math.PI * (90 - lat)) / 180,
-    (Math.PI * (180 + lng)) / 180,
-  ];
-}
+const WORLD_ATLAS_URL =
+  "https://unpkg.com/world-atlas@2/countries-110m.json";
 
-export default function GlobeView({ focusLat, focusLng, onCountryClick, selectedCountry }: GlobeViewProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const pointerInteracting = useRef<number | null>(null);
-  const pointerInteractionMovement = useRef(0);
-  const phiRef = useRef(0);
-  const thetaRef = useRef(0.3);
-  const focusRef = useRef<[number, number] | null>(null);
-  const widthRef = useRef(0);
+export default function GlobeView({
+  focusLat,
+  focusLng,
+  onCountryClick,
+  selectedCountry,
+}: GlobeViewProps) {
+  const globeRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [polygons, setPolygons] = useState<any[]>([]);
+  const [hoverD, setHoverD] = useState<any>(null);
+  const [dimensions, setDimensions] = useState({ w: 550, h: 550 });
 
-  const onClickRef = useRef(onCountryClick);
-  onClickRef.current = onCountryClick;
-
+  // ── Load world topology ────────────────────────────────────────────
   useEffect(() => {
-    if (focusLat != null && focusLng != null) {
-      focusRef.current = latLngToAngles(focusLat, focusLng);
-    } else {
-      focusRef.current = null;
+    fetch(WORLD_ATLAS_URL)
+      .then((r) => r.json())
+      .then((topology: Topology) => {
+        const geo = feature(topology, topology.objects.countries as any);
+        setPolygons((geo as any).features);
+      });
+  }, []);
+
+  // ── Responsive sizing ──────────────────────────────────────────────
+  useEffect(() => {
+    const measure = () => {
+      if (containerRef.current) {
+        const w = containerRef.current.offsetWidth;
+        setDimensions({ w, h: w });
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  // ── Auto-rotate + initial POV ──────────────────────────────────────
+  useEffect(() => {
+    const globe = globeRef.current;
+    if (!globe) return;
+    const controls = globe.controls();
+    if (controls) {
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 0.4;
+      controls.enableZoom = true;
+    }
+  }, [polygons]); // run after data loads
+
+  // ── Focus on country ───────────────────────────────────────────────
+  useEffect(() => {
+    if (focusLat != null && focusLng != null && globeRef.current) {
+      globeRef.current.pointOfView(
+        { lat: focusLat, lng: focusLng, altitude: 1.5 },
+        1000
+      );
     }
   }, [focusLat, focusLng]);
 
-  const markers = countries.map((c) => ({
-    location: [c.lat, c.lng] as [number, number],
-    size: selectedCountry === c.isoCode ? 0.12 : 0.06,
-    color: getLanguageFamilyColor(c.primaryLanguageFamily),
-    isoCode: c.isoCode,
-  }));
+  // ── Helpers ────────────────────────────────────────────────────────
+  const getAlpha2 = useCallback((feat: any) => {
+    return numericToAlpha2[feat.id] || null;
+  }, []);
 
-  useEffect(() => {
-    let currentPhi = phiRef.current;
-    let currentTheta = thetaRef.current;
+  const getCapColor = useCallback(
+    (feat: any) => {
+      const alpha2 = getAlpha2(feat);
+      if (!alpha2) return "hsl(200,10%,75%)";
+      const family = countryLanguageFamily[alpha2];
+      if (!family) return "hsl(200,10%,75%)";
 
-    const onResize = () => {
-      if (canvasRef.current) {
-        widthRef.current = canvasRef.current.offsetWidth;
+      const base = getLanguageFamilyColor(family);
+
+      // Highlight hovered
+      if (feat === hoverD) {
+        return base.replace(/\)$/, " / 0.95)").replace("hsl(", "hsl(");
       }
-    };
-    window.addEventListener("resize", onResize);
-    onResize();
+      // Highlight selected
+      if (selectedCountry && alpha2 === selectedCountry.toLowerCase()) {
+        return base;
+      }
 
-    const isDark = document.documentElement.classList.contains("dark");
+      // Slightly transparent for depth
+      return base.replace("hsl(", "hsla(").replace(")", ",0.82)");
+    },
+    [getAlpha2, hoverD, selectedCountry]
+  );
 
-    const globe = createGlobe(canvasRef.current!, {
-      devicePixelRatio: 2,
-      width: widthRef.current * 2,
-      height: widthRef.current * 2,
-      phi: currentPhi,
-      theta: currentTheta,
-      dark: isDark ? 1 : 0.1,
-      diffuse: 2,
-      mapSamples: 24000,
-      mapBrightness: isDark ? 2.5 : 8,
-      baseColor: isDark ? [0.15, 0.2, 0.25] : [0.88, 0.92, 0.95],
-      markerColor: [0.06, 0.47, 0.43],
-      glowColor: isDark ? [0.06, 0.3, 0.3] : [0.82, 0.9, 0.92],
-      markers: markers.map((m) => ({
-        location: m.location,
-        size: m.size,
-      })),
-      onRender: (state) => {
-        if (!pointerInteracting.current) {
-          if (focusRef.current) {
-            const [targetPhi, targetTheta] = focusRef.current;
-            currentPhi += (targetPhi - currentPhi) * 0.05;
-            currentTheta += (targetTheta - currentTheta) * 0.05;
-          } else {
-            currentPhi += 0.003;
-          }
-        }
-        state.phi = currentPhi;
-        state.theta = currentTheta;
-        phiRef.current = currentPhi;
-        thetaRef.current = currentTheta;
-        state.width = widthRef.current * 2;
-        state.height = widthRef.current * 2;
-      },
+  const getSideColor = useCallback(
+    (feat: any) => {
+      if (feat === hoverD) return "rgba(255,255,255,0.25)";
+      return "rgba(0,0,0,0.08)";
+    },
+    [hoverD]
+  );
+
+  const getAltitude = useCallback(
+    (feat: any) => {
+      if (feat === hoverD) return 0.025;
+      const alpha2 = getAlpha2(feat);
+      if (selectedCountry && alpha2 === selectedCountry.toLowerCase())
+        return 0.02;
+      return 0.005;
+    },
+    [hoverD, selectedCountry, getAlpha2]
+  );
+
+  const getLabel = useCallback(
+    (feat: any) => {
+      const alpha2 = getAlpha2(feat);
+      const name = numericToName[feat.id] || alpha2 || "Unknown";
+      const family = alpha2 ? countryLanguageFamily[alpha2] : null;
+      const familyLabel = family
+        ? family.charAt(0).toUpperCase() + family.slice(1)
+        : "";
+
+      // Check for regional languages
+      const regions = alpha2 ? regionalLanguages[alpha2] : null;
+      const regionHtml = regions
+        ? `<div style="margin-top:4px;border-top:1px solid rgba(255,255,255,0.2);padding-top:4px;font-size:10px;">
+            <div style="font-weight:600;margin-bottom:2px;">Regional languages:</div>
+            ${regions
+              .map(
+                (r) =>
+                  `<div style="display:flex;align-items:center;gap:4px;">
+                    <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${getLanguageFamilyColor(
+                      r.languageFamily
+                    )};"></span>
+                    ${r.region}: ${r.language}
+                  </div>`
+              )
+              .join("")}
+          </div>`
+        : "";
+
+      return `<div style="background:hsl(200,30%,12%);color:white;padding:8px 12px;border-radius:8px;font-size:12px;font-family:system-ui;box-shadow:0 4px 12px rgba(0,0,0,0.3);max-width:220px;">
+        <div style="font-weight:700;font-size:13px;">${name}</div>
+        ${familyLabel ? `<div style="color:hsl(173,60%,60%);margin-top:2px;">Primary: ${familyLabel}</div>` : ""}
+        ${regionHtml}
+      </div>`;
+    },
+    [getAlpha2]
+  );
+
+  // ── Regional language markers ──────────────────────────────────────
+  const markers = useMemo(() => {
+    const result: any[] = [];
+    Object.entries(regionalLanguages).forEach(([, regions]) => {
+      regions.forEach((r) => {
+        result.push({
+          lat: r.lat,
+          lng: r.lng,
+          color: getLanguageFamilyColor(r.languageFamily),
+          label: r.region,
+          language: r.language,
+          size: 0.25,
+          alt: 0.012,
+        });
+      });
     });
-
-    return () => {
-      globe.destroy();
-      window.removeEventListener("resize", onResize);
-    };
-  }, [selectedCountry]);
-
-  const handlePointerDown = useCallback((e: React.PointerEvent) => {
-    pointerInteracting.current = e.clientX - pointerInteractionMovement.current;
-    if (canvasRef.current) canvasRef.current.style.cursor = "grabbing";
+    return result;
   }, []);
 
-  const handlePointerUp = useCallback(() => {
-    pointerInteracting.current = null;
-    if (canvasRef.current) canvasRef.current.style.cursor = "grab";
-  }, []);
-
-  const handlePointerOut = useCallback(() => {
-    pointerInteracting.current = null;
-    if (canvasRef.current) canvasRef.current.style.cursor = "grab";
-  }, []);
-
-  const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (pointerInteracting.current !== null) {
-      const delta = e.clientX - pointerInteracting.current;
-      pointerInteractionMovement.current = delta;
-      phiRef.current += delta / 200;
-      pointerInteracting.current = e.clientX;
-    }
-  }, []);
-
-  const handleClick = useCallback((e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (Math.abs(pointerInteractionMovement.current) > 5) {
-      pointerInteractionMovement.current = 0;
-      return;
-    }
-    pointerInteractionMovement.current = 0;
-
-    // Find closest marker to click position on the canvas
-    const rect = canvasRef.current!.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const cx = rect.width / 2;
-    const cy = rect.height / 2;
-    const clickAngleX = ((x - cx) / cx) * Math.PI;
-    const clickAngleY = ((y - cy) / cy) * Math.PI;
-
-    // Find closest country marker (simplified approach)
-    let closestDist = Infinity;
-    let closestCode: string | null = null;
-    for (const m of markers) {
-      const [phi, theta] = latLngToAngles(m.location[0], m.location[1]);
-      const dPhi = phi - phiRef.current - clickAngleY;
-      const dTheta = theta - (thetaRef.current + clickAngleX);
-      const dist = dPhi * dPhi + dTheta * dTheta;
-      if (dist < closestDist && dist < 0.15) {
-        closestDist = dist;
-        closestCode = m.isoCode;
+  const handlePolygonClick = useCallback(
+    (feat: any) => {
+      const alpha2 = getAlpha2(feat);
+      if (alpha2 && onCountryClick) {
+        onCountryClick(alpha2);
       }
-    }
-    if (closestCode && onClickRef.current) {
-      onClickRef.current(closestCode);
-    }
-  }, [markers]);
+    },
+    [getAlpha2, onCountryClick]
+  );
+
+  const isDark =
+    typeof document !== "undefined" &&
+    document.documentElement.classList.contains("dark");
 
   return (
-    <div className="relative w-full aspect-square max-w-[600px] mx-auto globe-glow rounded-full">
-      <canvas
-        ref={canvasRef}
-        className="w-full h-full cursor-grab"
-        onPointerDown={handlePointerDown}
-        onPointerUp={handlePointerUp}
-        onPointerOut={handlePointerOut}
-        onPointerMove={handlePointerMove}
-        onClick={handleClick}
-        style={{ contain: "layout paint size", borderRadius: "50%" }}
-      />
+    <div
+      ref={containerRef}
+      className="relative w-full aspect-square max-w-[600px] mx-auto globe-glow rounded-full overflow-hidden"
+    >
+      {polygons.length > 0 && (
+        <GlobeGL
+          ref={globeRef}
+          width={dimensions.w}
+          height={dimensions.h}
+          backgroundColor="rgba(0,0,0,0)"
+          showAtmosphere={true}
+          atmosphereColor={
+            isDark ? "rgba(15,118,110,0.25)" : "rgba(15,118,110,0.15)"
+          }
+          atmosphereAltitude={0.2}
+          globeImageUrl=""
+          showGlobe={true}
+          animateIn={true}
+          polygonsData={polygons}
+          polygonCapColor={getCapColor}
+          polygonSideColor={getSideColor}
+          polygonStrokeColor={() =>
+            isDark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)"
+          }
+          polygonAltitude={getAltitude}
+          polygonCapCurvatureResolution={5}
+          polygonLabel={getLabel}
+          onPolygonClick={handlePolygonClick}
+          onPolygonHover={(d: any) => setHoverD(d)}
+          pointsData={markers}
+          pointLat={(d: any) => d.lat}
+          pointLng={(d: any) => d.lng}
+          pointColor={(d: any) => d.color}
+          pointAltitude={(d: any) => d.alt}
+          pointRadius={(d: any) => d.size}
+          pointLabel={(d: any) =>
+            `<div style="background:hsl(200,30%,12%);color:white;padding:4px 8px;border-radius:6px;font-size:11px;font-family:system-ui;box-shadow:0 2px 8px rgba(0,0,0,0.3);">
+              <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${d.color};margin-right:4px;"></span>
+              ${d.label}: ${d.language}
+            </div>`
+          }
+        />
+      )}
     </div>
   );
 }
