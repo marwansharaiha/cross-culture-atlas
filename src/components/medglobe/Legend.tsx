@@ -17,6 +17,11 @@ export default function Legend() {
           </div>
         ))}
       </div>
+      <div className="mt-2 pt-2 border-t border-border">
+        <p className="text-[10px] text-muted-foreground">
+          <span className="font-medium">●</span> Dots show regional language diversity within countries
+        </p>
+      </div>
     </div>
   );
 }
