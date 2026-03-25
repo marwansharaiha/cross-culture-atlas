@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from "react";
 import Navbar from "@/components/medglobe/Navbar";
-import GlobeView from "@/components/medglobe/GlobeView";
+import FlatMapView from "@/components/medglobe/FlatMapView";
 import CountryModal from "@/components/medglobe/CountryModal";
 import CountryCard from "@/components/medglobe/CountryCard";
 import Legend from "@/components/medglobe/Legend";
@@ -67,7 +67,7 @@ export default function Index() {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full max-w-[550px]"
               >
-                <GlobeView
+                <FlatMapView
                   focusLat={focusCountry?.lat}
                   focusLng={focusCountry?.lng}
                   selectedCountry={focusCountry?.isoCode ?? null}
