@@ -5,7 +5,7 @@ import CountryModal from "@/components/medglobe/CountryModal";
 import CountryCard from "@/components/medglobe/CountryCard";
 import Legend from "@/components/medglobe/Legend";
 import Footer from "@/components/medglobe/Footer";
-import { countries, CountryData, REGIONS, ALL_RELIGIONS } from "@/data/countries";
+import { countries, CountryData, REGIONS, LANGUAGE_FAMILIES } from "@/data/countries";
 import { useFavorites } from "@/hooks/useFavorites";
 import { motion } from "framer-motion";
 
@@ -14,7 +14,7 @@ export default function Index() {
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(null);
   const [viewMode, setViewMode] = useState<"globe" | "list">("globe");
   const [regionFilter, setRegionFilter] = useState("");
-  const [religionFilter, setReligionFilter] = useState("");
+  const [languageFamilyFilter, setLanguageFamilyFilter] = useState("");
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
 
   const filteredCountries = useMemo(() => {
@@ -31,9 +31,9 @@ export default function Index() {
       );
     }
     if (regionFilter) result = result.filter((c) => c.region === regionFilter);
-    if (religionFilter) result = result.filter((c) => c.religions.some((r) => r.includes(religionFilter)));
+    if (languageFamilyFilter) result = result.filter((c) => c.primaryLanguageFamily === languageFamilyFilter);
     return result;
-  }, [searchQuery, regionFilter, religionFilter]);
+  }, [searchQuery, regionFilter, languageFamilyFilter]);
 
   const focusCountry = useMemo(() => {
     if (filteredCountries.length === 1) return filteredCountries[0];
@@ -102,14 +102,14 @@ export default function Index() {
                   ))}
                 </select>
                 <select
-                  value={religionFilter}
-                  onChange={(e) => setReligionFilter(e.target.value)}
+                  value={languageFamilyFilter}
+                  onChange={(e) => setLanguageFamilyFilter(e.target.value)}
                   className="flex-1 text-xs rounded-lg border border-input bg-background px-2 py-1.5 text-foreground outline-none"
-                  aria-label="Filter by religion"
+                  aria-label="Filter by language"
                 >
-                  <option value="">All Religions</option>
-                  {ALL_RELIGIONS.map((r) => (
-                    <option key={r} value={r}>{r}</option>
+                  <option value="">All Languages</option>
+                  {LANGUAGE_FAMILIES.map((lf) => (
+                    <option key={lf.key} value={lf.key}>{lf.label}</option>
                   ))}
                 </select>
               </div>
@@ -153,14 +153,14 @@ export default function Index() {
                 ))}
               </select>
               <select
-                value={religionFilter}
-                onChange={(e) => setReligionFilter(e.target.value)}
+                value={languageFamilyFilter}
+                onChange={(e) => setLanguageFamilyFilter(e.target.value)}
                 className="text-sm rounded-lg border border-input bg-background px-3 py-2 text-foreground outline-none"
-                aria-label="Filter by religion"
+                aria-label="Filter by language"
               >
-                <option value="">All Religions</option>
-                {ALL_RELIGIONS.map((r) => (
-                  <option key={r} value={r}>{r}</option>
+                <option value="">All Languages</option>
+                {LANGUAGE_FAMILIES.map((lf) => (
+                  <option key={lf.key} value={lf.key}>{lf.label}</option>
                 ))}
               </select>
             </div>
