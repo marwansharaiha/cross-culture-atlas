@@ -2428,10 +2428,11 @@ export const countries: CountryData[] = [
 /** Regions list derived from data */
 // Import and merge Africa countries
 import { africaCountries } from "./africaCountries";
+import { moreCountries } from "./moreCountries";
 
 // Merge, avoiding duplicates by isoCode
 const existingIsoCodes = new Set(countries.map(c => c.isoCode));
-for (const ac of africaCountries) {
+for (const ac of [...africaCountries, ...moreCountries]) {
   if (!existingIsoCodes.has(ac.isoCode)) {
     countries.push(ac);
   }
