@@ -1398,7 +1398,7 @@ export const moreCountries: CountryData[] = [
   // ─── ADDITIONAL AFRICA ────────────────────────────────────────────
   {
     name: "South Sudan",
-    isoCode: "ss2",
+    isoCode: "ss",
     lat: 4.9,
     lng: 31.6,
     languages: ["English", "Arabic", "Dinka", "Nuer", "Zande"],
@@ -1449,7 +1449,7 @@ export const moreCountries: CountryData[] = [
   },
   {
     name: "Eswatini",
-    isoCode: "sz2",
+    isoCode: "sz",
     lat: -26.3,
     lng: 31.1,
     languages: ["Swazi (siSwati)", "English"],
