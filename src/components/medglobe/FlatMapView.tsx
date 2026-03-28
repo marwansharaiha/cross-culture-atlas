@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { feature } from "topojson-client";
 import type { Topology } from "topojson-specification";
-import { geoNaturalEarth1, geoPath, type GeoPermissibleObjects } from "d3-geo";
+import { geoNaturalEarth1, geoPath, geoContains, type GeoPermissibleObjects } from "d3-geo";
+import { Delaunay } from "d3-delaunay";
 import { getLanguageFamilyColor } from "@/data/countries";
 import {
   numericToAlpha2,
@@ -89,7 +90,7 @@ export default function FlatMapView({
       const alpha2 = getAlpha2(feat);
       if (alpha2 === hoverD) return 1;
       if (selectedCountry && alpha2 === selectedCountry.toLowerCase()) return 1;
-      return 0.82;
+      return 0.85;
     },
     [getAlpha2, hoverD, selectedCountry]
   );
@@ -104,25 +105,69 @@ export default function FlatMapView({
     [getAlpha2, hoverD, selectedCountry]
   );
 
-  // Regional language markers projected
-  const markers = useMemo(() => {
-    const result: any[] = [];
-    Object.entries(regionalLanguages).forEach(([, regions]) => {
-      regions.forEach((r) => {
-        const pos = projection([r.lng, r.lat]);
-        if (pos) {
-          result.push({
-            cx: pos[0],
-            cy: pos[1],
-            color: getLanguageFamilyColor(r.languageFamily),
-            label: r.region,
-            language: r.language,
+  // Build Voronoi-based sub-national regions for multilingual countries
+  const voronoiRegions = useMemo(() => {
+    if (!polygons.length) return [];
+    const result: {
+      clipId: string;
+      countryPath: string;
+      cells: { path: string; color: string; label: string }[];
+      featId: string;
+    }[] = [];
+
+    for (const feat of polygons) {
+      const alpha2 = numericToAlpha2[feat.id];
+      if (!alpha2 || !regionalLanguages[alpha2] || regionalLanguages[alpha2].length < 2) continue;
+
+      const countryPath = pathGenerator(feat as GeoPermissibleObjects);
+      if (!countryPath) continue;
+
+      const regions = regionalLanguages[alpha2];
+      const projectedPoints = regions.map((r) => {
+        const p = projection([r.lng, r.lat]);
+        return p ? [p[0], p[1]] as [number, number] : [0, 0] as [number, number];
+      }).filter((p) => p[0] !== 0 || p[1] !== 0);
+
+      if (projectedPoints.length < 2) continue;
+
+      // Get bounding box of the country
+      const bounds = pathGenerator.bounds(feat as GeoPermissibleObjects);
+      if (!bounds) continue;
+      const [[x0, y0], [x1, y1]] = bounds;
+      const pad = Math.max(x1 - x0, y1 - y0) * 0.1;
+
+      const delaunay = Delaunay.from(projectedPoints);
+      const voronoi = delaunay.voronoi([x0 - pad, y0 - pad, x1 + pad, y1 + pad]);
+
+      const cells: { path: string; color: string; label: string }[] = [];
+      for (let i = 0; i < projectedPoints.length; i++) {
+        const cellPath = voronoi.renderCell(i);
+        if (cellPath) {
+          cells.push({
+            path: cellPath,
+            color: getLanguageFamilyColor(regions[i].languageFamily),
+            label: `${regions[i].region}: ${regions[i].language}`,
           });
         }
-      });
-    });
+      }
+
+      if (cells.length > 0) {
+        result.push({
+          clipId: `clip-${alpha2}`,
+          countryPath,
+          cells,
+          featId: feat.id,
+        });
+      }
+    }
+
     return result;
-  }, [projection]);
+  }, [polygons, pathGenerator, projection]);
+
+  // Set of country IDs that have Voronoi regions (skip solid fill for these)
+  const voronoiCountryIds = useMemo(() => {
+    return new Set(voronoiRegions.map((v) => v.featId));
+  }, [voronoiRegions]);
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent, feat: any) => {
@@ -132,7 +177,6 @@ export default function FlatMapView({
       const familyLabel = family
         ? family.charAt(0).toUpperCase() + family.slice(1)
         : "";
-      const regions = alpha2 ? regionalLanguages[alpha2] : null;
 
       const rect = containerRef.current?.getBoundingClientRect();
       if (!rect) return;
@@ -179,12 +223,21 @@ export default function FlatMapView({
           rx={8}
         />
 
-        {/* Country polygons */}
+        {/* Clip paths for Voronoi countries */}
+        <defs>
+          {voronoiRegions.map((vr) => (
+            <clipPath key={vr.clipId} id={vr.clipId}>
+              <path d={vr.countryPath} />
+            </clipPath>
+          ))}
+        </defs>
+
+        {/* Country polygons — solid fill for non-Voronoi countries */}
         <g>
           {polygons.map((feat) => {
+            if (voronoiCountryIds.has(feat.id)) return null;
             const d = pathGenerator(feat as GeoPermissibleObjects);
             if (!d) return null;
-            const alpha2 = getAlpha2(feat);
             return (
               <path
                 key={feat.id}
@@ -202,20 +255,48 @@ export default function FlatMapView({
           })}
         </g>
 
-        {/* Regional language markers */}
+        {/* Voronoi language regions — clipped to country boundaries */}
         <g>
-          {markers.map((m, i) => (
-            <circle
-              key={i}
-              cx={m.cx}
-              cy={m.cy}
-              r={3}
-              fill={m.color}
-              stroke="hsl(var(--background))"
-              strokeWidth={0.8}
-              opacity={0.9}
-            />
-          ))}
+          {voronoiRegions.map((vr) => {
+            const feat = polygons.find((f) => f.id === vr.featId);
+            const alpha2 = feat ? getAlpha2(feat) : null;
+            const isHovered = alpha2 === hoverD;
+            const isSelected = selectedCountry && alpha2 === selectedCountry.toLowerCase();
+            const opacity = isHovered || isSelected ? 1 : 0.85;
+            const strokeW = isHovered || isSelected ? 1.5 : 0.4;
+
+            return (
+              <g key={vr.clipId}>
+                {/* Voronoi cells clipped to country shape */}
+                <g clipPath={`url(#${vr.clipId})`}>
+                  {vr.cells.map((cell, i) => (
+                    <path
+                      key={i}
+                      d={cell.path}
+                      fill={cell.color}
+                      fillOpacity={opacity}
+                      stroke={cell.color}
+                      strokeWidth={0.5}
+                      strokeOpacity={0.3}
+                    />
+                  ))}
+                </g>
+                {/* Country border on top for interaction */}
+                {feat && (
+                  <path
+                    d={vr.countryPath}
+                    fill="transparent"
+                    stroke="hsl(var(--border))"
+                    strokeWidth={strokeW}
+                    className="cursor-pointer"
+                    onMouseMove={(e) => handleMouseMove(e, feat)}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => handleClick(feat)}
+                  />
+                )}
+              </g>
+            );
+          })}
         </g>
       </svg>
 
