@@ -377,8 +377,8 @@ export default function FlatMapView({
             })}
           </g>
         </g>
+      </svg>
 
-      {/* Tooltip */}
       {tooltip && (
         <div
           className="absolute pointer-events-none z-50 bg-card border border-border text-card-foreground px-3 py-2 rounded-lg shadow-lg text-xs font-medium"
