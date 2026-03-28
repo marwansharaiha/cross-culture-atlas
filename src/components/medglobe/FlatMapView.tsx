@@ -301,82 +301,82 @@ export default function FlatMapView({
           rx={8}
         />
 
-        {/* Clip paths for Voronoi countries */}
-        <defs>
-          {voronoiRegions.map((vr) => (
-            <clipPath key={vr.clipId} id={vr.clipId}>
-              <path d={vr.countryPath} />
-            </clipPath>
-          ))}
-        </defs>
+        {/* Zoomable/pannable group */}
+        <g transform={`translate(${dimensions.w / 2 + pan.x}, ${dimensions.h / 2 + pan.y}) scale(${zoom}) translate(${-dimensions.w / 2}, ${-dimensions.h / 2})`}>
+          {/* Clip paths for Voronoi countries */}
+          <defs>
+            {voronoiRegions.map((vr) => (
+              <clipPath key={vr.clipId} id={vr.clipId}>
+                <path d={vr.countryPath} />
+              </clipPath>
+            ))}
+          </defs>
 
-        {/* Country polygons — solid fill for non-Voronoi countries */}
-        <g>
-          {polygons.map((feat) => {
-            if (voronoiCountryIds.has(feat.id)) return null;
-            const d = pathGenerator(feat as GeoPermissibleObjects);
-            if (!d) return null;
-            return (
-              <path
-                key={feat.id}
-                d={d}
-                fill={getFillColor(feat)}
-                fillOpacity={getOpacity(feat)}
-                stroke="hsl(var(--border))"
-                strokeWidth={getStrokeWidth(feat)}
-                className="cursor-pointer transition-opacity duration-150"
-                onMouseMove={(e) => handleMouseMove(e, feat)}
-                onMouseLeave={handleMouseLeave}
-                onClick={() => handleClick(feat)}
-              />
-            );
-          })}
-        </g>
+          {/* Country polygons — solid fill for non-Voronoi countries */}
+          <g>
+            {polygons.map((feat) => {
+              if (voronoiCountryIds.has(feat.id)) return null;
+              const d = pathGenerator(feat as GeoPermissibleObjects);
+              if (!d) return null;
+              return (
+                <path
+                  key={feat.id}
+                  d={d}
+                  fill={getFillColor(feat)}
+                  fillOpacity={getOpacity(feat)}
+                  stroke="hsl(var(--border))"
+                  strokeWidth={getStrokeWidth(feat) / zoom}
+                  className="cursor-pointer transition-opacity duration-150"
+                  onMouseMove={(e) => handleMouseMove(e, feat)}
+                  onMouseLeave={handleMouseLeave}
+                  onClick={() => handleClick(feat)}
+                />
+              );
+            })}
+          </g>
 
-        {/* Voronoi language regions — clipped to country boundaries */}
-        <g>
-          {voronoiRegions.map((vr) => {
-            const feat = polygons.find((f) => f.id === vr.featId);
-            const alpha2 = feat ? getAlpha2(feat) : null;
-            const isHovered = alpha2 === hoverD;
-            const isSelected = selectedCountry && alpha2 === selectedCountry.toLowerCase();
-            const opacity = isHovered || isSelected ? 1 : 0.85;
-            const strokeW = isHovered || isSelected ? 1.5 : 0.4;
+          {/* Voronoi language regions — clipped to country boundaries */}
+          <g>
+            {voronoiRegions.map((vr) => {
+              const feat = polygons.find((f) => f.id === vr.featId);
+              const alpha2 = feat ? getAlpha2(feat) : null;
+              const isHovered = alpha2 === hoverD;
+              const isSelected = selectedCountry && alpha2 === selectedCountry.toLowerCase();
+              const opacity = isHovered || isSelected ? 1 : 0.85;
+              const strokeW = (isHovered || isSelected ? 1.5 : 0.4) / zoom;
 
-            return (
-              <g key={vr.clipId}>
-                {/* Voronoi cells clipped to country shape */}
-                <g clipPath={`url(#${vr.clipId})`}>
-                  {vr.cells.map((cell, i) => (
+              return (
+                <g key={vr.clipId}>
+                  <g clipPath={`url(#${vr.clipId})`}>
+                    {vr.cells.map((cell, i) => (
+                      <path
+                        key={i}
+                        d={cell.path}
+                        fill={cell.color}
+                        fillOpacity={opacity}
+                        stroke={cell.color}
+                        strokeWidth={0.5 / zoom}
+                        strokeOpacity={0.3}
+                      />
+                    ))}
+                  </g>
+                  {feat && (
                     <path
-                      key={i}
-                      d={cell.path}
-                      fill={cell.color}
-                      fillOpacity={opacity}
-                      stroke={cell.color}
-                      strokeWidth={0.5}
-                      strokeOpacity={0.3}
+                      d={vr.countryPath}
+                      fill="transparent"
+                      stroke="hsl(var(--border))"
+                      strokeWidth={strokeW}
+                      className="cursor-pointer"
+                      onMouseMove={(e) => handleMouseMove(e, feat)}
+                      onMouseLeave={handleMouseLeave}
+                      onClick={() => handleClick(feat)}
                     />
-                  ))}
+                  )}
                 </g>
-                {/* Country border on top for interaction */}
-                {feat && (
-                  <path
-                    d={vr.countryPath}
-                    fill="transparent"
-                    stroke="hsl(var(--border))"
-                    strokeWidth={strokeW}
-                    className="cursor-pointer"
-                    onMouseMove={(e) => handleMouseMove(e, feat)}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={() => handleClick(feat)}
-                  />
-                )}
-              </g>
-            );
-          })}
+              );
+            })}
+          </g>
         </g>
-      </svg>
 
       {/* Tooltip */}
       {tooltip && (
