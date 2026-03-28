@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo, type WheelEvent as ReactWheelEvent } from "react";
+import { ZoomIn, ZoomOut, Maximize } from "lucide-react";
 import { feature } from "topojson-client";
 import type { Topology } from "topojson-specification";
 import { geoNaturalEarth1, geoPath, geoContains, type GeoPermissibleObjects } from "d3-geo";
