@@ -215,8 +215,78 @@ export default function FlatMapView({
     [getAlpha2, onCountryClick]
   );
 
+  // Zoom & pan handlers
+  const handleWheel = useCallback((e: ReactWheelEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setZoom((z) => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, z - e.deltaY * 0.002)));
+  }, []);
+
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    if (e.button !== 0) return;
+    setIsPanning(true);
+    panStart.current = { x: e.clientX, y: e.clientY, panX: pan.x, panY: pan.y };
+    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+  }, [pan]);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    if (!isPanning) return;
+    const dx = e.clientX - panStart.current.x;
+    const dy = e.clientY - panStart.current.y;
+    setPan({ x: panStart.current.panX + dx, y: panStart.current.panY + dy });
+  }, [isPanning]);
+
+  const handlePointerUp = useCallback(() => {
+    setIsPanning(false);
+  }, []);
+
+  const resetView = useCallback(() => {
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  }, []);
+
   return (
-    <div ref={containerRef} className="relative w-full">
+    <div
+      ref={containerRef}
+      className="relative w-full overflow-hidden rounded-lg"
+      onWheel={handleWheel}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerUp}
+      style={{ cursor: isPanning ? "grabbing" : zoom > 1 ? "grab" : "default", touchAction: "none" }}
+    >
+      {/* Zoom controls */}
+      <div className="absolute top-3 right-3 z-40 flex flex-col gap-1.5">
+        <button
+          onClick={() => setZoom((z) => Math.min(MAX_ZOOM, z * 1.4))}
+          className="p-1.5 rounded-md bg-card/90 border border-border text-foreground shadow-sm hover:bg-accent transition-colors"
+          aria-label="Zoom in"
+        >
+          <ZoomIn className="w-4 h-4" />
+        </button>
+        <button
+          onClick={() => setZoom((z) => Math.max(MIN_ZOOM, z / 1.4))}
+          className="p-1.5 rounded-md bg-card/90 border border-border text-foreground shadow-sm hover:bg-accent transition-colors"
+          aria-label="Zoom out"
+        >
+          <ZoomOut className="w-4 h-4" />
+        </button>
+        <button
+          onClick={resetView}
+          className="p-1.5 rounded-md bg-card/90 border border-border text-foreground shadow-sm hover:bg-accent transition-colors"
+          aria-label="Reset view"
+        >
+          <Maximize className="w-4 h-4" />
+        </button>
+      </div>
+
+      {/* Zoom level indicator */}
+      {zoom > 1.05 && (
+        <div className="absolute top-3 left-3 z-40 px-2 py-1 rounded-md bg-card/90 border border-border text-[10px] text-muted-foreground font-medium">
+          {Math.round(zoom * 100)}%
+        </div>
+      )}
+
       <svg
         width={dimensions.w}
         height={dimensions.h}
