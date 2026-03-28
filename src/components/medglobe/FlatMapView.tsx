@@ -35,6 +35,13 @@ export default function FlatMapView({
     alpha2: string | null;
   } | null>(null);
   const [dimensions, setDimensions] = useState({ w: 900, h: 500 });
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [isPanning, setIsPanning] = useState(false);
+  const panStart = useRef({ x: 0, y: 0, panX: 0, panY: 0 });
+
+  const MIN_ZOOM = 1;
+  const MAX_ZOOM = 8;
 
   // Load world topology
   useEffect(() => {
