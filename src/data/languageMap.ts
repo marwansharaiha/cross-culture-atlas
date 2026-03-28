@@ -397,4 +397,151 @@ export const regionalLanguages: Record<string, RegionalLanguage[]> = {
     { region: "Kurdistan", language: "Kurdish", languageFamily: "other", lat: 35.31, lng: 46.99 },
     { region: "Khuzestan", language: "Arabic", languageFamily: "arabic", lat: 31.32, lng: 48.69 },
   ],
+  // Indonesia — diverse archipelago
+  id: [
+    { region: "Java", language: "Javanese", languageFamily: "malay", lat: -7.25, lng: 112.75 },
+    { region: "Sumatra", language: "Malay / Batak", languageFamily: "malay", lat: 0.59, lng: 101.43 },
+    { region: "Bali", language: "Balinese", languageFamily: "malay", lat: -8.41, lng: 115.19 },
+    { region: "Sulawesi", language: "Bugis / Makassar", languageFamily: "malay", lat: -5.14, lng: 119.42 },
+    { region: "Papua", language: "Papuan languages", languageFamily: "other", lat: -2.53, lng: 140.72 },
+    { region: "Jakarta", language: "Indonesian", languageFamily: "malay", lat: -6.21, lng: 106.85 },
+  ],
+  // Malaysia — Malay + Chinese + Tamil
+  my: [
+    { region: "Peninsular West", language: "Malay", languageFamily: "malay", lat: 3.14, lng: 101.69 },
+    { region: "Penang / KL Chinese", language: "Chinese", languageFamily: "mandarin", lat: 5.41, lng: 100.33 },
+    { region: "Tamil community", language: "Tamil", languageFamily: "other", lat: 2.20, lng: 102.25 },
+    { region: "Sabah / Sarawak", language: "Indigenous / Malay", languageFamily: "malay", lat: 1.55, lng: 110.35 },
+  ],
+  // Myanmar — Burmese + minorities
+  mm: [
+    { region: "Central Myanmar", language: "Burmese", languageFamily: "thai", lat: 19.76, lng: 96.07 },
+    { region: "Shan State", language: "Shan", languageFamily: "thai", lat: 20.79, lng: 97.04 },
+    { region: "Kachin State", language: "Kachin", languageFamily: "other", lat: 25.38, lng: 97.40 },
+    { region: "Rakhine State", language: "Rakhine / Rohingya", languageFamily: "other", lat: 20.15, lng: 92.90 },
+    { region: "Karen State", language: "Karen", languageFamily: "other", lat: 16.88, lng: 97.63 },
+  ],
+  // Tanzania — Swahili + tribal languages
+  tz: [
+    { region: "Dar es Salaam / Coast", language: "Swahili", languageFamily: "other", lat: -6.79, lng: 39.28 },
+    { region: "Northern Highlands", language: "Maasai / Chagga", languageFamily: "other", lat: -3.37, lng: 36.68 },
+    { region: "Lake Zone", language: "Sukuma", languageFamily: "other", lat: -2.52, lng: 32.90 },
+    { region: "Zanzibar", language: "Swahili (Arabic influence)", languageFamily: "arabic", lat: -6.16, lng: 39.19 },
+  ],
+  // Kenya — Swahili + English + tribal
+  ke: [
+    { region: "Nairobi / Central", language: "Kikuyu / English", languageFamily: "english", lat: -1.29, lng: 36.82 },
+    { region: "Coast", language: "Swahili", languageFamily: "other", lat: -4.04, lng: 39.67 },
+    { region: "Western", language: "Luhya / Luo", languageFamily: "other", lat: 0.29, lng: 34.75 },
+    { region: "North", language: "Somali / Oromo", languageFamily: "other", lat: 2.27, lng: 40.90 },
+  ],
+  // DR Congo — French + 4 national languages
+  cd: [
+    { region: "Kinshasa / West", language: "Lingala / French", languageFamily: "french", lat: -4.32, lng: 15.31 },
+    { region: "East (Kivu)", language: "Swahili", languageFamily: "other", lat: -1.68, lng: 29.23 },
+    { region: "South (Katanga)", language: "Tshiluba / Swahili", languageFamily: "other", lat: -11.66, lng: 27.48 },
+    { region: "Central", language: "Lingala / Kikongo", languageFamily: "other", lat: -4.27, lng: 20.52 },
+  ],
+  // Mexico — Spanish + indigenous
+  mx: [
+    { region: "Central / North", language: "Spanish", languageFamily: "spanish", lat: 23.63, lng: -102.55 },
+    { region: "Yucatán", language: "Maya", languageFamily: "other", lat: 20.97, lng: -89.62 },
+    { region: "Oaxaca", language: "Zapotec / Mixtec", languageFamily: "other", lat: 17.07, lng: -96.73 },
+    { region: "Chiapas", language: "Tzotzil / Tzeltal", languageFamily: "other", lat: 16.75, lng: -92.64 },
+  ],
+  // Peru — Spanish + Quechua + Aymara
+  pe: [
+    { region: "Lima / Coast", language: "Spanish", languageFamily: "spanish", lat: -12.05, lng: -77.04 },
+    { region: "Andes / Cusco", language: "Quechua", languageFamily: "other", lat: -13.53, lng: -71.97 },
+    { region: "Puno / Altiplano", language: "Aymara", languageFamily: "other", lat: -15.84, lng: -70.02 },
+    { region: "Amazon", language: "Various indigenous", languageFamily: "other", lat: -3.75, lng: -73.25 },
+  ],
+  // Bolivia — Spanish + Quechua + Aymara
+  bo: [
+    { region: "La Paz / El Alto", language: "Aymara / Spanish", languageFamily: "spanish", lat: -16.50, lng: -68.15 },
+    { region: "Cochabamba", language: "Quechua", languageFamily: "other", lat: -17.39, lng: -66.16 },
+    { region: "Santa Cruz / East", language: "Spanish", languageFamily: "spanish", lat: -17.78, lng: -63.18 },
+  ],
+  // Paraguay — Spanish + Guaraní
+  py: [
+    { region: "Asunción / Urban", language: "Spanish", languageFamily: "spanish", lat: -25.26, lng: -57.58 },
+    { region: "Rural Paraguay", language: "Guaraní", languageFamily: "other", lat: -23.35, lng: -57.52 },
+  ],
+  // Sri Lanka — Sinhala + Tamil
+  lk: [
+    { region: "South / West", language: "Sinhala", languageFamily: "other", lat: 6.93, lng: 79.85 },
+    { region: "North / East (Jaffna)", language: "Tamil", languageFamily: "other", lat: 9.66, lng: 80.01 },
+  ],
+  // Nepal — Nepali + Maithili + more
+  np: [
+    { region: "Kathmandu / Hills", language: "Nepali", languageFamily: "hindi", lat: 27.72, lng: 85.32 },
+    { region: "Terai (South)", language: "Maithili / Bhojpuri", languageFamily: "hindi", lat: 26.67, lng: 85.90 },
+    { region: "Eastern Hills", language: "Limbu / Rai", languageFamily: "other", lat: 27.33, lng: 87.27 },
+  ],
+  // Algeria — Arabic + Berber
+  dz: [
+    { region: "Northern Algeria", language: "Arabic", languageFamily: "arabic", lat: 36.74, lng: 3.06 },
+    { region: "Kabylie", language: "Kabyle (Berber)", languageFamily: "other", lat: 36.72, lng: 4.05 },
+    { region: "Sahara / Tuareg", language: "Tuareg (Berber)", languageFamily: "other", lat: 22.79, lng: 5.52 },
+  ],
+  // Morocco — Arabic + Berber
+  ma: [
+    { region: "Urban Morocco", language: "Arabic", languageFamily: "arabic", lat: 33.97, lng: -6.85 },
+    { region: "Atlas / Rif", language: "Amazigh (Berber)", languageFamily: "other", lat: 31.63, lng: -7.98 },
+  ],
+  // Sudan — Arabic + African languages
+  sd: [
+    { region: "Khartoum / North", language: "Arabic", languageFamily: "arabic", lat: 15.59, lng: 32.53 },
+    { region: "Darfur", language: "Fur / Arabic", languageFamily: "other", lat: 13.45, lng: 25.35 },
+    { region: "Eastern Sudan", language: "Beja", languageFamily: "other", lat: 18.55, lng: 36.95 },
+  ],
+  // Uganda — English + Luganda + many
+  ug: [
+    { region: "Central (Buganda)", language: "Luganda", languageFamily: "other", lat: 0.35, lng: 32.58 },
+    { region: "Northern", language: "Acholi / Luo", languageFamily: "other", lat: 2.77, lng: 32.30 },
+    { region: "Western", language: "Runyankole / Rukiga", languageFamily: "other", lat: -0.60, lng: 30.66 },
+    { region: "Eastern", language: "Lusoga / Lugisu", languageFamily: "other", lat: 1.08, lng: 34.18 },
+  ],
+  // Mozambique — Portuguese + Bantu
+  mz: [
+    { region: "Maputo / South", language: "Portuguese / Tsonga", languageFamily: "portuguese", lat: -25.97, lng: 32.57 },
+    { region: "Central", language: "Sena / Ndau", languageFamily: "other", lat: -19.84, lng: 34.87 },
+    { region: "North", language: "Makhuwa / Yao", languageFamily: "other", lat: -15.12, lng: 39.26 },
+  ],
+  // Bangladesh — Bengali + Chittagong Hill Tracts
+  bd: [
+    { region: "Most of Bangladesh", language: "Bengali", languageFamily: "other", lat: 23.81, lng: 90.41 },
+    { region: "Chittagong Hill Tracts", language: "Chakma / Marma", languageFamily: "other", lat: 22.27, lng: 92.06 },
+    { region: "Sylhet", language: "Sylheti Bengali", languageFamily: "other", lat: 24.90, lng: 91.87 },
+  ],
+  // Ghana — English + Akan + Ewe
+  gh: [
+    { region: "Greater Accra / South", language: "Akan (Twi)", languageFamily: "other", lat: 5.56, lng: -0.19 },
+    { region: "Volta Region", language: "Ewe", languageFamily: "other", lat: 6.60, lng: 0.47 },
+    { region: "Northern Ghana", language: "Dagbani / Mampruli", languageFamily: "other", lat: 9.41, lng: -0.84 },
+    { region: "English (Official)", language: "English", languageFamily: "english", lat: 7.95, lng: -1.02 },
+  ],
+  // Senegal — French + Wolof + more
+  sn: [
+    { region: "Dakar / Urban", language: "Wolof / French", languageFamily: "french", lat: 14.72, lng: -17.47 },
+    { region: "Casamance", language: "Diola / Mandinka", languageFamily: "other", lat: 12.58, lng: -15.17 },
+    { region: "Saint-Louis / North", language: "Pulaar (Fula)", languageFamily: "other", lat: 16.02, lng: -16.49 },
+  ],
+  // Chad — French + Arabic
+  td: [
+    { region: "N'Djamena / South", language: "French / Sara", languageFamily: "french", lat: 12.13, lng: 15.05 },
+    { region: "Northern Chad", language: "Arabic", languageFamily: "arabic", lat: 15.44, lng: 18.73 },
+  ],
+  // Eritrea — Tigrinya + more
+  er: [
+    { region: "Highlands / Asmara", language: "Tigrinya", languageFamily: "other", lat: 15.34, lng: 38.93 },
+    { region: "Western Lowlands", language: "Tigre", languageFamily: "other", lat: 15.61, lng: 37.59 },
+    { region: "Coastal / Afar", language: "Afar", languageFamily: "other", lat: 15.28, lng: 40.37 },
+  ],
+  // Brazil — Portuguese + indigenous
+  br: [
+    { region: "Most of Brazil", language: "Portuguese", languageFamily: "portuguese", lat: -15.79, lng: -47.88 },
+    { region: "Amazon Indigenous", language: "Tupi / Yanomami", languageFamily: "other", lat: -3.12, lng: -60.02 },
+    { region: "Southern German/Italian", language: "German / Italian", languageFamily: "german", lat: -29.17, lng: -51.18 },
+  ],
 };
