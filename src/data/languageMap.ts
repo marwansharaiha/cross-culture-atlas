@@ -241,7 +241,10 @@ export const countryLanguageFamily: Record<string, LanguageFamily> = {
   jm: "english", tt: "english", gh: "english", ke: "english", ng: "english",
   za: "english", zw: "english", bw: "english", lr: "english", sl: "english",
   gm: "english", gy: "english", pg: "english", sb: "english", ws: "english",
-  to: "english", tv: "english", vu: "english", fk: "english",
+  to: "english", tv: "english", vu: "english", fk: "english", bb: "english",
+  bs: "english", bz: "english", dm: "english", gd: "english", kn: "english",
+  lc: "english", vc: "english", ag: "english", fj: "english", ki: "english",
+  sc: "english", mu: "english",
 
   // Spanish-speaking
   mx: "spanish", es: "spanish", co: "spanish", ar: "spanish", pe: "spanish",
@@ -252,13 +255,14 @@ export const countryLanguageFamily: Record<string, LanguageFamily> = {
 
   // Portuguese-speaking
   br: "portuguese", pt: "portuguese", ao: "portuguese", mz: "portuguese",
-  tl: "portuguese",
+  tl: "portuguese", cv: "portuguese", gw: "portuguese",
 
   // French-speaking
   fr: "french", cd: "french", cg: "french", ci: "french", sn: "french",
   ml: "french", bf: "french", ne: "french", td: "french", gn: "french",
   cm: "french", mg: "french", ht: "french", ga: "french", cf: "french",
-  tg: "french", dj: "french", bi: "french", rw: "french",
+  tg: "french", dj: "french", bi: "french", rw: "french", bj: "french",
+  km: "french", mc: "french",
   gf: "french", gp: "french", mq: "french", re: "french", yt: "french",
   nc: "french", pf: "french", wf: "french",
 
@@ -266,7 +270,7 @@ export const countryLanguageFamily: Record<string, LanguageFamily> = {
   sa: "arabic", eg: "arabic", iq: "arabic", sy: "arabic", ye: "arabic",
   jo: "arabic", lb: "arabic", ly: "arabic", tn: "arabic", dz: "arabic",
   ma: "arabic", sd: "arabic", om: "arabic", kw: "arabic", qa: "arabic",
-  ae: "arabic", mr: "arabic", so: "arabic", eh: "arabic",
+  ae: "arabic", mr: "arabic", so: "arabic", eh: "arabic", bh: "arabic",
 
   // Mandarin/Chinese
   cn: "mandarin", tw: "mandarin", hk: "mandarin", mo: "mandarin", sg: "mandarin",
@@ -276,10 +280,10 @@ export const countryLanguageFamily: Record<string, LanguageFamily> = {
 
   // Russian / Slavic
   ru: "russian", ua: "russian", by: "russian", kz: "russian", kg: "russian",
-  tj: "russian", uz: "russian", tm: "russian",
+  tj: "russian", uz: "russian", tm: "russian", md: "russian",
 
   // German
-  de: "german", at: "german",
+  de: "german", at: "german", li: "german",
 
   // Japanese
   jp: "japanese",
@@ -288,7 +292,7 @@ export const countryLanguageFamily: Record<string, LanguageFamily> = {
   kr: "korean", kp: "korean",
 
   // Malay / Austronesian
-  id: "malay", my: "malay", ph: "malay",
+  id: "malay", my: "malay", ph: "malay", bn: "malay",
 
   // Turkish / Turkic
   tr: "turkish", az: "turkish",
@@ -306,7 +310,9 @@ export const countryLanguageFamily: Record<string, LanguageFamily> = {
   ss: "other", ug: "other", tz: "other", mw: "other", zm: "other",
   na: "other", ls: "other", sz: "other", sr: "other", it: "other",
   lu: "other", nl: "other", be: "other", ch: "other", vn: "other",
-  gl: "other", gu: "other",
+  gl: "other", gu: "other", am: "other", me: "other", mk: "other",
+  af: "other", bt: "other", mv: "other", mt: "other", ad: "other",
+  as: "other",
 };
 
 // ── Regional language data for multilingual countries ────────────────
