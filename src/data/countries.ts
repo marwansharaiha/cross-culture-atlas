@@ -2612,6 +2612,8 @@ for (const nc of newAfricanCountries) {
     countries.push(nc);
   }
 }
+export const REGIONS = [...new Set(countries.map(c => c.region))].sort();
+
 /** All religions list derived from data */
 export const ALL_RELIGIONS = [...new Set(countries.flatMap(c => c.religions))].sort();
 
