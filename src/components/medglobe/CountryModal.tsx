@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Heart, HeartOff, MessageCircle, Users, Sparkles, Stethoscope, UserCheck, CheckCircle2, XCircle } from "lucide-react";
+import { X, ExternalLink, Heart, HeartOff, MessageCircle, Users, Sparkles, Stethoscope, UserCheck, CheckCircle2, XCircle, MapPin } from "lucide-react";
 import { CountryData, getFlagUrl } from "@/data/countries";
 import { Button } from "@/components/ui/button";
+import { regionalCulturalData, regionKey, type RegionalCulturalInfo } from "@/data/regionalCulturalData";
+import { regionalLanguages } from "@/data/languageMap";
 
 interface CountryModalProps {
   country: CountryData | null;
+  regionName?: string | null;
   onClose: () => void;
   isFavorite: boolean;
   onToggleFavorite: (isoCode: string) => void;
@@ -22,17 +25,52 @@ const TABS = [
 
 type TabKey = typeof TABS[number]["key"];
 
-export default function CountryModal({ country, onClose, isFavorite, onToggleFavorite }: CountryModalProps) {
+export default function CountryModal({ country, regionName, onClose, isFavorite, onToggleFavorite }: CountryModalProps) {
   const [activeTab, setActiveTab] = useState<TabKey>("communication");
 
   if (!country) return null;
 
+  // Look up regional cultural data if a region is selected
+  const regionData = regionName ? regionalCulturalData[regionKey(country.isoCode, regionName)] : null;
+  const regionLangInfo = regionName && regionalLanguages[country.isoCode]
+    ? regionalLanguages[country.isoCode].find(r => r.region === regionName)
+    : null;
+
+  // Merge: use region-specific data if available, fall back to country data
+  const mergedCultural = {
+    communication: regionData?.cultural.communication || country.cultural.communication,
+    familyDecisionMaking: regionData?.cultural.familyDecisionMaking || country.cultural.familyDecisionMaking,
+    religiousSpiritual: regionData?.cultural.religiousSpiritual || country.cultural.religiousSpiritual,
+    healthBeliefs: regionData?.cultural.healthBeliefs || country.cultural.healthBeliefs,
+    genderContact: regionData?.cultural.genderContact || country.cultural.genderContact,
+    doList: regionData?.cultural.doList || country.cultural.doList,
+    dontList: regionData?.cultural.dontList || country.cultural.dontList,
+  };
+
+  const displayName = regionData
+    ? `${country.name} — ${regionData.regionName}`
+    : regionName
+    ? `${country.name} — ${regionName}`
+    : country.name;
+
+  const displayLanguage = regionData?.language
+    || regionLangInfo?.language
+    || country.languages.join(", ");
+
+  const displayReligions = regionData?.religions
+    ? regionData.religions.join(", ")
+    : country.religions.slice(0, 2).join(", ");
+
+  const displaySources = regionData?.sources && regionData.sources.length > 0
+    ? regionData.sources
+    : country.sources;
+
   const sectionMap: Record<TabKey, string[]> = {
-    communication: country.cultural.communication,
-    family: country.cultural.familyDecisionMaking,
-    religious: country.cultural.religiousSpiritual,
-    health: country.cultural.healthBeliefs,
-    gender: country.cultural.genderContact,
+    communication: mergedCultural.communication,
+    family: mergedCultural.familyDecisionMaking,
+    religious: mergedCultural.religiousSpiritual,
+    health: mergedCultural.healthBeliefs,
+    gender: mergedCultural.genderContact,
     checklist: [],
   };
 
@@ -61,10 +99,16 @@ export default function CountryModal({ country, onClose, isFavorite, onToggleFav
               className="h-10 w-14 rounded object-cover shadow-sm border border-border"
             />
             <div className="flex-1 min-w-0">
-              <h2 className="text-xl font-bold text-card-foreground text-balance">{country.name}</h2>
+              <h2 className="text-xl font-bold text-card-foreground text-balance">{displayName}</h2>
               <p className="text-sm text-muted-foreground">
-                {country.languages.join(", ")} · {country.religions.slice(0, 2).join(", ")}
+                {displayLanguage} · {displayReligions}
               </p>
+              {regionName && (
+                <p className="text-xs text-primary mt-0.5 flex items-center gap-1">
+                  <MapPin className="h-3 w-3" />
+                  Regional cultural profile
+                </p>
+              )}
             </div>
             <Button
               variant="ghost"
@@ -124,7 +168,7 @@ export default function CountryModal({ country, onClose, isFavorite, onToggleFav
                         <CheckCircle2 className="h-4 w-4" /> Do
                       </h3>
                       <ul className="space-y-2">
-                        {country.cultural.doList.map((item, i) => (
+                        {mergedCultural.doList.map((item, i) => (
                           <li key={i} className="flex gap-2 text-sm text-card-foreground">
                             <CheckCircle2 className="h-4 w-4 shrink-0 text-do-green mt-0.5" />
                             <span>{item}</span>
@@ -137,7 +181,7 @@ export default function CountryModal({ country, onClose, isFavorite, onToggleFav
                         <XCircle className="h-4 w-4" /> Don't
                       </h3>
                       <ul className="space-y-2">
-                        {country.cultural.dontList.map((item, i) => (
+                        {mergedCultural.dontList.map((item, i) => (
                           <li key={i} className="flex gap-2 text-sm text-card-foreground">
                             <XCircle className="h-4 w-4 shrink-0 text-dont-red mt-0.5" />
                             <span>{item}</span>
@@ -164,7 +208,7 @@ export default function CountryModal({ country, onClose, isFavorite, onToggleFav
           <div className="border-t border-border px-6 py-3 bg-muted/30">
             <p className="text-xs text-muted-foreground mb-1">Sources & Further Reading</p>
             <div className="flex flex-wrap gap-3">
-              {country.sources.map((s, i) => (
+              {displaySources.map((s, i) => (
                 <a
                   key={i}
                   href={s.url}

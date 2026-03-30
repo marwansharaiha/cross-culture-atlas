@@ -16,6 +16,7 @@ interface FlatMapViewProps {
   focusLat?: number;
   focusLng?: number;
   onCountryClick?: (isoCode: string) => void;
+  onRegionClick?: (isoCode: string, regionName: string) => void;
   selectedCountry?: string | null;
 }
 
@@ -23,6 +24,7 @@ const WORLD_ATLAS_URL = "https://unpkg.com/world-atlas@2/countries-110m.json";
 
 export default function FlatMapView({
   onCountryClick,
+  onRegionClick,
   selectedCountry,
 }: FlatMapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -360,16 +362,50 @@ export default function FlatMapView({
                       />
                     ))}
                   </g>
+                  {/* Individual clickable regions */}
+                  <g clipPath={`url(#${vr.clipId})`}>
+                    {vr.cells.map((cell, i) => (
+                      <path
+                        key={`click-${i}`}
+                        d={cell.path}
+                        fill="transparent"
+                        className="cursor-pointer"
+                        onMouseMove={(e) => {
+                          const alpha2c = feat ? getAlpha2(feat) : null;
+                          const name = feat ? (numericToName[feat.id] || alpha2c || "Unknown") : "Unknown";
+                          const rect = containerRef.current?.getBoundingClientRect();
+                          if (!rect) return;
+                          setHoverD(alpha2c);
+                          setTooltip({
+                            x: e.clientX - rect.left,
+                            y: e.clientY - rect.top,
+                            content: `${name} — ${cell.label}`,
+                            alpha2: alpha2c,
+                          });
+                        }}
+                        onMouseLeave={handleMouseLeave}
+                        onClick={() => {
+                          if (feat) {
+                            const alpha2c = getAlpha2(feat);
+                            if (alpha2c && onRegionClick) {
+                              // Extract region name from label (format: "Region: Language")
+                              const regionName = cell.label.split(":")[0].trim();
+                              onRegionClick(alpha2c, regionName);
+                            } else if (alpha2c && onCountryClick) {
+                              onCountryClick(alpha2c);
+                            }
+                          }
+                        }}
+                      />
+                    ))}
+                  </g>
                   {feat && (
                     <path
                       d={vr.countryPath}
                       fill="transparent"
                       stroke="hsl(var(--border))"
                       strokeWidth={strokeW}
-                      className="cursor-pointer"
-                      onMouseMove={(e) => handleMouseMove(e, feat)}
-                      onMouseLeave={handleMouseLeave}
-                      onClick={() => handleClick(feat)}
+                      className="pointer-events-none"
                     />
                   )}
                 </g>

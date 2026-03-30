@@ -6,12 +6,15 @@ import CountryCard from "@/components/medglobe/CountryCard";
 import Legend from "@/components/medglobe/Legend";
 import Footer from "@/components/medglobe/Footer";
 import { countries, CountryData, REGIONS, LANGUAGE_FAMILIES } from "@/data/countries";
+import { regionalCulturalData, regionKey } from "@/data/regionalCulturalData";
+import { regionalLanguages } from "@/data/languageMap";
 import { useFavorites } from "@/hooks/useFavorites";
 import { motion } from "framer-motion";
 
 export default function Index() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCountry, setSelectedCountry] = useState<CountryData | null>(null);
+  const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<"globe" | "list">("globe");
   const [regionFilter, setRegionFilter] = useState("");
   const [languageFamilyFilter, setLanguageFamilyFilter] = useState("");
@@ -43,7 +46,34 @@ export default function Index() {
   const handleCountryClick = useCallback(
     (isoCode: string) => {
       const c = countries.find((c) => c.isoCode === isoCode);
-      if (c) setSelectedCountry(c);
+      if (c) {
+        setSelectedCountry(c);
+        setSelectedRegion(null);
+      }
+    },
+    []
+  );
+
+  const handleRegionClick = useCallback(
+    (isoCode: string, regionName: string) => {
+      const c = countries.find((c) => c.isoCode === isoCode);
+      if (c) {
+        setSelectedCountry(c);
+        // Check if we have regional cultural data
+        const key = regionKey(isoCode, regionName);
+        if (regionalCulturalData[key]) {
+          setSelectedRegion(regionName);
+        } else {
+          // Find matching region from regionalLanguages to get region info for display
+          const regions = regionalLanguages[isoCode];
+          const matchedRegion = regions?.find(r => r.region === regionName);
+          if (matchedRegion) {
+            setSelectedRegion(regionName);
+          } else {
+            setSelectedRegion(null);
+          }
+        }
+      }
     },
     []
   );
@@ -72,6 +102,7 @@ export default function Index() {
                   focusLng={focusCountry?.lng}
                   selectedCountry={focusCountry?.isoCode ?? null}
                   onCountryClick={handleCountryClick}
+                  onRegionClick={handleRegionClick}
                 />
               </motion.div>
 
@@ -191,7 +222,8 @@ export default function Index() {
       {selectedCountry && (
         <CountryModal
           country={selectedCountry}
-          onClose={() => setSelectedCountry(null)}
+          regionName={selectedRegion}
+          onClose={() => { setSelectedCountry(null); setSelectedRegion(null); }}
           isFavorite={isFavorite(selectedCountry.isoCode)}
           onToggleFavorite={toggleFavorite}
         />
