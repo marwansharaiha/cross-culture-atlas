@@ -168,7 +168,7 @@ export default function CountryModal({ country, regionName, onClose, isFavorite,
                         <CheckCircle2 className="h-4 w-4" /> Do
                       </h3>
                       <ul className="space-y-2">
-                        {country.cultural.doList.map((item, i) => (
+                        {mergedCultural.doList.map((item, i) => (
                           <li key={i} className="flex gap-2 text-sm text-card-foreground">
                             <CheckCircle2 className="h-4 w-4 shrink-0 text-do-green mt-0.5" />
                             <span>{item}</span>
@@ -181,7 +181,7 @@ export default function CountryModal({ country, regionName, onClose, isFavorite,
                         <XCircle className="h-4 w-4" /> Don't
                       </h3>
                       <ul className="space-y-2">
-                        {country.cultural.dontList.map((item, i) => (
+                        {mergedCultural.dontList.map((item, i) => (
                           <li key={i} className="flex gap-2 text-sm text-card-foreground">
                             <XCircle className="h-4 w-4 shrink-0 text-dont-red mt-0.5" />
                             <span>{item}</span>
@@ -208,7 +208,7 @@ export default function CountryModal({ country, regionName, onClose, isFavorite,
           <div className="border-t border-border px-6 py-3 bg-muted/30">
             <p className="text-xs text-muted-foreground mb-1">Sources & Further Reading</p>
             <div className="flex flex-wrap gap-3">
-              {country.sources.map((s, i) => (
+              {displaySources.map((s, i) => (
                 <a
                   key={i}
                   href={s.url}
