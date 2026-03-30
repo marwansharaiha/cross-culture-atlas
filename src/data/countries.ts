@@ -2437,8 +2437,724 @@ for (const ac of [...africaCountries, ...moreCountries]) {
     countries.push(ac);
   }
 }
+  // ─── GHANA ──────────────────────────────────────────────────────────
+  {
+    name: "Ghana",
+    isoCode: "gh",
+    lat: 5.56, lng: -0.19,
+    languages: ["English", "Akan (Twi)", "Ewe", "Dagbani"],
+    primaryLanguageFamily: "english",
+    religions: ["Christianity", "Islam", "Traditional beliefs"],
+    region: "West Africa",
+    cultural: {
+      communication: [
+        "English is official but Twi is the most widely spoken language",
+        "Respect for elders is paramount — always greet the oldest person first",
+        "Akan day names (e.g., Kofi for Friday-born males) carry deep cultural significance",
+        "Proverbs are widely used in conversation — 'wisdom of the elders'",
+        "Communication is warm and communal — expect personal connection before medical discussions"
+      ],
+      familyDecisionMaking: [
+        "Extended family (abusua) is central to all major decisions including healthcare",
+        "Matrilineal inheritance in Akan communities affects family dynamics",
+        "Chief and elder authority extends to community health decisions",
+        "Family councils may be called before major medical decisions",
+        "Women increasingly participate in healthcare decisions in urban areas"
+      ],
+      religiousSpiritual: [
+        "Christianity is dominant but syncretic practices are common",
+        "Traditional beliefs in ancestral spirits coexist with Christianity and Islam",
+        "Northern Ghana is predominantly Muslim — accommodate Islamic practices",
+        "Naming ceremonies on the 8th day after birth are culturally significant",
+        "Funeral rites are elaborate and socially important — may delay return to care"
+      ],
+      healthBeliefs: [
+        "Herbal medicine (aduru) is widely used — traditional healers are respected",
+        "Malaria is the leading health concern — prevention and treatment are priorities",
+        "Traditional birth attendants (TBAs) are common in rural areas",
+        "Mental illness may be attributed to spiritual causes — stigma is significant",
+        "Sickle cell disease is prevalent — genetic counseling opportunities exist"
+      ],
+      genderContact: [
+        "Modesty is valued — provide adequate draping during examinations",
+        "Female patients may prefer female providers, especially in northern Ghana",
+        "Handshakes are common but may use right hand only",
+        "Queen mothers (ohemaa) have significant authority in Akan communities",
+        "Gender roles are evolving in urban areas but traditional in rural regions"
+      ],
+      doList: [
+        "Greet with 'Ete sen?' (How are you?) in Twi — shows cultural respect",
+        "Ask about herbal medicine use — potential drug interactions",
+        "Respect the authority of family elders in healthcare decisions",
+        "Be aware of sickle cell disease prevalence",
+        "Accommodate funeral attendance — it's socially mandatory"
+      ],
+      dontList: [
+        "Don't use the left hand for giving or receiving — it's considered disrespectful",
+        "Don't dismiss traditional healing practices",
+        "Don't bypass elder family members in medical discussions",
+        "Don't assume English proficiency — especially in rural areas",
+        "Don't ignore the role of chief and queen mother in community health"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Ghana", url: "https://en.wikipedia.org/wiki/Culture_of_Ghana" },
+      { label: "WHO Ghana", url: "https://www.who.int/countries/gha" }
+    ]
+  },
+  // ─── TANZANIA ──────────────────────────────────────────────────────
+  {
+    name: "Tanzania",
+    isoCode: "tz",
+    lat: -6.79, lng: 39.28,
+    languages: ["Swahili", "English"],
+    primaryLanguageFamily: "other",
+    religions: ["Christianity", "Islam", "Traditional beliefs"],
+    region: "East Africa",
+    cultural: {
+      communication: [
+        "Swahili (Kiswahili) is the national language — greet with 'Habari' or 'Mambo'",
+        "Greetings are extensive and culturally required — rushing is disrespectful",
+        "Respect for elders (heshima) is deeply embedded",
+        "English is used in higher education and formal medical settings",
+        "Indirect communication is preferred — directness may be seen as rude"
+      ],
+      familyDecisionMaking: [
+        "Extended family involvement in healthcare decisions is standard",
+        "Male family heads typically make final decisions in traditional communities",
+        "Urban families are more egalitarian in decision-making",
+        "Community leaders (mzee) may be consulted for major health decisions",
+        "Maasai communities have specific clan-based decision structures"
+      ],
+      religiousSpiritual: [
+        "Christianity and Islam are roughly equal — varies by region",
+        "Zanzibar is predominantly Muslim — strict Islamic practices",
+        "Traditional beliefs in ancestral spirits (mizimu) persist alongside major religions",
+        "Maasai spiritual practices involve cattle and specific rituals",
+        "Faith healing is common in Pentecostal Christian communities"
+      ],
+      healthBeliefs: [
+        "Traditional medicine (dawa za asili) is the first resort for many conditions",
+        "Mganga (traditional healer) consultations are common and respected",
+        "HIV/AIDS awareness is high but stigma persists",
+        "Malaria prevention and treatment are major health priorities",
+        "Maternal and child health programs are well-established"
+      ],
+      genderContact: [
+        "Muslim women on the coast prefer female healthcare providers",
+        "Modesty is important across communities — provide adequate privacy",
+        "Maasai culture has specific gender-based health practices",
+        "FGM is still practiced in some communities — approach sensitively",
+        "Women's healthcare access may be limited in rural areas"
+      ],
+      doList: [
+        "Learn basic Swahili greetings — shows respect and builds rapport",
+        "Allow time for proper greetings — never rush",
+        "Ask about traditional medicine use",
+        "Respect regional religious differences (coast vs. mainland)",
+        "Work with community health workers in rural areas"
+      ],
+      dontList: [
+        "Don't rush greetings — the greeting ritual is sacred",
+        "Don't dismiss mganga consultations",
+        "Don't assume one religion — Tanzania is religiously diverse",
+        "Don't ignore gender-specific care needs in Muslim communities",
+        "Don't use the left hand for giving or eating"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Tanzania", url: "https://en.wikipedia.org/wiki/Culture_of_Tanzania" },
+      { label: "WHO Tanzania", url: "https://www.who.int/countries/tza" }
+    ]
+  },
+  // ─── CAMEROON ──────────────────────────────────────────────────────
+  {
+    name: "Cameroon",
+    isoCode: "cm",
+    lat: 3.87, lng: 11.52,
+    languages: ["French", "English", "Fulfulde", "Ewondo"],
+    primaryLanguageFamily: "french",
+    religions: ["Christianity", "Islam", "Traditional beliefs"],
+    region: "Central Africa",
+    cultural: {
+      communication: [
+        "French and English are both official — Cameroon is bilingual",
+        "Anglophone/Francophone tension is significant — be sensitive to language identity",
+        "Pidgin English is widely spoken as a lingua franca",
+        "Formal communication with elders and authority figures is expected",
+        "Patients may not question doctors out of respect for authority"
+      ],
+      familyDecisionMaking: [
+        "Extended family is deeply involved in healthcare decisions",
+        "Northern Cameroon has patriarchal, Islamic family structures",
+        "Southern/Western communities may be matrilineal or egalitarian",
+        "Fon (chief) authority is respected in many communities",
+        "Community consensus is important for major medical decisions"
+      ],
+      religiousSpiritual: [
+        "Christianity dominates south; Islam dominates north",
+        "Traditional beliefs in ancestors and nature spirits persist throughout",
+        "Sorcery and witchcraft beliefs influence health-seeking behavior",
+        "Prayer and spiritual healing are commonly requested alongside medical care",
+        "Funeral rites are elaborate and economically significant"
+      ],
+      healthBeliefs: [
+        "Traditional healers (tradi-praticiens) are widely consulted",
+        "Illness may be attributed to sorcery or ancestral displeasure",
+        "Herbal medicine markets are extensive — patients commonly use both systems",
+        "HIV/AIDS stigma is significant — confidentiality is crucial",
+        "Malaria and tropical diseases are primary health concerns"
+      ],
+      genderContact: [
+        "Northern Muslim women require gender-separated care",
+        "Modesty expectations vary significantly between north and south",
+        "Female genital cutting is practiced in some communities",
+        "Women's healthcare autonomy varies by region and religion",
+        "Same-gender chaperones are expected for intimate examinations"
+      ],
+      doList: [
+        "Be sensitive to Anglophone/Francophone identity",
+        "Ask about traditional medicine and healer consultations",
+        "Respect regional religious differences",
+        "Provide care in the patient's preferred language",
+        "Include family in medical discussions"
+      ],
+      dontList: [
+        "Don't assume French or English — ask the patient's preference",
+        "Don't dismiss sorcery beliefs — they're deeply held",
+        "Don't ignore the Anglophone crisis context for patients from NW/SW regions",
+        "Don't overlook HIV stigma — handle confidentiality carefully",
+        "Don't make assumptions about religion based on appearance"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Cameroon", url: "https://en.wikipedia.org/wiki/Culture_of_Cameroon" },
+      { label: "WHO Cameroon", url: "https://www.who.int/countries/cmr" }
+    ]
+  },
+  // ─── SENEGAL ───────────────────────────────────────────────────────
+  {
+    name: "Senegal",
+    isoCode: "sn",
+    lat: 14.72, lng: -17.47,
+    languages: ["French", "Wolof", "Pulaar", "Serer"],
+    primaryLanguageFamily: "french",
+    religions: ["Islam (Sunni, Sufi)", "Christianity"],
+    region: "West Africa",
+    cultural: {
+      communication: [
+        "Wolof is the lingua franca — 'Nanga def?' (How are you?) is the universal greeting",
+        "Teranga (hospitality) is the defining cultural value of Senegal",
+        "French is used in formal/medical settings but Wolof in daily life",
+        "Sufi Muslim brotherhoods (Mouride, Tijaniyya) are extremely influential",
+        "Extended greetings are mandatory — asking about family, health, and work"
+      ],
+      familyDecisionMaking: [
+        "Extended family (mbokk) is the core social unit",
+        "Male family heads (borom kër) make major decisions",
+        "Marabout (religious leader) guidance is sought for important decisions",
+        "Women manage household health but defer to men for major medical decisions",
+        "Community solidarity means neighbors and friends contribute to medical costs"
+      ],
+      religiousSpiritual: [
+        "95%+ Muslim — Islam permeates all aspects of daily life",
+        "Sufi brotherhoods are more influential than in almost any other country",
+        "Marabout consultations are sought for healing, guidance, and protection",
+        "Gris-gris (protective amulets) are worn universally — don't remove",
+        "Grand Magal of Touba is the most important religious pilgrimage",
+        "Ramadan fasting is near-universal — affects medication schedules"
+      ],
+      healthBeliefs: [
+        "Marabout healing is the first resort for many conditions",
+        "Traditional medicine (tisane, herbal remedies) is widely practiced",
+        "Mental illness is attributed to djinn or spiritual causes — stigma is extreme",
+        "Malaria prevention and treatment are healthcare priorities",
+        "Infant mortality has improved but maternal health remains a concern"
+      ],
+      genderContact: [
+        "Female patients require female providers in most contexts",
+        "Modesty is paramount — minimize physical exposure during examinations",
+        "Handshaking between genders follows Islamic norms",
+        "Women's health decisions may require husband's approval",
+        "FGM is practiced in some communities — handle with extreme sensitivity"
+      ],
+      doList: [
+        "Greet extensively in Wolof — it builds deep trust",
+        "Respect teranga — accept hospitality (attaya tea, meals) when offered",
+        "Don't remove gris-gris amulets — they have deep spiritual significance",
+        "Work with marabouts on public health messaging — they're trusted leaders",
+        "Accommodate prayer times and Ramadan fasting schedules"
+      ],
+      dontList: [
+        "Don't refuse food or tea when offered — it's culturally offensive",
+        "Don't dismiss marabout healing practices",
+        "Don't remove religious amulets or talismans",
+        "Don't eat, drink, or smoke in front of fasting patients during Ramadan",
+        "Don't ignore the influence of Sufi brotherhoods on health decisions"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Senegal", url: "https://en.wikipedia.org/wiki/Culture_of_Senegal" },
+      { label: "WHO Senegal", url: "https://www.who.int/countries/sen" }
+    ]
+  },
+  // ─── DR CONGO ──────────────────────────────────────────────────────
+  {
+    name: "DR Congo",
+    isoCode: "cd",
+    lat: -4.32, lng: 15.31,
+    languages: ["French", "Lingala", "Swahili", "Tshiluba", "Kikongo"],
+    primaryLanguageFamily: "french",
+    religions: ["Christianity (Catholic, Protestant, Kimbanguist)", "Islam"],
+    region: "Central Africa",
+    cultural: {
+      communication: [
+        "French is the official language but Lingala, Swahili, Tshiluba, and Kikongo are national languages",
+        "Music and dance are integral to Congolese culture and expression",
+        "Respect for elders and authority is paramount — use formal titles",
+        "Patients may attribute illness to spiritual causes — approach sensitively",
+        "Eastern DRC patients may have experienced conflict trauma — screen gently"
+      ],
+      familyDecisionMaking: [
+        "Extended family (libota) is the fundamental social unit",
+        "Community and church leaders have significant influence on health decisions",
+        "Male family heads typically make final medical decisions",
+        "Women manage daily health care but major decisions require male approval",
+        "Conflict has disrupted family structures — many female-headed households"
+      ],
+      religiousSpiritual: [
+        "Christianity is dominant — Catholic Church is a major healthcare provider",
+        "Kimbanguist Church is an indigenous Congolese Christian movement",
+        "Traditional beliefs in ancestral spirits and nature spirits persist",
+        "Kindoki (sorcery/witchcraft) beliefs strongly influence health-seeking behavior",
+        "Prayer and anointing are commonly requested for healing"
+      ],
+      healthBeliefs: [
+        "Traditional healers (nganga) are widely consulted alongside modern medicine",
+        "Ebola outbreaks have created specific healthcare trust issues in eastern DRC",
+        "Malaria, malnutrition, and tropical diseases are primary concerns",
+        "Sexual and gender-based violence (SGBV) is a major health issue in conflict zones",
+        "Mental health needs are enormous due to decades of conflict"
+      ],
+      genderContact: [
+        "Modesty is important — provide adequate privacy and draping",
+        "Female patients may prefer female providers",
+        "Conflict-related sexual violence survivors need trauma-informed care",
+        "Gender roles are traditional but evolving in urban areas",
+        "Handshaking is common but follows gender norms in Muslim communities"
+      ],
+      doList: [
+        "Screen for conflict-related trauma sensitively",
+        "Work with church and community leaders on health messaging",
+        "Ask about traditional medicine and nganga consultations",
+        "Provide mental health support — needs are enormous",
+        "Use appropriate national language for the region (Lingala in west, Swahili in east)"
+      ],
+      dontList: [
+        "Don't dismiss traditional healing practices — they fill a major care gap",
+        "Don't ignore Ebola-related distrust of healthcare systems",
+        "Don't force trauma disclosure — let patients share at their own pace",
+        "Don't assume French proficiency — national languages are primary for most",
+        "Don't overlook nutritional needs — food insecurity affects health outcomes"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of the DR Congo", url: "https://en.wikipedia.org/wiki/Culture_of_the_Democratic_Republic_of_the_Congo" },
+      { label: "WHO DR Congo", url: "https://www.who.int/countries/cod" }
+    ]
+  },
+  // ─── UGANDA ────────────────────────────────────────────────────────
+  {
+    name: "Uganda",
+    isoCode: "ug",
+    lat: 0.35, lng: 32.58,
+    languages: ["English", "Luganda", "Swahili", "Acholi"],
+    primaryLanguageFamily: "english",
+    religions: ["Christianity (Catholic, Anglican, Pentecostal)", "Islam"],
+    region: "East Africa",
+    cultural: {
+      communication: [
+        "English is official; Luganda is the most widely spoken local language",
+        "Greet with 'Oli otya?' (How are you?) in Luganda",
+        "Respect for elders (obulamu) is deeply embedded",
+        "Indirect communication is preferred — especially around sensitive topics",
+        "Patients may say 'yes' to be polite even when they disagree"
+      ],
+      familyDecisionMaking: [
+        "Extended family (clan system) is central to social organization",
+        "Buganda Kingdom traditions influence central Uganda",
+        "Male family heads make major medical decisions in traditional settings",
+        "Church leaders are increasingly influential in health decisions",
+        "Women-led households are common due to conflict in northern Uganda"
+      ],
+      religiousSpiritual: [
+        "Christianity is dominant — church attendance is high and influential",
+        "Muslim minority is significant, especially among Baganda and in eastern Uganda",
+        "Traditional beliefs in ancestral spirits coexist with Christianity",
+        "Faith healing through Pentecostal churches is increasingly popular",
+        "Traditional healers (basawo b'ekinnansi) are consulted for many conditions"
+      ],
+      healthBeliefs: [
+        "Traditional medicine is the first healthcare option for many Ugandans",
+        "HIV/AIDS response is a global model — PEPFAR and local programs are well-known",
+        "Malaria is the leading cause of illness — prevention is a priority",
+        "Mental health services are extremely limited — stigma is high",
+        "Herbal medicines are sold widely and used concurrently with modern medicine"
+      ],
+      genderContact: [
+        "Modesty is valued — particularly for women",
+        "Female patients may prefer female providers",
+        "LGBTQ+ issues are extremely sensitive — Uganda has strict anti-homosexuality laws",
+        "Women's healthcare access may be limited by economic factors",
+        "Intimate examinations require sensitivity and chaperones"
+      ],
+      doList: [
+        "Greet respectfully in Luganda when possible",
+        "Ask about herbal medicine and traditional healer use",
+        "Respect church and faith community influence on health decisions",
+        "Be sensitive about HIV/AIDS — stigma persists despite awareness",
+        "Include family members in healthcare discussions"
+      ],
+      dontList: [
+        "Don't dismiss traditional medicine practices",
+        "Don't assume English proficiency — local languages may be primary",
+        "Don't ignore mental health needs — services are scarce but needs are high",
+        "Don't be judgmental about health-seeking delays — access is limited",
+        "Don't overlook nutritional challenges, especially in rural areas"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Uganda", url: "https://en.wikipedia.org/wiki/Culture_of_Uganda" },
+      { label: "WHO Uganda", url: "https://www.who.int/countries/uga" }
+    ]
+  },
+  // ─── MOZAMBIQUE ────────────────────────────────────────────────────
+  {
+    name: "Mozambique",
+    isoCode: "mz",
+    lat: -25.97, lng: 32.57,
+    languages: ["Portuguese", "Makhuwa", "Tsonga", "Sena"],
+    primaryLanguageFamily: "portuguese",
+    religions: ["Christianity", "Islam", "Traditional beliefs"],
+    region: "Southern Africa",
+    cultural: {
+      communication: [
+        "Portuguese is the official language but only ~50% speak it as a first language",
+        "Makhuwa, Tsonga, and Sena are major local languages",
+        "Respect for elders is deeply valued — greet oldest person first",
+        "Communication is indirect — patients may not volunteer symptoms",
+        "Music, dance, and storytelling are central to cultural expression"
+      ],
+      familyDecisionMaking: [
+        "Extended family involvement in health decisions is standard",
+        "Northern Mozambique has matrilineal societies — women hold family authority",
+        "Southern Mozambique follows patrilineal patterns — male heads decide",
+        "Traditional leaders (régulos) have community-level influence",
+        "Civil war legacy means many disrupted family structures"
+      ],
+      religiousSpiritual: [
+        "Christianity and Islam coexist — north is more Muslim, south more Christian",
+        "Traditional beliefs in ancestral spirits are widespread",
+        "Curandeiros (traditional healers) have spiritual and medical roles",
+        "Spiritual causes of illness are widely believed — sorcery fears are common",
+        "Catholic and Muslim communities have distinct health-related practices"
+      ],
+      healthBeliefs: [
+        "Traditional medicine is the primary healthcare for most rural Mozambicans",
+        "HIV/AIDS prevalence is very high — stigma and treatment adherence are challenges",
+        "Malaria and tuberculosis are major health concerns",
+        "Maternal mortality is high — traditional birth attendants are common",
+        "Mental health services are almost nonexistent outside major cities"
+      ],
+      genderContact: [
+        "Women may have limited autonomy in healthcare decisions in southern regions",
+        "Female providers are preferred for women's health",
+        "Gender-based violence is a significant health concern",
+        "Muslim women in the north observe modesty practices",
+        "Adolescent health and early marriage are concerns in some regions"
+      ],
+      doList: [
+        "Learn basic greetings in the local language of the region",
+        "Ask about traditional medicine and curandeiro consultations",
+        "Be aware of matrilineal vs. patrilineal family dynamics by region",
+        "Screen for HIV sensitively — prevalence is high",
+        "Use visual aids — literacy rates are low in rural areas"
+      ],
+      dontList: [
+        "Don't assume Portuguese proficiency — use local language interpreters",
+        "Don't dismiss traditional healing practices — they're the main health system for many",
+        "Don't ignore spiritual dimensions of illness",
+        "Don't overlook gender-based violence as a health concern",
+        "Don't be surprised by late presentation — healthcare access is very limited"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Mozambique", url: "https://en.wikipedia.org/wiki/Culture_of_Mozambique" },
+      { label: "WHO Mozambique", url: "https://www.who.int/countries/moz" }
+    ]
+  },
+  // ─── SUDAN ─────────────────────────────────────────────────────────
+  {
+    name: "Sudan",
+    isoCode: "sd",
+    lat: 15.59, lng: 32.53,
+    languages: ["Arabic", "English", "Fur", "Beja"],
+    primaryLanguageFamily: "arabic",
+    religions: ["Islam (Sunni)"],
+    region: "North Africa",
+    cultural: {
+      communication: [
+        "Arabic (Sudanese dialect) is the primary language — greet with 'Assalamu Alaikum'",
+        "Hospitality is deeply valued — tea (shai) is offered before any discussion",
+        "Communication is indirect and polite — directness may be seen as rude",
+        "Tribal identity is important — Sudanese identify strongly with their tribe",
+        "English is used in some medical and educational settings"
+      ],
+      familyDecisionMaking: [
+        "Male family heads make healthcare decisions — patriarchal society",
+        "Extended family (usra) is deeply involved in care",
+        "Tribal elders may be consulted for major medical decisions",
+        "Women have increasing autonomy in urban Khartoum",
+        "Community support networks help with medical costs"
+      ],
+      religiousSpiritual: [
+        "Sunni Islam governs daily life — prayer, fasting, dietary laws",
+        "Sufi traditions are strong — zikr (remembrance) gatherings are common",
+        "Ramadan fasting affects medication schedules and health",
+        "Islamic end-of-life practices — prompt burial, facing Mecca",
+        "Female circumcision is practiced — approaching elimination but still present"
+      ],
+      healthBeliefs: [
+        "Traditional medicine and Islamic healing coexist with modern medicine",
+        "Quranic healing (writing Quran on boards, washing, drinking water) is practiced",
+        "Hijama (cupping) is used for various conditions",
+        "Mental illness is heavily stigmatized — attributed to djinn or spiritual causes",
+        "Malaria, malnutrition, and conflict-related injuries are major concerns"
+      ],
+      genderContact: [
+        "Strict gender separation is expected in healthcare settings",
+        "Female patients require female providers — non-negotiable for most",
+        "Male doctors need female chaperones for any female patient contact",
+        "Handshaking between genders is not customary",
+        "Modesty is paramount — minimize physical exposure"
+      ],
+      doList: [
+        "Greet with Islamic greeting — shows respect",
+        "Provide female healthcare providers for female patients",
+        "Accept tea when offered — refusing is rude",
+        "Accommodate prayer times and Ramadan schedules",
+        "Ask about tribal background — it influences health beliefs"
+      ],
+      dontList: [
+        "Don't send male providers to examine female patients without chaperones",
+        "Don't dismiss Quranic healing practices",
+        "Don't schedule elective procedures during Ramadan",
+        "Don't ignore tribal identity — it's fundamental to Sudanese identity",
+        "Don't eat in front of fasting patients"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Sudan", url: "https://en.wikipedia.org/wiki/Culture_of_Sudan" },
+      { label: "WHO Sudan", url: "https://www.who.int/countries/sdn" }
+    ]
+  },
+  // ─── ANGOLA ────────────────────────────────────────────────────────
+  {
+    name: "Angola",
+    isoCode: "ao",
+    lat: -8.84, lng: 13.23,
+    languages: ["Portuguese", "Kimbundu", "Umbundu", "Kikongo"],
+    primaryLanguageFamily: "portuguese",
+    religions: ["Christianity (Catholic, Protestant)", "Traditional beliefs"],
+    region: "Southern Africa",
+    cultural: {
+      communication: [
+        "Portuguese is the official language — Angolan Portuguese has distinct expressions",
+        "Kimbundu, Umbundu, and Kikongo are major local languages",
+        "Communication is warm and relationship-oriented — build rapport before medical discussions",
+        "Respect for elders (mais velhos) is deeply valued",
+        "Civil war legacy means many patients have experienced trauma"
+      ],
+      familyDecisionMaking: [
+        "Extended family is central to healthcare decisions",
+        "Male family heads typically make major decisions",
+        "Church leaders are influential in health decisions",
+        "War disrupted family structures — many female-headed households",
+        "Urban-rural divide affects family dynamics significantly"
+      ],
+      religiousSpiritual: [
+        "Catholic Church is very influential — many hospitals are church-run",
+        "Traditional beliefs in ancestral spirits (defuntos) persist alongside Christianity",
+        "Kimbanda (traditional spiritual practices) are widely followed",
+        "Faith healing through churches is increasingly common",
+        "Funeral ceremonies are elaborate and economically significant"
+      ],
+      healthBeliefs: [
+        "Traditional medicine is widely used — especially in rural areas",
+        "Illness may be attributed to spiritual causes or sorcery (feitiçaria)",
+        "Malaria and tropical diseases are primary health concerns",
+        "Landmine injuries from the civil war remain a health issue",
+        "Mental health services are very limited — trauma needs are high"
+      ],
+      genderContact: [
+        "Modesty is valued but less strict than in Islamic countries",
+        "Female patients may prefer female providers for intimate examinations",
+        "Gender-based violence is a significant concern",
+        "Women's healthcare access may be limited by economic factors",
+        "Reproductive health services are a priority need"
+      ],
+      doList: [
+        "Build personal rapport before medical discussions",
+        "Ask about traditional medicine and kimbanda practices",
+        "Be aware of war trauma — screen sensitively",
+        "Provide care in local languages when possible",
+        "Work with church and community leaders on health messaging"
+      ],
+      dontList: [
+        "Don't dismiss spiritual explanations of illness",
+        "Don't assume Portuguese fluency — local languages may be primary",
+        "Don't ignore mental health needs — war trauma is widespread",
+        "Don't overlook landmine injury rehabilitation needs",
+        "Don't be judgmental about late healthcare-seeking — access is limited"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Angola", url: "https://en.wikipedia.org/wiki/Culture_of_Angola" },
+      { label: "WHO Angola", url: "https://www.who.int/countries/ago" }
+    ]
+  },
+  // ─── CÔTE D'IVOIRE ─────────────────────────────────────────────────
+  {
+    name: "Côte d'Ivoire",
+    isoCode: "ci",
+    lat: 5.36, lng: -4.01,
+    languages: ["French", "Dioula", "Baoulé", "Bété"],
+    primaryLanguageFamily: "french",
+    religions: ["Islam", "Christianity", "Traditional beliefs"],
+    region: "West Africa",
+    cultural: {
+      communication: [
+        "French is the official language — Dioula is the most widely spoken local language",
+        "Communication is warm and respectful — extensive greetings are expected",
+        "Nouchi (urban slang mixing French and local languages) is common among youth",
+        "Respect for elders and traditional chiefs is deeply embedded",
+        "Patients may not volunteer information — ask specific questions"
+      ],
+      familyDecisionMaking: [
+        "Extended family is the core social unit",
+        "Male family heads make major health decisions in most communities",
+        "Village chiefs and elders have significant authority",
+        "Women manage daily healthcare but defer to men for major decisions",
+        "Post-crisis society means some disrupted family structures"
+      ],
+      religiousSpiritual: [
+        "North is predominantly Muslim; south is predominantly Christian/traditional",
+        "Traditional beliefs are practiced alongside major religions",
+        "Mask traditions and spirit worship are culturally significant",
+        "Marabout consultations are common in Muslim communities",
+        "Faith healing is growing in Christian Pentecostal churches"
+      ],
+      healthBeliefs: [
+        "Traditional healers (guérisseurs) are widely consulted",
+        "Herbal medicine is the primary healthcare for many rural communities",
+        "HIV/AIDS prevalence is significant — stigma remains",
+        "Malaria is the leading health concern",
+        "Mental illness is heavily stigmatized — attributed to spiritual causes"
+      ],
+      genderContact: [
+        "Modesty expectations vary by religion and region",
+        "Muslim women in the north prefer female providers",
+        "FGM is practiced in some communities — declining but present",
+        "Women's healthcare autonomy varies significantly by region",
+        "Same-gender care is preferred for intimate examinations"
+      ],
+      doList: [
+        "Greet extensively — it's culturally mandatory",
+        "Ask about traditional medicine use",
+        "Respect regional religious differences (north vs. south)",
+        "Work with community leaders on public health messaging",
+        "Provide care in Dioula or local languages when possible"
+      ],
+      dontList: [
+        "Don't rush greetings — it's disrespectful",
+        "Don't dismiss traditional healing practices",
+        "Don't assume French proficiency in rural areas",
+        "Don't ignore the post-crisis context — many patients have experienced conflict",
+        "Don't make assumptions about religion based on geography alone"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Ivory Coast", url: "https://en.wikipedia.org/wiki/Culture_of_Ivory_Coast" },
+      { label: "WHO Côte d'Ivoire", url: "https://www.who.int/countries/civ" }
+    ]
+  },
+  // ─── MADAGASCAR ────────────────────────────────────────────────────
+  {
+    name: "Madagascar",
+    isoCode: "mg",
+    lat: -18.91, lng: 47.52,
+    languages: ["Malagasy", "French"],
+    primaryLanguageFamily: "french",
+    religions: ["Christianity", "Traditional beliefs", "Islam"],
+    region: "East Africa",
+    cultural: {
+      communication: [
+        "Malagasy is the national language — French is used in formal settings",
+        "Fihavanana (kinship/solidarity) is the core cultural value",
+        "Communication is indirect and polite — directness is considered rude",
+        "Respect for elders (ray aman-dreny) guides all social interactions",
+        "Proverbs (ohabolana) are used extensively in conversation"
+      ],
+      familyDecisionMaking: [
+        "Extended family and community make decisions collectively",
+        "Elders (ray aman-dreny) have the final say in major decisions",
+        "Famadihana (turning of the bones) ceremonies reflect deep ancestor reverence",
+        "Community consensus is more valued than individual choice",
+        "Women are increasingly involved in healthcare decisions in urban areas"
+      ],
+      religiousSpiritual: [
+        "Christianity is dominant but ancestor worship is deeply embedded",
+        "Famadihana (bone-turning ceremony) is sacred — exhuming and rewrapping ancestors' remains",
+        "Fady (taboos) govern daily life — specific foods, actions, or days may be forbidden",
+        "Traditional healers (ombiasy) use astrology and herbal medicine",
+        "Islam is practiced in coastal communities and among some ethnic groups"
+      ],
+      healthBeliefs: [
+        "Traditional medicine (fanafody gasy) is the first resort for most conditions",
+        "Ombiasy (traditional healers) combine herbal, spiritual, and astrological practices",
+        "Fady (taboos) may prohibit certain foods, medicines, or medical procedures",
+        "Plague outbreaks are a specific health concern — awareness is important",
+        "Maternal and child health are major priorities"
+      ],
+      genderContact: [
+        "Modesty is valued but less strict than in many African countries",
+        "Female patients prefer female providers for intimate examinations",
+        "Gender roles are relatively egalitarian in many Malagasy communities",
+        "Coastal Muslim communities observe Islamic gender norms",
+        "Women have significant economic and social roles in Malagasy society"
+      ],
+      doList: [
+        "Ask about fady (taboos) — they may affect treatment options",
+        "Respect ancestor veneration practices",
+        "Ask about traditional medicine (fanafody gasy) use",
+        "Learn basic Malagasy greetings — 'Manao ahoana' (hello)",
+        "Be aware of plague as a specific health concern"
+      ],
+      dontList: [
+        "Don't violate fady (taboos) — they're taken very seriously",
+        "Don't dismiss ancestor-related beliefs and practices",
+        "Don't assume French proficiency — Malagasy is primary for most",
+        "Don't ignore traditional medicine interactions",
+        "Don't be surprised by famadihana practices — they're sacred family events"
+      ]
+    },
+    sources: [
+      { label: "Wikipedia — Culture of Madagascar", url: "https://en.wikipedia.org/wiki/Culture_of_Madagascar" },
+      { label: "WHO Madagascar", url: "https://www.who.int/countries/mdg" }
+    ]
+  },
 
-export const REGIONS = [...new Set(countries.map(c => c.region))].sort();
+
 
 /** All religions list derived from data */
 export const ALL_RELIGIONS = [...new Set(countries.flatMap(c => c.religions))].sort();
