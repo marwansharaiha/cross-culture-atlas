@@ -99,10 +99,16 @@ export default function CountryModal({ country, regionName, onClose, isFavorite,
               className="h-10 w-14 rounded object-cover shadow-sm border border-border"
             />
             <div className="flex-1 min-w-0">
-              <h2 className="text-xl font-bold text-card-foreground text-balance">{country.name}</h2>
+              <h2 className="text-xl font-bold text-card-foreground text-balance">{displayName}</h2>
               <p className="text-sm text-muted-foreground">
-                {country.languages.join(", ")} · {country.religions.slice(0, 2).join(", ")}
+                {displayLanguage} · {displayReligions}
               </p>
+              {regionName && (
+                <p className="text-xs text-primary mt-0.5 flex items-center gap-1">
+                  <MapPin className="h-3 w-3" />
+                  Regional cultural profile
+                </p>
+              )}
             </div>
             <Button
               variant="ghost"
