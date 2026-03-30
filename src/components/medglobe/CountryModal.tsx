@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Heart, HeartOff, MessageCircle, Users, Sparkles, Stethoscope, UserCheck, CheckCircle2, XCircle } from "lucide-react";
+import { X, ExternalLink, Heart, HeartOff, MessageCircle, Users, Sparkles, Stethoscope, UserCheck, CheckCircle2, XCircle, MapPin } from "lucide-react";
 import { CountryData, getFlagUrl } from "@/data/countries";
 import { Button } from "@/components/ui/button";
+import { regionalCulturalData, regionKey, type RegionalCulturalInfo } from "@/data/regionalCulturalData";
+import { regionalLanguages } from "@/data/languageMap";
 
 interface CountryModalProps {
   country: CountryData | null;
+  regionName?: string | null;
   onClose: () => void;
   isFavorite: boolean;
   onToggleFavorite: (isoCode: string) => void;
@@ -22,17 +25,52 @@ const TABS = [
 
 type TabKey = typeof TABS[number]["key"];
 
-export default function CountryModal({ country, onClose, isFavorite, onToggleFavorite }: CountryModalProps) {
+export default function CountryModal({ country, regionName, onClose, isFavorite, onToggleFavorite }: CountryModalProps) {
   const [activeTab, setActiveTab] = useState<TabKey>("communication");
 
   if (!country) return null;
 
+  // Look up regional cultural data if a region is selected
+  const regionData = regionName ? regionalCulturalData[regionKey(country.isoCode, regionName)] : null;
+  const regionLangInfo = regionName && regionalLanguages[country.isoCode]
+    ? regionalLanguages[country.isoCode].find(r => r.region === regionName)
+    : null;
+
+  // Merge: use region-specific data if available, fall back to country data
+  const mergedCultural = {
+    communication: regionData?.cultural.communication || country.cultural.communication,
+    familyDecisionMaking: regionData?.cultural.familyDecisionMaking || country.cultural.familyDecisionMaking,
+    religiousSpiritual: regionData?.cultural.religiousSpiritual || country.cultural.religiousSpiritual,
+    healthBeliefs: regionData?.cultural.healthBeliefs || country.cultural.healthBeliefs,
+    genderContact: regionData?.cultural.genderContact || country.cultural.genderContact,
+    doList: regionData?.cultural.doList || country.cultural.doList,
+    dontList: regionData?.cultural.dontList || country.cultural.dontList,
+  };
+
+  const displayName = regionData
+    ? `${country.name} — ${regionData.regionName}`
+    : regionName
+    ? `${country.name} — ${regionName}`
+    : country.name;
+
+  const displayLanguage = regionData?.language
+    || regionLangInfo?.language
+    || country.languages.join(", ");
+
+  const displayReligions = regionData?.religions
+    ? regionData.religions.join(", ")
+    : country.religions.slice(0, 2).join(", ");
+
+  const displaySources = regionData?.sources && regionData.sources.length > 0
+    ? regionData.sources
+    : country.sources;
+
   const sectionMap: Record<TabKey, string[]> = {
-    communication: country.cultural.communication,
-    family: country.cultural.familyDecisionMaking,
-    religious: country.cultural.religiousSpiritual,
-    health: country.cultural.healthBeliefs,
-    gender: country.cultural.genderContact,
+    communication: mergedCultural.communication,
+    family: mergedCultural.familyDecisionMaking,
+    religious: mergedCultural.religiousSpiritual,
+    health: mergedCultural.healthBeliefs,
+    gender: mergedCultural.genderContact,
     checklist: [],
   };
 
