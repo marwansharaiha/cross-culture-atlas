@@ -98,7 +98,7 @@ export default function Index() {
                 className="w-full"
               >
                 <FlatMapView
-71:                   focusLat={focusCountry?.lat}
+                  focusLat={focusCountry?.lat}
                   focusLng={focusCountry?.lng}
                   selectedCountry={focusCountry?.isoCode ?? null}
                   onCountryClick={handleCountryClick}
