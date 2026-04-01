@@ -17,30 +17,9 @@
 export type LanguageFamily =
   | "english" | "spanish" | "arabic" | "mandarin" | "hindi"
   | "french" | "portuguese" | "russian" | "japanese" | "korean"
-  | "malay" | "turkish" | "thai" | "german" | "other";
-
-export interface CulturalSection {
-  communication: string[];
-  familyDecisionMaking: string[];
-  religiousSpiritual: string[];
-  healthBeliefs: string[];
-  genderContact: string[];
-  doList: string[];
-  dontList: string[];
-}
-
-export interface CountryData {
-  name: string;
-  isoCode: string;
-  lat: number;
-  lng: number;
-  languages: string[];
-  primaryLanguageFamily: LanguageFamily;
-  religions: string[];
-  region: string;
-  cultural: CulturalSection;
-  sources: { label: string; url: string }[];
-}
+  | "malay" | "turkish" | "thai" | "german" | "swahili" | "persian"
+  | "italian" | "dutch" | "polish" | "vietnamese" | "bengali"
+  | "amharic" | "hausa" | "yoruba" | "zulu" | "other";
 
 export const LANGUAGE_FAMILIES: { key: LanguageFamily; label: string; color: string }[] = [
   { key: "english", label: "English", color: "hsl(220,70%,45%)" },
@@ -57,6 +36,17 @@ export const LANGUAGE_FAMILIES: { key: LanguageFamily; label: string; color: str
   { key: "turkish", label: "Turkish", color: "hsl(15,70%,50%)" },
   { key: "thai", label: "Thai", color: "hsl(280,40%,45%)" },
   { key: "german", label: "German", color: "hsl(50,50%,40%)" },
+  { key: "swahili", label: "Swahili", color: "hsl(130,60%,40%)" },
+  { key: "persian", label: "Persian / Farsi", color: "hsl(350,60%,40%)" },
+  { key: "italian", label: "Italian", color: "hsl(120,50%,35%)" },
+  { key: "dutch", label: "Dutch", color: "hsl(25,60%,45%)" },
+  { key: "polish", label: "Polish", color: "hsl(5,50%,45%)" },
+  { key: "vietnamese", label: "Vietnamese", color: "hsl(60,60%,40%)" },
+  { key: "bengali", label: "Bengali", color: "hsl(290,50%,45%)" },
+  { key: "amharic", label: "Amharic", color: "hsl(170,50%,40%)" },
+  { key: "hausa", label: "Hausa", color: "hsl(40,70%,40%)" },
+  { key: "yoruba", label: "Yoruba", color: "hsl(230,50%,50%)" },
+  { key: "zulu", label: "Zulu / Nguni", color: "hsl(100,40%,45%)" },
   { key: "other", label: "Other", color: "hsl(200,20%,50%)" },
 ];
 
