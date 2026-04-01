@@ -68,7 +68,7 @@ export const countries: CountryData[] = [
     languages: ["English", "Spanish"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Judaism", "Islam", "None/Secular"],
-    region: "North America",
+    region: "Americas",
     cultural: {
       communication: [
         "Direct communication style preferred — patients expect clear explanations of diagnosis and prognosis",
@@ -180,7 +180,7 @@ export const countries: CountryData[] = [
     languages: ["Spanish", "Nahuatl", "Maya"],
     primaryLanguageFamily: "spanish",
     religions: ["Roman Catholicism", "Protestantism", "Indigenous beliefs"],
-    region: "Latin America",
+    region: "Americas",
     cultural: {
       communication: [
         "Warm, personal communication style — build rapport before clinical discussion (personalismo)",
@@ -235,7 +235,7 @@ export const countries: CountryData[] = [
     languages: ["Portuguese"],
     primaryLanguageFamily: "portuguese",
     religions: ["Roman Catholicism", "Protestantism", "Spiritism", "Afro-Brazilian religions"],
-    region: "Latin America",
+    region: "Americas",
     cultural: {
       communication: [
         "Warm, expressive, and tactile communication — touch (pats, handholding) is common and welcomed",
@@ -346,7 +346,7 @@ export const countries: CountryData[] = [
     languages: ["Hindi", "English", "Bengali", "Telugu", "Tamil", "Urdu"],
     primaryLanguageFamily: "hindi",
     religions: ["Hinduism", "Islam", "Christianity", "Sikhism", "Buddhism", "Jainism"],
-    region: "South Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Head wobble (side-to-side) can mean yes, acknowledgment, or understanding — not disagreement",
@@ -405,7 +405,7 @@ export const countries: CountryData[] = [
     languages: ["Mandarin Chinese", "Cantonese", "Wu", "Min"],
     primaryLanguageFamily: "mandarin",
     religions: ["Buddhism", "Taoism", "Folk religion", "None/Secular"],
-    region: "East Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Indirect communication — saving face (miànzi) is paramount",
@@ -462,7 +462,7 @@ export const countries: CountryData[] = [
     languages: ["Japanese"],
     primaryLanguageFamily: "japanese",
     religions: ["Shinto", "Buddhism", "None/Secular"],
-    region: "East Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Highly indirect and formal communication — read between the lines",
@@ -518,7 +518,7 @@ export const countries: CountryData[] = [
     languages: ["English", "Hausa", "Yoruba", "Igbo"],
     primaryLanguageFamily: "english",
     religions: ["Islam", "Christianity", "Traditional African religions"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Warm, relationship-oriented communication — greet properly before discussing health",
@@ -573,7 +573,7 @@ export const countries: CountryData[] = [
     languages: ["Russian"],
     primaryLanguageFamily: "russian",
     religions: ["Russian Orthodox Christianity", "Islam", "Buddhism", "None/Secular"],
-    region: "Europe / Northern Asia",
+    region: "Europe",
     cultural: {
       communication: [
         "Direct and matter-of-fact communication style — Russians appreciate honesty",
@@ -734,7 +734,7 @@ export const countries: CountryData[] = [
     languages: ["Korean"],
     primaryLanguageFamily: "korean",
     religions: ["Christianity", "Buddhism", "None/Secular"],
-    region: "East Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Hierarchical communication influenced by Confucian values — age and status matter",
@@ -789,7 +789,7 @@ export const countries: CountryData[] = [
     languages: ["Arabic"],
     primaryLanguageFamily: "arabic",
     religions: ["Islam (Sunni majority)", "Coptic Christianity"],
-    region: "Middle East / North Africa",
+    region: "Middle East",
     cultural: {
       communication: [
         "Warm, hospitable communication — extensive greetings are essential",
@@ -846,7 +846,7 @@ export const countries: CountryData[] = [
     languages: ["Indonesian (Bahasa Indonesia)", "Javanese", "Sundanese"],
     primaryLanguageFamily: "malay",
     religions: ["Islam", "Christianity", "Hinduism (Bali)", "Buddhism"],
-    region: "Southeast Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Indirect, polite communication — harmony (rukun) is the priority",
@@ -902,7 +902,7 @@ export const countries: CountryData[] = [
     languages: ["Turkish", "Kurdish"],
     primaryLanguageFamily: "turkish",
     religions: ["Islam (Sunni majority, Alevi minority)"],
-    region: "Middle East / Europe",
+    region: "Europe",
     cultural: {
       communication: [
         "Warm and hospitable — Turkish people are known for generous hospitality",
@@ -955,7 +955,7 @@ export const countries: CountryData[] = [
     languages: ["Thai"],
     primaryLanguageFamily: "thai",
     religions: ["Theravada Buddhism", "Islam (in the south)"],
-    region: "Southeast Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "The wai (palms together with a bow) is the standard greeting — return it respectfully",
@@ -1131,7 +1131,7 @@ export const countries: CountryData[] = [
     languages: ["Urdu", "Punjabi", "Sindhi", "Pashto", "Balochi", "English"],
     primaryLanguageFamily: "hindi",
     religions: ["Islam (Sunni)", "Islam (Shia)", "Christianity", "Hinduism"],
-    region: "South Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Respect and formality are essential — use titles (Sahib, Madam, Doctor)",
@@ -1196,7 +1196,7 @@ export const countries: CountryData[] = [
     languages: ["Filipino (Tagalog)", "English", "Cebuano", "Ilocano"],
     primaryLanguageFamily: "malay",
     religions: ["Christianity (Catholic)", "Islam", "Iglesia ni Cristo"],
-    region: "Southeast Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Filipinos value 'pakikisama' (smooth interpersonal relationships) — avoid confrontation",
@@ -1261,7 +1261,7 @@ export const countries: CountryData[] = [
     languages: ["Vietnamese"],
     primaryLanguageFamily: "other",
     religions: ["Buddhism", "Catholicism", "Cao Dai", "None/Secular", "Ancestor Worship"],
-    region: "Southeast Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Indirect communication is the norm — silence or vague answers may indicate disagreement",
@@ -1326,7 +1326,7 @@ export const countries: CountryData[] = [
     languages: ["Amharic", "Oromo", "Tigrinya", "Somali", "English"],
     primaryLanguageFamily: "other",
     religions: ["Ethiopian Orthodox Christianity", "Islam", "Protestantism", "Traditional beliefs"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Greetings are elaborate and important — inquire about family and health before medical discussion",
@@ -1521,7 +1521,7 @@ export const countries: CountryData[] = [
     languages: ["English", "French"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Islam", "Sikhism", "Hinduism", "None/Secular"],
-    region: "North America",
+    region: "Americas",
     cultural: {
       communication: [
         "Polite, respectful communication — Canadians value 'please', 'thank you', and apologies",
@@ -1586,7 +1586,7 @@ export const countries: CountryData[] = [
     languages: ["Spanish"],
     primaryLanguageFamily: "spanish",
     religions: ["Christianity (Catholic)", "None/Secular", "Judaism", "Islam"],
-    region: "South America",
+    region: "Americas",
     cultural: {
       communication: [
         "Warm, expressive communication — cheek kisses and embraces are standard greetings",
@@ -1651,7 +1651,7 @@ export const countries: CountryData[] = [
     languages: ["Spanish"],
     primaryLanguageFamily: "spanish",
     religions: ["Christianity (Catholic)", "Protestantism"],
-    region: "South America",
+    region: "Americas",
     cultural: {
       communication: [
         "Colombians are warm and friendly — personal rapport is essential before medical talk",
@@ -1716,7 +1716,7 @@ export const countries: CountryData[] = [
     languages: ["Swahili", "English", "Kikuyu", "Luo", "Kalenjin"],
     primaryLanguageFamily: "english",
     religions: ["Christianity (Protestant)", "Christianity (Catholic)", "Islam", "Traditional beliefs"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Greetings are essential — 'Habari' (How are you?) before any discussion",
@@ -1781,7 +1781,7 @@ export const countries: CountryData[] = [
     languages: ["Zulu", "Xhosa", "Afrikaans", "English", "Sotho", "Tswana"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Traditional African beliefs", "Islam", "Hinduism"],
-    region: "Sub-Saharan Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Ubuntu ('I am because we are') shapes communal care and relationship-building",
@@ -2106,7 +2106,7 @@ export const countries: CountryData[] = [
     languages: ["Bengali (Bangla)", "English"],
     primaryLanguageFamily: "other",
     religions: ["Islam (Sunni)", "Hinduism", "Buddhism", "Christianity"],
-    region: "South Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Respectful, formal communication — use 'Bhai' (brother) or 'Apa' (sister) as respectful address",
@@ -2171,7 +2171,7 @@ export const countries: CountryData[] = [
     languages: ["Malay (Bahasa Malaysia)", "English", "Mandarin", "Tamil"],
     primaryLanguageFamily: "malay",
     religions: ["Islam", "Buddhism", "Christianity", "Hinduism", "Taoism"],
-    region: "Southeast Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Multicultural society — communication norms vary between Malay, Chinese, and Indian communities",
@@ -2236,7 +2236,7 @@ export const countries: CountryData[] = [
     languages: ["Arabic", "Berber (Amazigh)", "French"],
     primaryLanguageFamily: "arabic",
     religions: ["Islam (Sunni)"],
-    region: "North Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Warm, hospitality-driven communication — mint tea is offered before any discussion",
@@ -2366,7 +2366,7 @@ export const countries: CountryData[] = [
     languages: ["Spanish", "Quechua", "Aymara"],
     primaryLanguageFamily: "spanish",
     religions: ["Christianity (Catholic)", "Evangelical Christianity"],
-    region: "South America",
+    region: "Americas",
     cultural: {
       communication: [
         "Warm, personal communication — greetings and small talk before business",
@@ -2443,7 +2443,7 @@ const newAfricanCountries: CountryData[] = [
   {
     name: "Ghana", isoCode: "gh", lat: 5.56, lng: -0.19,
     languages: ["English", "Akan (Twi)", "Ewe", "Dagbani"], primaryLanguageFamily: "english",
-    religions: ["Christianity", "Islam", "Traditional beliefs"], region: "West Africa",
+    religions: ["Christianity", "Islam", "Traditional beliefs"], region: "Africa",
     cultural: {
       communication: ["English is official but Twi is the most widely spoken language", "Respect for elders is paramount — always greet the oldest person first", "Akan day names carry deep cultural significance", "Communication is warm and communal"],
       familyDecisionMaking: ["Extended family (abusua) is central to all major decisions", "Matrilineal inheritance in Akan communities affects family dynamics", "Chief and elder authority extends to community health decisions"],
@@ -2458,7 +2458,7 @@ const newAfricanCountries: CountryData[] = [
   {
     name: "Tanzania", isoCode: "tz", lat: -6.79, lng: 39.28,
     languages: ["Swahili", "English"], primaryLanguageFamily: "other",
-    religions: ["Christianity", "Islam", "Traditional beliefs"], region: "East Africa",
+    religions: ["Christianity", "Islam", "Traditional beliefs"], region: "Africa",
     cultural: {
       communication: ["Swahili is the national language — greet with 'Habari' or 'Mambo'", "Greetings are extensive and culturally required", "Respect for elders (heshima) is deeply embedded", "Indirect communication is preferred"],
       familyDecisionMaking: ["Extended family involvement in healthcare decisions is standard", "Male family heads typically make final decisions in traditional communities", "Maasai communities have specific clan-based decision structures"],
@@ -2473,7 +2473,7 @@ const newAfricanCountries: CountryData[] = [
   {
     name: "Cameroon", isoCode: "cm", lat: 3.87, lng: 11.52,
     languages: ["French", "English", "Fulfulde", "Ewondo"], primaryLanguageFamily: "french",
-    religions: ["Christianity", "Islam", "Traditional beliefs"], region: "Central Africa",
+    religions: ["Christianity", "Islam", "Traditional beliefs"], region: "Africa",
     cultural: {
       communication: ["French and English are both official — Cameroon is bilingual", "Anglophone/Francophone tension is significant", "Pidgin English is widely spoken as a lingua franca", "Patients may not question doctors out of respect"],
       familyDecisionMaking: ["Extended family is deeply involved in healthcare decisions", "Northern Cameroon has patriarchal, Islamic family structures", "Fon (chief) authority is respected in many communities"],
@@ -2488,7 +2488,7 @@ const newAfricanCountries: CountryData[] = [
   {
     name: "Senegal", isoCode: "sn", lat: 14.72, lng: -17.47,
     languages: ["French", "Wolof", "Pulaar", "Serer"], primaryLanguageFamily: "french",
-    religions: ["Islam (Sunni, Sufi)", "Christianity"], region: "West Africa",
+    religions: ["Islam (Sunni, Sufi)", "Christianity"], region: "Africa",
     cultural: {
       communication: ["Wolof is the lingua franca — 'Nanga def?' is the universal greeting", "Teranga (hospitality) is the defining cultural value", "Sufi Muslim brotherhoods are extremely influential"],
       familyDecisionMaking: ["Extended family (mbokk) is the core social unit", "Male family heads make major decisions", "Marabout guidance is sought for important decisions"],
@@ -2503,7 +2503,7 @@ const newAfricanCountries: CountryData[] = [
   {
     name: "DR Congo", isoCode: "cd", lat: -4.32, lng: 15.31,
     languages: ["French", "Lingala", "Swahili", "Tshiluba", "Kikongo"], primaryLanguageFamily: "french",
-    religions: ["Christianity (Catholic, Protestant, Kimbanguist)", "Islam"], region: "Central Africa",
+    religions: ["Christianity (Catholic, Protestant, Kimbanguist)", "Islam"], region: "Africa",
     cultural: {
       communication: ["French is official but Lingala, Swahili, Tshiluba, and Kikongo are national languages", "Music and dance are integral to Congolese culture", "Respect for elders is paramount", "Eastern DRC patients may have conflict trauma"],
       familyDecisionMaking: ["Extended family (libota) is fundamental", "Community and church leaders influence health decisions", "Conflict has disrupted family structures"],
@@ -2518,7 +2518,7 @@ const newAfricanCountries: CountryData[] = [
   {
     name: "Uganda", isoCode: "ug", lat: 0.35, lng: 32.58,
     languages: ["English", "Luganda", "Swahili", "Acholi"], primaryLanguageFamily: "english",
-    religions: ["Christianity (Catholic, Anglican, Pentecostal)", "Islam"], region: "East Africa",
+    religions: ["Christianity (Catholic, Anglican, Pentecostal)", "Islam"], region: "Africa",
     cultural: {
       communication: ["English is official; Luganda is most widely spoken", "Greet with 'Oli otya?' in Luganda", "Respect for elders is deeply embedded", "Indirect communication is preferred for sensitive topics"],
       familyDecisionMaking: ["Extended family (clan system) is central", "Buganda Kingdom traditions influence central Uganda", "Church leaders are increasingly influential"],
@@ -2533,7 +2533,7 @@ const newAfricanCountries: CountryData[] = [
   {
     name: "Mozambique", isoCode: "mz", lat: -25.97, lng: 32.57,
     languages: ["Portuguese", "Makhuwa", "Tsonga", "Sena"], primaryLanguageFamily: "portuguese",
-    religions: ["Christianity", "Islam", "Traditional beliefs"], region: "Southern Africa",
+    religions: ["Christianity", "Islam", "Traditional beliefs"], region: "Africa",
     cultural: {
       communication: ["Portuguese is official but only ~50% speak it as first language", "Makhuwa, Tsonga, and Sena are major local languages", "Communication is indirect — patients may not volunteer symptoms"],
       familyDecisionMaking: ["Northern Mozambique has matrilineal societies", "Southern Mozambique follows patrilineal patterns", "Traditional leaders (régulos) have community influence"],
@@ -2548,7 +2548,7 @@ const newAfricanCountries: CountryData[] = [
   {
     name: "Sudan", isoCode: "sd", lat: 15.59, lng: 32.53,
     languages: ["Arabic", "English", "Fur", "Beja"], primaryLanguageFamily: "arabic",
-    religions: ["Islam (Sunni)"], region: "North Africa",
+    religions: ["Islam (Sunni)"], region: "Africa",
     cultural: {
       communication: ["Arabic (Sudanese dialect) is primary — greet with 'Assalamu Alaikum'", "Hospitality is deeply valued — tea is offered before discussions", "Tribal identity is very important"],
       familyDecisionMaking: ["Male family heads make healthcare decisions", "Extended family (usra) is deeply involved", "Tribal elders may be consulted for major decisions"],
@@ -2563,7 +2563,7 @@ const newAfricanCountries: CountryData[] = [
   {
     name: "Angola", isoCode: "ao", lat: -8.84, lng: 13.23,
     languages: ["Portuguese", "Kimbundu", "Umbundu", "Kikongo"], primaryLanguageFamily: "portuguese",
-    religions: ["Christianity (Catholic, Protestant)", "Traditional beliefs"], region: "Southern Africa",
+    religions: ["Christianity (Catholic, Protestant)", "Traditional beliefs"], region: "Africa",
     cultural: {
       communication: ["Portuguese is official — Angolan Portuguese has distinct expressions", "Respect for elders is deeply valued", "Civil war legacy means many patients have experienced trauma"],
       familyDecisionMaking: ["Extended family is central to healthcare decisions", "Church leaders are influential", "War disrupted family structures"],
@@ -2578,7 +2578,7 @@ const newAfricanCountries: CountryData[] = [
   {
     name: "Côte d'Ivoire", isoCode: "ci", lat: 5.36, lng: -4.01,
     languages: ["French", "Dioula", "Baoulé", "Bété"], primaryLanguageFamily: "french",
-    religions: ["Islam", "Christianity", "Traditional beliefs"], region: "West Africa",
+    religions: ["Islam", "Christianity", "Traditional beliefs"], region: "Africa",
     cultural: {
       communication: ["French is official — Dioula is most widely spoken local language", "Respect for elders and traditional chiefs is deeply embedded", "Extensive greetings are expected"],
       familyDecisionMaking: ["Extended family is the core social unit", "Male family heads make major health decisions", "Village chiefs and elders have significant authority"],
@@ -2593,7 +2593,7 @@ const newAfricanCountries: CountryData[] = [
   {
     name: "Madagascar", isoCode: "mg", lat: -18.91, lng: 47.52,
     languages: ["Malagasy", "French"], primaryLanguageFamily: "french",
-    religions: ["Christianity", "Traditional beliefs", "Islam"], region: "East Africa",
+    religions: ["Christianity", "Traditional beliefs", "Islam"], region: "Africa",
     cultural: {
       communication: ["Malagasy is the national language — French for formal settings", "Fihavanana (kinship/solidarity) is the core cultural value", "Respect for elders guides all social interactions"],
       familyDecisionMaking: ["Elders have the final say in major decisions", "Famadihana (turning of the bones) reflects deep ancestor reverence", "Community consensus is more valued than individual choice"],
