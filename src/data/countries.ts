@@ -73,7 +73,7 @@ export interface CountryData {
   sources: { label: string; url: string }[];
 }
 
-  {
+export const countries: CountryData[] = [
     name: "United States",
     isoCode: "us",
     lat: 38.9, lng: -77.0,
