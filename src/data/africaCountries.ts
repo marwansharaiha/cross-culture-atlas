@@ -12,7 +12,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Arabic", "Berber (Tamazight)", "French"],
     primaryLanguageFamily: "arabic",
     religions: ["Islam (Sunni)"],
-    region: "North Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Arabic and French are both widely used; Berber is spoken in Kabylie and Aurès regions",
@@ -62,7 +62,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Arabic", "French"],
     primaryLanguageFamily: "arabic",
     religions: ["Islam (Sunni)"],
-    region: "North Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Tunisian Arabic (Derja) is the daily language; French is used in business and medicine",
@@ -110,7 +110,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Arabic", "Berber"],
     primaryLanguageFamily: "arabic",
     religions: ["Islam (Sunni)"],
-    region: "North Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Arabic is the primary language; tribal affiliations strongly influence social dynamics",
@@ -159,7 +159,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Arabic", "English", "Nubian languages"],
     primaryLanguageFamily: "arabic",
     religions: ["Islam (Sunni)", "Christianity", "Indigenous beliefs"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Sudanese Arabic is the lingua franca; many ethnic languages exist",
@@ -209,7 +209,7 @@ export const africaCountries: CountryData[] = [
     languages: ["English", "Arabic", "Dinka", "Nuer"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Indigenous beliefs", "Islam"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English is the official language but many speak Dinka, Nuer, or other Nilotic languages",
@@ -258,7 +258,7 @@ export const africaCountries: CountryData[] = [
     languages: ["English", "Akan", "Ewe", "Ga", "Dagbani"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Islam", "Traditional African religions"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English is official; Akan (Twi) is the most widely spoken local language",
@@ -307,7 +307,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "English", "Fulfulde", "Ewondo"],
     primaryLanguageFamily: "french",
     religions: ["Christianity", "Islam", "Traditional beliefs"],
-    region: "Central Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Bilingual country — French in the east (8 regions), English in the west (2 regions)",
@@ -356,7 +356,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Wolof", "Pulaar", "Serer"],
     primaryLanguageFamily: "french",
     religions: ["Islam (Sunni, with strong Sufi traditions)", "Christianity"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French is official but Wolof is the lingua franca spoken by 80%+ of the population",
@@ -405,7 +405,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Swahili", "English", "Various Bantu languages"],
     primaryLanguageFamily: "other",
     religions: ["Christianity", "Islam", "Traditional beliefs"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Swahili is the national language and lingua franca; English is used in higher education and medicine",
@@ -454,7 +454,7 @@ export const africaCountries: CountryData[] = [
     languages: ["English", "Swahili", "Luganda"],
     primaryLanguageFamily: "english",
     religions: ["Christianity (Catholic, Protestant)", "Islam", "Traditional beliefs"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English is official; Luganda is the most spoken local language in central Uganda",
@@ -503,7 +503,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Kinyarwanda", "French", "English", "Swahili"],
     primaryLanguageFamily: "french",
     religions: ["Christianity (Catholic, Protestant)", "Islam"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Kinyarwanda is spoken by nearly all citizens; English and French are also official",
@@ -551,7 +551,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Lingala", "Swahili", "Kikongo", "Tshiluba"],
     primaryLanguageFamily: "french",
     religions: ["Christianity (Catholic, Protestant)", "Islam", "Kimbanguism", "Traditional beliefs"],
-    region: "Central Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French is official; Lingala is widely spoken in western DRC, Swahili in the east",
@@ -600,7 +600,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Lingala", "Kikongo"],
     primaryLanguageFamily: "french",
     religions: ["Christianity", "Traditional beliefs"],
-    region: "Central Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French is official; Lingala and Kikongo are widely spoken",
@@ -647,7 +647,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Dioula", "Baoulé", "Bété"],
     primaryLanguageFamily: "french",
     religions: ["Islam", "Christianity", "Traditional beliefs"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French is official; Dioula is the trade language in the north",
@@ -695,7 +695,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Bambara", "Fulfulde", "Songhai"],
     primaryLanguageFamily: "french",
     religions: ["Islam (Sunni)", "Traditional beliefs"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French is official; Bambara is the most widely spoken language",
@@ -744,7 +744,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Mooré", "Dioula", "Fulfulde"],
     primaryLanguageFamily: "french",
     religions: ["Islam", "Christianity", "Traditional beliefs"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French is official; Mooré is the most widely spoken language",
@@ -792,7 +792,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Hausa", "Zarma", "Tamashek"],
     primaryLanguageFamily: "french",
     religions: ["Islam (Sunni)"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French is official; Hausa is the most widely spoken language",
@@ -842,7 +842,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Arabic", "Sara", "Kanembou"],
     primaryLanguageFamily: "french",
     religions: ["Islam", "Christianity", "Traditional beliefs"],
-    region: "Central Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French and Arabic are official; Sara languages dominate in the south",
@@ -890,7 +890,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Malagasy", "French"],
     primaryLanguageFamily: "french",
     religions: ["Christianity", "Traditional beliefs (Razana)"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Malagasy and French are official; Malagasy is universally spoken",
@@ -939,7 +939,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Portuguese", "Makhuwa", "Tsonga", "Sena"],
     primaryLanguageFamily: "portuguese",
     religions: ["Christianity", "Islam", "Traditional beliefs"],
-    region: "Southern Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Portuguese is official but many speak Bantu languages as mother tongue",
@@ -987,7 +987,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Portuguese", "Umbundu", "Kimbundu", "Kikongo"],
     primaryLanguageFamily: "portuguese",
     religions: ["Christianity (Catholic, Protestant)", "Traditional beliefs"],
-    region: "Southern Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Portuguese is official and widely spoken in urban areas",
@@ -1035,7 +1035,7 @@ export const africaCountries: CountryData[] = [
     languages: ["English", "Bemba", "Nyanja", "Tonga", "Lozi"],
     primaryLanguageFamily: "english",
     religions: ["Christianity"],
-    region: "Southern Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English is official; Bemba and Nyanja are the most widely spoken local languages",
@@ -1084,7 +1084,7 @@ export const africaCountries: CountryData[] = [
     languages: ["English", "Shona", "Ndebele"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Traditional beliefs"],
-    region: "Southern Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English, Shona, and Ndebele are all official; Shona is most widely spoken",
@@ -1132,7 +1132,7 @@ export const africaCountries: CountryData[] = [
     languages: ["English", "Setswana"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Traditional beliefs"],
-    region: "Southern Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English is official; Setswana is the national language spoken by most",
@@ -1179,7 +1179,7 @@ export const africaCountries: CountryData[] = [
     languages: ["English", "Oshiwambo", "Afrikaans", "Herero", "Damara"],
     primaryLanguageFamily: "english",
     religions: ["Christianity"],
-    region: "Southern Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English is official; Oshiwambo is the most spoken language; Afrikaans is widely used",
@@ -1228,7 +1228,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Somali", "Arabic"],
     primaryLanguageFamily: "arabic",
     religions: ["Islam (Sunni)"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Somali is the primary language; Arabic and Italian are also used",
@@ -1279,7 +1279,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Tigrinya", "Arabic", "English"],
     primaryLanguageFamily: "other",
     religions: ["Christianity (Orthodox)", "Islam (Sunni)"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Tigrinya and Arabic are the most spoken; English is used in education",
@@ -1327,7 +1327,7 @@ export const africaCountries: CountryData[] = [
     languages: ["English", "Chichewa"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Islam"],
-    region: "Southern Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English is official; Chichewa (Chewa) is the national language",
@@ -1376,7 +1376,7 @@ export const africaCountries: CountryData[] = [
     languages: ["English", "Krio", "Mende", "Temne"],
     primaryLanguageFamily: "english",
     religions: ["Islam", "Christianity", "Traditional beliefs"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English is official; Krio is the lingua franca spoken by 97% of the population",
@@ -1424,7 +1424,7 @@ export const africaCountries: CountryData[] = [
     languages: ["English", "Kpelle", "Bassa", "Grebo"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Islam", "Traditional beliefs"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English is official — Liberia was founded by freed American slaves",
@@ -1472,7 +1472,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Fulfulde", "Malinké", "Susu"],
     primaryLanguageFamily: "french",
     religions: ["Islam (Sunni)", "Christianity", "Traditional beliefs"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French is official; Fulfulde, Malinké, and Susu are major local languages",
@@ -1520,7 +1520,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Ewe", "Kabiyè"],
     primaryLanguageFamily: "french",
     religions: ["Traditional beliefs", "Christianity", "Islam"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French is official; Ewe in the south, Kabiyè in the north",
@@ -1568,7 +1568,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Fang", "Myene"],
     primaryLanguageFamily: "french",
     religions: ["Christianity", "Islam", "Traditional beliefs (Bwiti)"],
-    region: "Central Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French is official and widely spoken",
@@ -1616,7 +1616,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Arabic", "Somali", "Afar"],
     primaryLanguageFamily: "french",
     religions: ["Islam (Sunni)"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French and Arabic are official; Somali and Afar are widely spoken",
@@ -1663,7 +1663,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Kirundi", "French", "English"],
     primaryLanguageFamily: "french",
     religions: ["Christianity (Catholic)", "Traditional beliefs"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Kirundi is universally spoken; French and English are official",
@@ -1710,7 +1710,7 @@ export const africaCountries: CountryData[] = [
     languages: ["French", "Sango"],
     primaryLanguageFamily: "french",
     religions: ["Christianity", "Islam", "Traditional beliefs"],
-    region: "Central Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "French is official; Sango is the national lingua franca",
@@ -1757,7 +1757,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Spanish", "French", "Portuguese", "Fang"],
     primaryLanguageFamily: "spanish",
     religions: ["Christianity (Catholic)"],
-    region: "Central Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Spanish is the primary official language — the only Spanish-speaking country in Africa",
@@ -1804,7 +1804,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Arabic", "French", "Pulaar", "Soninke", "Wolof"],
     primaryLanguageFamily: "arabic",
     religions: ["Islam (Sunni)"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Arabic is official; Hassaniya Arabic is the local dialect",
@@ -1852,7 +1852,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Swazi (siSwati)", "English"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Traditional beliefs"],
-    region: "Southern Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "SiSwati and English are both official",
@@ -1900,7 +1900,7 @@ export const africaCountries: CountryData[] = [
     languages: ["Sesotho", "English"],
     primaryLanguageFamily: "english",
     religions: ["Christianity"],
-    region: "Southern Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Sesotho and English are official; Sesotho is the primary language",
@@ -1948,7 +1948,7 @@ export const africaCountries: CountryData[] = [
     languages: ["English", "Mandinka", "Wolof", "Fula"],
     primaryLanguageFamily: "english",
     religions: ["Islam (Sunni)", "Christianity"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English is official; Mandinka and Wolof are the most spoken languages",

@@ -13,7 +13,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Portuguese", "Cape Verdean Creole"],
     primaryLanguageFamily: "portuguese",
     religions: ["Roman Catholicism", "Protestantism"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Morabeza (warm hospitality) defines social interactions",
@@ -64,7 +64,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Comorian", "French", "Arabic"],
     primaryLanguageFamily: "french",
     religions: ["Islam (Sunni)"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Comorian (Shikomori) is primary — French used in formal settings",
@@ -115,7 +115,7 @@ export const moreCountries: CountryData[] = [
     languages: ["English", "French", "Mauritian Creole", "Hindi", "Bhojpuri"],
     primaryLanguageFamily: "english",
     religions: ["Hinduism", "Christianity", "Islam", "Buddhism"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Multilingual society — Creole is lingua franca, English is official",
@@ -166,7 +166,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Portuguese", "Crioulo", "Fula", "Mandinka"],
     primaryLanguageFamily: "portuguese",
     religions: ["Islam", "Indigenous beliefs", "Christianity"],
-    region: "West Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Crioulo is the common language — Portuguese used officially",
@@ -217,7 +217,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Portuguese", "Forro", "Angolar"],
     primaryLanguageFamily: "portuguese",
     religions: ["Roman Catholicism", "Protestantism"],
-    region: "Central Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Portuguese is official but Forro Creole widely spoken",
@@ -268,7 +268,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Seychellois Creole", "English", "French"],
     primaryLanguageFamily: "english",
     religions: ["Roman Catholicism", "Protestantism"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "Trilingual society — Creole for daily life, English and French officially",
@@ -425,7 +425,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Nepali", "Maithili", "Bhojpuri", "Tharu"],
     primaryLanguageFamily: "hindi",
     religions: ["Hinduism", "Buddhism", "Islam", "Kirat Mundhum"],
-    region: "South Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Namaste greeting with palms together is universal",
@@ -476,7 +476,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Sinhala", "Tamil", "English"],
     primaryLanguageFamily: "other",
     religions: ["Buddhism", "Hinduism", "Islam", "Christianity"],
-    region: "South Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Ayubowan (may you live long) is the traditional greeting",
@@ -527,7 +527,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Burmese", "Shan", "Karen", "Rakhine"],
     primaryLanguageFamily: "other",
     religions: ["Theravada Buddhism", "Christianity", "Islam"],
-    region: "Southeast Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Mingalaba is the universal greeting",
@@ -578,7 +578,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Khmer", "French", "English"],
     primaryLanguageFamily: "other",
     religions: ["Theravada Buddhism", "Islam"],
-    region: "Southeast Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Sampeah (palms together bow) is the respectful greeting",
@@ -629,7 +629,7 @@ export const moreCountries: CountryData[] = [
     languages: ["English", "Mandarin", "Malay", "Tamil"],
     primaryLanguageFamily: "english",
     religions: ["Buddhism", "Christianity", "Islam", "Hinduism", "Taoism"],
-    region: "Southeast Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "English is lingua franca but Singlish (colloquial) widely spoken",
@@ -939,7 +939,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Spanish", "Mapudungun"],
     primaryLanguageFamily: "spanish",
     religions: ["Roman Catholicism", "Protestantism", "None/Secular"],
-    region: "Latin America",
+    region: "Americas",
     cultural: {
       communication: [
         "Chilean Spanish uses unique slang (chilenismos) — may confuse non-Chilean Spanish speakers",
@@ -990,7 +990,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Spanish"],
     primaryLanguageFamily: "spanish",
     religions: ["Roman Catholicism", "Santería", "Protestantism"],
-    region: "Caribbean",
+    region: "Americas",
     cultural: {
       communication: [
         "Cuban Spanish is rapid with dropped consonants",
@@ -1041,7 +1041,7 @@ export const moreCountries: CountryData[] = [
     languages: ["English", "Jamaican Patois (Creole)"],
     primaryLanguageFamily: "english",
     religions: ["Christianity (Protestant majority)", "Rastafari", "Revivalism"],
-    region: "Caribbean",
+    region: "Americas",
     cultural: {
       communication: [
         "Jamaican Patois is the primary spoken language — English is official",
@@ -1092,7 +1092,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Haitian Creole", "French"],
     primaryLanguageFamily: "french",
     religions: ["Roman Catholicism", "Protestantism", "Vodou"],
-    region: "Caribbean",
+    region: "Americas",
     cultural: {
       communication: [
         "Haitian Creole is the universal language — French is formal/elite",
@@ -1143,7 +1143,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Spanish", "Kichwa", "Shuar"],
     primaryLanguageFamily: "spanish",
     religions: ["Roman Catholicism", "Protestantism", "Indigenous beliefs"],
-    region: "Latin America",
+    region: "Americas",
     cultural: {
       communication: [
         "Spanish with Andean influences — some Kichwa loanwords common",
@@ -1300,7 +1300,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Kazakh", "Russian"],
     primaryLanguageFamily: "russian",
     religions: ["Islam (Sunni)", "Russian Orthodox Christianity", "None/Secular"],
-    region: "Central Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Kazakh is state language; Russian widely used in cities",
@@ -1351,7 +1351,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Uzbek", "Russian", "Tajik"],
     primaryLanguageFamily: "other",
     religions: ["Islam (Sunni)", "Russian Orthodox Christianity"],
-    region: "Central Asia",
+    region: "Asia",
     cultural: {
       communication: [
         "Uzbek is primary; Russian still used in professional settings",
@@ -1404,7 +1404,7 @@ export const moreCountries: CountryData[] = [
     languages: ["English", "Arabic", "Dinka", "Nuer", "Zande"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Islam", "Indigenous beliefs"],
-    region: "East Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "English is official but Dinka and Nuer are widely spoken",
@@ -1455,7 +1455,7 @@ export const moreCountries: CountryData[] = [
     languages: ["Swazi (siSwati)", "English"],
     primaryLanguageFamily: "english",
     religions: ["Christianity", "Swazi traditional religion"],
-    region: "Southern Africa",
+    region: "Africa",
     cultural: {
       communication: [
         "SiSwati is the primary language; English used officially",
