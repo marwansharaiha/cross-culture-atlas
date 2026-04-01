@@ -50,7 +50,29 @@ export const LANGUAGE_FAMILIES: { key: LanguageFamily; label: string; color: str
   { key: "other", label: "Other", color: "hsl(200,20%,50%)" },
 ];
 
-export const countries: CountryData[] = [
+export interface CulturalSection {
+  communication: string[];
+  familyDecisionMaking: string[];
+  religiousSpiritual: string[];
+  healthBeliefs: string[];
+  genderContact: string[];
+  doList: string[];
+  dontList: string[];
+}
+
+export interface CountryData {
+  name: string;
+  isoCode: string;
+  lat: number;
+  lng: number;
+  languages: string[];
+  primaryLanguageFamily: LanguageFamily;
+  religions: string[];
+  region: string;
+  cultural: CulturalSection;
+  sources: { label: string; url: string }[];
+}
+
   {
     name: "United States",
     isoCode: "us",
