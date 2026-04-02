@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState, useCallback, useMemo, type WheelEvent as ReactWheelEvent } from "react";
-import { ZoomIn, ZoomOut, Maximize } from "lucide-react";
-import { feature, mesh } from "topojson-client";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import { MapContainer, TileLayer, GeoJSON, useMap, Tooltip } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { feature } from "topojson-client";
 import type { Topology } from "topojson-specification";
-import { geoNaturalEarth1, geoPath, geoGraticule10, type GeoPermissibleObjects } from "d3-geo";
-import { Delaunay } from "d3-delaunay";
 import { getLanguageFamilyColor } from "@/data/countries";
 import {
   numericToAlpha2,
@@ -20,34 +20,97 @@ interface FlatMapViewProps {
   selectedCountry?: string | null;
 }
 
-// High-resolution 10m for detailed borders
-const WORLD_ATLAS_URL = "https://unpkg.com/world-atlas@2/countries-10m.json";
+const WORLD_ATLAS_URL = "https://unpkg.com/world-atlas@2/countries-50m.json";
+
+/** Converts TopoJSON features to GeoJSON FeatureCollection with alpha2/name props */
+function buildGeoJSON(polygons: any[]): GeoJSON.FeatureCollection {
+  return {
+    type: "FeatureCollection",
+    features: polygons.map((feat) => {
+      const alpha2 = numericToAlpha2[feat.id] || null;
+      const name = numericToName[feat.id] || alpha2 || "Unknown";
+      const family = alpha2 ? countryLanguageFamily[alpha2] : null;
+      return {
+        ...feat,
+        properties: {
+          ...feat.properties,
+          alpha2,
+          name,
+          family,
+        },
+      };
+    }),
+  };
+}
+
+/** Build sub-national region polygons for multilingual countries as approximate circles */
+function buildRegionFeatures(polygons: any[]): GeoJSON.FeatureCollection {
+  const features: GeoJSON.Feature[] = [];
+
+  for (const feat of polygons) {
+    const alpha2 = numericToAlpha2[feat.id];
+    if (!alpha2 || !regionalLanguages[alpha2] || regionalLanguages[alpha2].length < 2) continue;
+
+    const regions = regionalLanguages[alpha2];
+    const countryName = numericToName[feat.id] || alpha2;
+
+    for (const region of regions) {
+      // Create a small polygon (approximate circle) for each region marker
+      const r = 1.5; // radius in degrees
+      const steps = 24;
+      const coords: [number, number][] = [];
+      for (let i = 0; i <= steps; i++) {
+        const angle = (i / steps) * 2 * Math.PI;
+        coords.push([
+          region.lng + r * Math.cos(angle),
+          region.lat + r * 0.8 * Math.sin(angle),
+        ]);
+      }
+
+      features.push({
+        type: "Feature",
+        geometry: {
+          type: "Polygon",
+          coordinates: [coords],
+        },
+        properties: {
+          alpha2,
+          countryName,
+          regionName: region.region,
+          language: region.language,
+          languageFamily: region.languageFamily,
+          color: getLanguageFamilyColor(region.languageFamily),
+          isRegion: true,
+        },
+      });
+    }
+  }
+
+  return { type: "FeatureCollection", features };
+}
+
+/** Component to handle map focus changes */
+function MapFocus({ lat, lng }: { lat?: number; lng?: number }) {
+  const map = useMap();
+  useEffect(() => {
+    if (lat !== undefined && lng !== undefined) {
+      map.flyTo([lat, lng], 5, { duration: 1.2 });
+    }
+  }, [lat, lng, map]);
+  return null;
+}
 
 export default function FlatMapView({
+  focusLat,
+  focusLng,
   onCountryClick,
   onRegionClick,
   selectedCountry,
 }: FlatMapViewProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [polygons, setPolygons] = useState<any[]>([]);
-  const [borderMesh, setBorderMesh] = useState<string | null>(null);
-  const [hoverD, setHoverD] = useState<string | null>(null);
-  const [tooltip, setTooltip] = useState<{
-    x: number;
-    y: number;
-    content: string;
-    alpha2: string | null;
-  } | null>(null);
-  const [dimensions, setDimensions] = useState({ w: 900, h: 500 });
-  const [zoom, setZoom] = useState(1);
-  const [pan, setPan] = useState({ x: 0, y: 0 });
-  const [isPanning, setIsPanning] = useState(false);
-  const panStart = useRef({ x: 0, y: 0, panX: 0, panY: 0 });
+  const geoJsonRef = useRef<L.GeoJSON | null>(null);
 
-  const MIN_ZOOM = 1;
-  const MAX_ZOOM = 12;
-
-  // Load world topology — high resolution
+  // Load world topology
   useEffect(() => {
     fetch(WORLD_ATLAS_URL)
       .then((r) => r.json())
@@ -57,459 +120,213 @@ export default function FlatMapView({
       });
   }, []);
 
-  // Responsive sizing
-  useEffect(() => {
-    const measure = () => {
-      if (containerRef.current) {
-        const w = containerRef.current.offsetWidth;
-        setDimensions({ w, h: Math.max(w * 0.55, 340) });
-      }
+  const countryGeoJSON = useMemo(() => {
+    if (!polygons.length) return null;
+    return buildGeoJSON(polygons);
+  }, [polygons]);
+
+  const regionGeoJSON = useMemo(() => {
+    if (!polygons.length) return null;
+    return buildRegionFeatures(polygons);
+  }, [polygons]);
+
+  // Style for country polygons
+  const countryStyle = useCallback((feature: any): L.PathOptions => {
+    const alpha2 = feature?.properties?.alpha2;
+    const family = feature?.properties?.family;
+    const isSelected = selectedCountry && alpha2 === selectedCountry.toLowerCase();
+    const color = family ? getLanguageFamilyColor(family) : "hsl(200,10%,78%)";
+
+    return {
+      fillColor: color,
+      fillOpacity: isSelected ? 0.9 : 0.7,
+      color: isSelected ? "#1e293b" : "#64748b",
+      weight: isSelected ? 2 : 0.5,
+      opacity: 0.8,
     };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+  }, [selectedCountry]);
+
+  // Style for region overlay dots
+  const regionStyle = useCallback((feature: any): L.PathOptions => {
+    const color = feature?.properties?.color || "hsl(200,10%,78%)";
+    return {
+      fillColor: color,
+      fillOpacity: 0.75,
+      color: "#fff",
+      weight: 1,
+      opacity: 0.8,
+    };
   }, []);
 
-  // Projection and path generator
-  const projection = useMemo(() => {
-    return geoNaturalEarth1()
-      .fitSize([dimensions.w, dimensions.h], {
-        type: "FeatureCollection",
-        features: polygons,
-      } as any)
-      .translate([dimensions.w / 2, dimensions.h / 2]);
-  }, [dimensions.w, dimensions.h, polygons]);
+  // Event handlers for country layer
+  const onEachCountry = useCallback((feature: any, layer: L.Layer) => {
+    const alpha2 = feature?.properties?.alpha2;
+    const name = feature?.properties?.name || "Unknown";
+    const family = feature?.properties?.family;
+    const familyLabel = family ? family.charAt(0).toUpperCase() + family.slice(1) : "";
 
-  const pathGenerator = useMemo(() => geoPath(projection), [projection]);
-
-  // Build border mesh once polygons + projection ready
-  useEffect(() => {
-    if (!polygons.length) return;
-    // Re-fetch topology just for mesh (lightweight since cached by browser)
-    fetch(WORLD_ATLAS_URL)
-      .then((r) => r.json())
-      .then((topology: Topology) => {
-        const borders = mesh(topology, topology.objects.countries as any, (a, b) => a !== b);
-        const p = geoPath(projection)(borders as any);
-        if (p) setBorderMesh(p);
-      });
-  }, [polygons, projection]);
-
-  // Graticule
-  const graticulePath = useMemo(() => {
-    return pathGenerator(geoGraticule10() as any) || "";
-  }, [pathGenerator]);
-
-  const getAlpha2 = useCallback((feat: any) => {
-    return numericToAlpha2[feat.id] || null;
-  }, []);
-
-  const getFillColor = useCallback(
-    (feat: any) => {
-      const alpha2 = getAlpha2(feat);
-      if (!alpha2) return "hsl(200,10%,78%)";
-      const family = countryLanguageFamily[alpha2];
-      if (!family) return "hsl(200,10%,78%)";
-      return getLanguageFamilyColor(family);
-    },
-    [getAlpha2]
-  );
-
-  const getOpacity = useCallback(
-    (feat: any) => {
-      const alpha2 = getAlpha2(feat);
-      if (alpha2 === hoverD) return 1;
-      if (selectedCountry && alpha2 === selectedCountry.toLowerCase()) return 1;
-      return 0.88;
-    },
-    [getAlpha2, hoverD, selectedCountry]
-  );
-
-  // Build Voronoi-based sub-national regions for multilingual countries
-  const voronoiRegions = useMemo(() => {
-    if (!polygons.length) return [];
-    const result: {
-      clipId: string;
-      countryPath: string;
-      cells: { path: string; color: string; label: string; regionName: string }[];
-      featId: string;
-    }[] = [];
-
-    for (const feat of polygons) {
-      const alpha2 = numericToAlpha2[feat.id];
-      if (!alpha2 || !regionalLanguages[alpha2] || regionalLanguages[alpha2].length < 2) continue;
-
-      const countryPath = pathGenerator(feat as GeoPermissibleObjects);
-      if (!countryPath) continue;
-
-      const regions = regionalLanguages[alpha2];
-      const projectedPoints = regions.map((r) => {
-        const p = projection([r.lng, r.lat]);
-        return p ? ([p[0], p[1]] as [number, number]) : ([0, 0] as [number, number]);
-      }).filter((p) => p[0] !== 0 || p[1] !== 0);
-
-      if (projectedPoints.length < 2) continue;
-
-      const bounds = pathGenerator.bounds(feat as GeoPermissibleObjects);
-      if (!bounds) continue;
-      const [[x0, y0], [x1, y1]] = bounds;
-      const pad = Math.max(x1 - x0, y1 - y0) * 0.15;
-
-      const delaunay = Delaunay.from(projectedPoints);
-      const voronoi = delaunay.voronoi([x0 - pad, y0 - pad, x1 + pad, y1 + pad]);
-
-      const cells: { path: string; color: string; label: string; regionName: string }[] = [];
-      for (let i = 0; i < projectedPoints.length; i++) {
-        const cellPath = voronoi.renderCell(i);
-        if (cellPath) {
-          cells.push({
-            path: cellPath,
-            color: getLanguageFamilyColor(regions[i].languageFamily),
-            label: `${regions[i].region}: ${regions[i].language}`,
-            regionName: regions[i].region,
-          });
-        }
+    // Build tooltip content
+    let tooltipContent = `<div class="font-semibold">${name}</div>`;
+    if (familyLabel) {
+      tooltipContent += `<div class="text-xs opacity-75">${familyLabel}</div>`;
+    }
+    if (alpha2 && regionalLanguages[alpha2] && regionalLanguages[alpha2].length >= 2) {
+      tooltipContent += `<div class="text-[10px] mt-1 border-t border-gray-200 pt-1 dark:border-gray-600">`;
+      tooltipContent += `<div class="font-medium mb-0.5">Regional languages:</div>`;
+      for (const r of regionalLanguages[alpha2].slice(0, 6)) {
+        const c = getLanguageFamilyColor(r.languageFamily);
+        tooltipContent += `<div class="flex items-center gap-1"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${c}"></span>${r.region}: ${r.language}</div>`;
       }
-
-      if (cells.length > 0) {
-        result.push({
-          clipId: `clip-${alpha2}`,
-          countryPath,
-          cells,
-          featId: feat.id,
-        });
+      if (regionalLanguages[alpha2].length > 6) {
+        tooltipContent += `<div class="opacity-60">+${regionalLanguages[alpha2].length - 6} more</div>`;
       }
+      tooltipContent += `</div>`;
     }
 
-    return result;
-  }, [polygons, pathGenerator, projection]);
+    (layer as L.Path).bindTooltip(tooltipContent, {
+      sticky: true,
+      direction: "top",
+      className: "medglobe-tooltip",
+    });
 
-  // Set of country IDs that have Voronoi regions
-  const voronoiCountryIds = useMemo(() => {
-    return new Set(voronoiRegions.map((v) => v.featId));
-  }, [voronoiRegions]);
+    layer.on({
+      mouseover: (e) => {
+        const l = e.target as L.Path;
+        l.setStyle({ fillOpacity: 0.9, weight: 2, color: "#1e293b" });
+        l.bringToFront();
+      },
+      mouseout: (e) => {
+        const l = e.target as L.Path;
+        const isSelected = selectedCountry && alpha2 === selectedCountry?.toLowerCase();
+        l.setStyle({
+          fillOpacity: isSelected ? 0.9 : 0.7,
+          weight: isSelected ? 2 : 0.5,
+          color: isSelected ? "#1e293b" : "#64748b",
+        });
+      },
+      click: () => {
+        if (alpha2 && onCountryClick) {
+          onCountryClick(alpha2);
+        }
+      },
+    });
+  }, [selectedCountry, onCountryClick]);
 
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent, feat: any) => {
-      const alpha2 = getAlpha2(feat);
-      const name = numericToName[feat.id] || alpha2 || "Unknown";
-      const family = alpha2 ? countryLanguageFamily[alpha2] : null;
-      const familyLabel = family
-        ? family.charAt(0).toUpperCase() + family.slice(1)
-        : "";
+  // Event handlers for region overlay
+  const onEachRegion = useCallback((feature: any, layer: L.Layer) => {
+    const props = feature?.properties;
+    if (!props) return;
 
-      const rect = containerRef.current?.getBoundingClientRect();
-      if (!rect) return;
+    const tooltipContent = `<div class="font-semibold">${props.countryName} — ${props.regionName}</div><div class="text-xs">${props.language}</div>`;
+    
+    (layer as L.Path).bindTooltip(tooltipContent, {
+      sticky: true,
+      direction: "top",
+      className: "medglobe-tooltip",
+    });
 
-      setHoverD(alpha2);
-      setTooltip({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-        content: `${name}${familyLabel ? ` — ${familyLabel}` : ""}`,
-        alpha2,
-      });
-    },
-    [getAlpha2]
-  );
-
-  const handleMouseLeave = useCallback(() => {
-    setHoverD(null);
-    setTooltip(null);
-  }, []);
-
-  const handleClick = useCallback(
-    (feat: any) => {
-      const alpha2 = getAlpha2(feat);
-      if (alpha2 && onCountryClick) {
-        onCountryClick(alpha2);
-      }
-    },
-    [getAlpha2, onCountryClick]
-  );
-
-  // Zoom & pan handlers
-  const handleWheel = useCallback((e: ReactWheelEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setZoom((z) => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, z - e.deltaY * 0.002)));
-  }, []);
-
-  const handlePointerDown = useCallback((e: React.PointerEvent) => {
-    if (e.button !== 0) return;
-    setIsPanning(true);
-    panStart.current = { x: e.clientX, y: e.clientY, panX: pan.x, panY: pan.y };
-    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
-  }, [pan]);
-
-  const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (!isPanning) return;
-    const dx = e.clientX - panStart.current.x;
-    const dy = e.clientY - panStart.current.y;
-    setPan({ x: panStart.current.panX + dx, y: panStart.current.panY + dy });
-  }, [isPanning]);
-
-  const handlePointerUp = useCallback(() => {
-    setIsPanning(false);
-  }, []);
-
-  const resetView = useCallback(() => {
-    setZoom(1);
-    setPan({ x: 0, y: 0 });
-  }, []);
-
-  // Adaptive stroke widths based on zoom level
-  const countryStroke = 0.5 / zoom;
-  const borderStroke = 0.35 / zoom;
-  const regionBorderStroke = 0.8 / zoom;
+    layer.on({
+      mouseover: (e) => {
+        const l = e.target as L.Path;
+        l.setStyle({ fillOpacity: 0.95, weight: 2 });
+        l.bringToFront();
+      },
+      mouseout: (e) => {
+        const l = e.target as L.Path;
+        l.setStyle({ fillOpacity: 0.75, weight: 1 });
+      },
+      click: () => {
+        if (props.alpha2 && onRegionClick) {
+          onRegionClick(props.alpha2, props.regionName);
+        } else if (props.alpha2 && onCountryClick) {
+          onCountryClick(props.alpha2);
+        }
+      },
+    });
+  }, [onRegionClick, onCountryClick]);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full overflow-hidden rounded-xl border border-border shadow-lg"
-      onWheel={handleWheel}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerLeave={handlePointerUp}
-      style={{ cursor: isPanning ? "grabbing" : zoom > 1 ? "grab" : "default", touchAction: "none" }}
-    >
-      {/* Zoom controls */}
-      <div className="absolute top-3 right-3 z-40 flex flex-col gap-1.5">
-        <button
-          onClick={() => setZoom((z) => Math.min(MAX_ZOOM, z * 1.5))}
-          className="p-1.5 rounded-md bg-card/90 border border-border text-foreground shadow-sm hover:bg-accent transition-colors"
-          aria-label="Zoom in"
-        >
-          <ZoomIn className="w-4 h-4" />
-        </button>
-        <button
-          onClick={() => setZoom((z) => Math.max(MIN_ZOOM, z / 1.5))}
-          className="p-1.5 rounded-md bg-card/90 border border-border text-foreground shadow-sm hover:bg-accent transition-colors"
-          aria-label="Zoom out"
-        >
-          <ZoomOut className="w-4 h-4" />
-        </button>
-        <button
-          onClick={resetView}
-          className="p-1.5 rounded-md bg-card/90 border border-border text-foreground shadow-sm hover:bg-accent transition-colors"
-          aria-label="Reset view"
-        >
-          <Maximize className="w-4 h-4" />
-        </button>
-      </div>
-
-      {/* Zoom level indicator */}
-      {zoom > 1.05 && (
-        <div className="absolute top-3 left-3 z-40 px-2 py-1 rounded-md bg-card/90 border border-border text-[10px] text-muted-foreground font-medium">
-          {Math.round(zoom * 100)}%
-        </div>
-      )}
-
-      <svg
-        width={dimensions.w}
-        height={dimensions.h}
-        viewBox={`0 0 ${dimensions.w} ${dimensions.h}`}
-        className="w-full h-auto"
+    <div className="relative w-full overflow-hidden rounded-xl border border-border shadow-lg" style={{ height: "min(65vh, 600px)" }}>
+      <MapContainer
+        center={[20, 0]}
+        zoom={2}
+        minZoom={2}
+        maxZoom={10}
+        scrollWheelZoom={true}
+        zoomControl={true}
+        className="w-full h-full z-0"
+        style={{ background: "hsl(205,42%,88%)" }}
+        maxBounds={[[-85, -180], [85, 180]]}
+        maxBoundsViscosity={1.0}
       >
-        {/* Ocean background with subtle gradient */}
-        <defs>
-          <radialGradient id="ocean-gradient" cx="50%" cy="45%" r="65%">
-            <stop offset="0%" stopColor="hsl(205, 45%, 90%)" className="dark:stop-color-[hsl(210,35%,14%)]" />
-            <stop offset="100%" stopColor="hsl(210, 40%, 85%)" className="dark:stop-color-[hsl(215,30%,8%)]" />
-          </radialGradient>
-        </defs>
-        <rect
-          width={dimensions.w}
-          height={dimensions.h}
-          fill="hsl(205,42%,88%)"
-          className="dark:fill-[hsl(215,30%,10%)]"
-          rx={12}
+        {/* OpenStreetMap tiles — shows state/province/city borders natively */}
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          opacity={0.3}
         />
 
-        {/* Zoomable/pannable group */}
-        <g transform={`translate(${dimensions.w / 2 + pan.x}, ${dimensions.h / 2 + pan.y}) scale(${zoom}) translate(${-dimensions.w / 2}, ${-dimensions.h / 2})`}>
-          {/* Graticule grid lines */}
-          <path
-            d={graticulePath}
-            fill="none"
-            stroke="hsl(210,20%,80%)"
-            strokeWidth={0.2 / zoom}
-            strokeOpacity={0.4}
-            className="dark:stroke-[hsl(210,20%,20%)]"
+        {/* Country overlay colored by language family */}
+        {countryGeoJSON && (
+          <GeoJSON
+            ref={geoJsonRef as any}
+            key={`countries-${selectedCountry}`}
+            data={countryGeoJSON}
+            style={countryStyle}
+            onEachFeature={onEachCountry}
           />
+        )}
 
-          {/* Clip paths for Voronoi countries */}
-          <defs>
-            {voronoiRegions.map((vr) => (
-              <clipPath key={vr.clipId} id={vr.clipId}>
-                <path d={vr.countryPath} />
-              </clipPath>
-            ))}
-          </defs>
+        {/* Regional language overlay markers */}
+        {regionGeoJSON && regionGeoJSON.features.length > 0 && (
+          <GeoJSON
+            key="regions"
+            data={regionGeoJSON}
+            style={regionStyle}
+            onEachFeature={onEachRegion}
+          />
+        )}
 
-          {/* Country polygons — solid fill for non-Voronoi countries */}
-          <g>
-            {polygons.map((feat) => {
-              if (voronoiCountryIds.has(feat.id)) return null;
-              const d = pathGenerator(feat as GeoPermissibleObjects);
-              if (!d) return null;
-              const alpha2 = getAlpha2(feat);
-              const isHovered = alpha2 === hoverD;
-              const isSelected = selectedCountry && alpha2 === selectedCountry.toLowerCase();
-              return (
-                <path
-                  key={feat.id}
-                  d={d}
-                  fill={getFillColor(feat)}
-                  fillOpacity={getOpacity(feat)}
-                  stroke="none"
-                  className="cursor-pointer transition-opacity duration-150"
-                  onMouseMove={(e) => handleMouseMove(e, feat)}
-                  onMouseLeave={handleMouseLeave}
-                  onClick={() => handleClick(feat)}
-                  filter={isHovered || isSelected ? "brightness(1.1)" : undefined}
-                />
-              );
-            })}
-          </g>
+        {/* Focus on searched country */}
+        <MapFocus lat={focusLat} lng={focusLng} />
+      </MapContainer>
 
-          {/* Voronoi language regions — clipped to country boundaries */}
-          <g>
-            {voronoiRegions.map((vr) => {
-              const feat = polygons.find((f) => f.id === vr.featId);
-              const alpha2 = feat ? getAlpha2(feat) : null;
-              const isHovered = alpha2 === hoverD;
-              const isSelected = selectedCountry && alpha2 === selectedCountry.toLowerCase();
-              const opacity = isHovered || isSelected ? 1 : 0.88;
-
-              return (
-                <g key={vr.clipId}>
-                  {/* Colored language regions */}
-                  <g clipPath={`url(#${vr.clipId})`}>
-                    {vr.cells.map((cell, i) => (
-                      <path
-                        key={i}
-                        d={cell.path}
-                        fill={cell.color}
-                        fillOpacity={opacity}
-                        stroke="none"
-                      />
-                    ))}
-                  </g>
-                  {/* Internal region border lines */}
-                  <g clipPath={`url(#${vr.clipId})`}>
-                    {vr.cells.map((cell, i) => (
-                      <path
-                        key={`border-${i}`}
-                        d={cell.path}
-                        fill="none"
-                        stroke="hsl(0,0%,100%)"
-                        strokeWidth={regionBorderStroke}
-                        strokeOpacity={0.5}
-                        strokeDasharray={`${2 / zoom} ${1.5 / zoom}`}
-                        className="dark:stroke-[hsl(0,0%,30%)]"
-                      />
-                    ))}
-                  </g>
-                  {/* Clickable overlay per region */}
-                  <g clipPath={`url(#${vr.clipId})`}>
-                    {vr.cells.map((cell, i) => (
-                      <path
-                        key={`click-${i}`}
-                        d={cell.path}
-                        fill="transparent"
-                        className="cursor-pointer"
-                        onMouseMove={(e) => {
-                          const alpha2c = feat ? getAlpha2(feat) : null;
-                          const name = feat ? (numericToName[feat.id] || alpha2c || "Unknown") : "Unknown";
-                          const rect = containerRef.current?.getBoundingClientRect();
-                          if (!rect) return;
-                          setHoverD(alpha2c);
-                          setTooltip({
-                            x: e.clientX - rect.left,
-                            y: e.clientY - rect.top,
-                            content: `${name} — ${cell.label}`,
-                            alpha2: alpha2c,
-                          });
-                        }}
-                        onMouseLeave={handleMouseLeave}
-                        onClick={() => {
-                          if (feat) {
-                            const alpha2c = getAlpha2(feat);
-                            if (alpha2c && onRegionClick) {
-                              onRegionClick(alpha2c, cell.regionName);
-                            } else if (alpha2c && onCountryClick) {
-                              onCountryClick(alpha2c);
-                            }
-                          }
-                        }}
-                      />
-                    ))}
-                  </g>
-                  {/* Country outline on top */}
-                  {feat && (
-                    <path
-                      d={vr.countryPath}
-                      fill="transparent"
-                      stroke="hsl(220,15%,40%)"
-                      strokeWidth={countryStroke}
-                      strokeOpacity={0.6}
-                      className="pointer-events-none dark:stroke-[hsl(220,15%,65%)]"
-                    />
-                  )}
-                </g>
-              );
-            })}
-          </g>
-
-          {/* Country border mesh — renders all borders as one crisp path */}
-          {borderMesh && (
-            <path
-              d={borderMesh}
-              fill="none"
-              stroke="hsl(220,15%,40%)"
-              strokeWidth={borderStroke}
-              strokeOpacity={0.55}
-              strokeLinejoin="round"
-              className="pointer-events-none dark:stroke-[hsl(220,15%,65%)]"
-            />
-          )}
-        </g>
-      </svg>
-
-      {/* Tooltip */}
-      {tooltip && (
-        <div
-          className="absolute pointer-events-none z-50 bg-card border border-border text-card-foreground px-3 py-2 rounded-lg shadow-lg text-xs font-medium backdrop-blur-sm"
-          style={{
-            left: Math.min(tooltip.x + 12, dimensions.w - 200),
-            top: tooltip.y - 8,
-            transform: "translateY(-100%)",
-            maxWidth: 240,
-          }}
-        >
-          {tooltip.content}
-          {tooltip.alpha2 && regionalLanguages[tooltip.alpha2] && (
-            <div className="mt-1.5 pt-1.5 border-t border-border text-[10px]">
-              <div className="font-semibold text-muted-foreground mb-0.5">
-                Regional languages:
-              </div>
-              <div className="max-h-20 overflow-y-auto space-y-0.5">
-                {regionalLanguages[tooltip.alpha2].map((r, i) => (
-                  <div key={i} className="flex items-center gap-1">
-                    <span
-                      className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
-                      style={{
-                        backgroundColor: getLanguageFamilyColor(r.languageFamily),
-                      }}
-                    />
-                    <span className="truncate">{r.region}: {r.language}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
+      {/* Custom tooltip styles */}
+      <style>{`
+        .medglobe-tooltip {
+          background: hsl(var(--card)) !important;
+          border: 1px solid hsl(var(--border)) !important;
+          color: hsl(var(--card-foreground)) !important;
+          border-radius: 8px !important;
+          padding: 8px 12px !important;
+          font-size: 12px !important;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+          max-width: 240px !important;
+        }
+        .medglobe-tooltip::before {
+          border-top-color: hsl(var(--border)) !important;
+        }
+        .leaflet-control-zoom {
+          border: 1px solid hsl(var(--border)) !important;
+          border-radius: 8px !important;
+          overflow: hidden;
+        }
+        .leaflet-control-zoom a {
+          background: hsl(var(--card)) !important;
+          color: hsl(var(--card-foreground)) !important;
+          border-color: hsl(var(--border)) !important;
+          width: 32px !important;
+          height: 32px !important;
+          line-height: 32px !important;
+          font-size: 16px !important;
+        }
+        .leaflet-control-zoom a:hover {
+          background: hsl(var(--accent)) !important;
+        }
+        .leaflet-container {
+          font-family: inherit !important;
+        }
+      `}</style>
     </div>
   );
 }
