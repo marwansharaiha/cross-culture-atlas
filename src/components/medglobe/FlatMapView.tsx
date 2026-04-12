@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { feature } from "topojson-client";
@@ -8,6 +8,7 @@ import {
   countryLanguageFamily,
   regionalLanguages,
 } from "@/data/languageMap";
+import { ArrowLeft } from "lucide-react";
 
 interface FlatMapViewProps {
   focusLat?: number;
@@ -19,17 +20,13 @@ interface FlatMapViewProps {
 
 const ADMIN1_URL = "/admin1-subdivisions.topojson";
 
-/** Try to find a matching regional language entry for a subdivision name */
 function findRegionLanguageFamily(iso: string, subdivisionName: string) {
   const regions = regionalLanguages[iso];
   if (!regions || regions.length < 2) return null;
-
   const subLower = subdivisionName.toLowerCase();
   for (const r of regions) {
     const rLower = r.region.toLowerCase();
-    if (subLower.includes(rLower) || rLower.includes(subLower)) {
-      return r;
-    }
+    if (subLower.includes(rLower) || rLower.includes(subLower)) return r;
   }
   return null;
 }
@@ -43,17 +40,219 @@ export default function FlatMapView({
 }: FlatMapViewProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
-  const layerRef = useRef<L.GeoJSON | null>(null);
+  const worldLayerRef = useRef<L.GeoJSON | null>(null);
+  const drillLayerRef = useRef<L.GeoJSON | null>(null);
+  const geoDataRef = useRef<any>(null);
   const [loaded, setLoaded] = useState(false);
+  const [drilledCountry, setDrilledCountry] = useState<string | null>(null);
+  const [drilledCountryName, setDrilledCountryName] = useState<string>("");
 
-  // Keep callbacks in refs for Leaflet handlers
   const onCountryClickRef = useRef(onCountryClick);
   const onRegionClickRef = useRef(onRegionClick);
-  const selectedCountryRef = useRef(selectedCountry);
   onCountryClickRef.current = onCountryClick;
   onRegionClickRef.current = onRegionClick;
-  selectedCountryRef.current = selectedCountry;
 
+  // Build world-level layer (countries as single-color blocks, no internal borders)
+  const buildWorldLayer = useCallback((map: L.Map, geo: any) => {
+    // Group features by country iso
+    const countryGroups: Record<string, any[]> = {};
+    for (const feat of geo.features) {
+      const iso = (feat.properties.iso_a2 || "").toLowerCase();
+      if (!iso) continue;
+      if (!countryGroups[iso]) countryGroups[iso] = [];
+      countryGroups[iso].push(feat);
+    }
+
+    const layer = L.geoJSON(geo, {
+      style: (feat: any) => {
+        const iso = (feat.properties.iso_a2 || "").toLowerCase();
+        const family = countryLanguageFamily[iso] || null;
+        const color = family ? getLanguageFamilyColor(family) : "hsl(200,10%,78%)";
+        return {
+          fillColor: color,
+          fillOpacity: 0.55,
+          color: "#94a3b8",
+          weight: 0.3,
+          opacity: 0.5,
+        };
+      },
+      onEachFeature: (feat: any, lyr: L.Layer) => {
+        const iso = (feat.properties.iso_a2 || "").toLowerCase();
+        const countryName = feat.properties.admin || iso.toUpperCase();
+        const family = countryLanguageFamily[iso] || null;
+        const familyLabel = family ? family.charAt(0).toUpperCase() + family.slice(1) : "";
+
+        let tooltip = `<div style="font-weight:600">${countryName}</div>`;
+        if (familyLabel) {
+          const c = getLanguageFamilyColor(family!);
+          tooltip += `<div style="display:flex;align-items:center;gap:4px;margin-top:2px"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${c};flex-shrink:0"></span><span style="font-size:10px;opacity:0.7">${familyLabel}</span></div>`;
+        }
+        tooltip += `<div style="font-size:10px;opacity:0.5;margin-top:2px">Click to explore regions</div>`;
+
+        (lyr as L.Path).bindTooltip(tooltip, {
+          sticky: true,
+          direction: "top",
+          className: "medglobe-tooltip",
+        });
+
+        lyr.on({
+          mouseover: (e) => {
+            // Highlight all subdivisions of same country
+            worldLayerRef.current?.eachLayer((l: any) => {
+              if (l.feature && (l.feature.properties.iso_a2 || "").toLowerCase() === iso) {
+                l.setStyle({ fillOpacity: 0.8, weight: 0.8, color: "#475569" });
+                l.bringToFront();
+              }
+            });
+          },
+          mouseout: () => {
+            worldLayerRef.current?.eachLayer((l: any) => {
+              if (l.feature && (l.feature.properties.iso_a2 || "").toLowerCase() === iso) {
+                const f = countryLanguageFamily[iso] || null;
+                const col = f ? getLanguageFamilyColor(f) : "hsl(200,10%,78%)";
+                l.setStyle({ fillColor: col, fillOpacity: 0.55, weight: 0.3, color: "#94a3b8" });
+              }
+            });
+          },
+          click: () => {
+            if (!iso) return;
+            // Drill into this country
+            drillIntoCountry(iso, countryName);
+          },
+        });
+      },
+    }).addTo(map);
+
+    worldLayerRef.current = layer;
+  }, []);
+
+  // Drill into a specific country
+  const drillIntoCountry = useCallback((iso: string, countryName: string) => {
+    const map = mapRef.current;
+    const geo = geoDataRef.current;
+    if (!map || !geo) return;
+
+    // Remove world layer
+    if (worldLayerRef.current) {
+      map.removeLayer(worldLayerRef.current);
+      worldLayerRef.current = null;
+    }
+
+    // Filter features for this country
+    const countryFeatures = geo.features.filter(
+      (f: any) => (f.properties.iso_a2 || "").toLowerCase() === iso
+    );
+
+    if (countryFeatures.length === 0) return;
+
+    const countryGeo = { type: "FeatureCollection", features: countryFeatures };
+
+    const drillLayer = L.geoJSON(countryGeo as any, {
+      style: (feat: any) => {
+        const name = feat.properties.name || "";
+        const regionMatch = findRegionLanguageFamily(iso, name);
+        const family = regionMatch
+          ? regionMatch.languageFamily
+          : countryLanguageFamily[iso] || null;
+        const color = family ? getLanguageFamilyColor(family) : "hsl(200,10%,78%)";
+        return {
+          fillColor: color,
+          fillOpacity: 0.65,
+          color: "#64748b",
+          weight: 1,
+          opacity: 0.8,
+        };
+      },
+      onEachFeature: (feat: any, lyr: L.Layer) => {
+        const subdivisionName = feat.properties.name || "Unknown";
+        const regionMatch = findRegionLanguageFamily(iso, subdivisionName);
+        const family = regionMatch
+          ? regionMatch.languageFamily
+          : countryLanguageFamily[iso] || null;
+        const familyLabel = family ? family.charAt(0).toUpperCase() + family.slice(1) : "";
+
+        let tooltip = `<div style="font-weight:600">${subdivisionName}</div>`;
+        if (regionMatch) {
+          tooltip += `<div style="font-size:11px;margin-top:2px">${regionMatch.language}</div>`;
+        }
+        if (familyLabel) {
+          const c = getLanguageFamilyColor(family!);
+          tooltip += `<div style="display:flex;align-items:center;gap:4px;margin-top:2px"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${c};flex-shrink:0"></span><span style="font-size:10px;opacity:0.7">${familyLabel}</span></div>`;
+        }
+
+        (lyr as L.Path).bindTooltip(tooltip, {
+          sticky: true,
+          direction: "top",
+          className: "medglobe-tooltip",
+        });
+
+        lyr.on({
+          mouseover: (e) => {
+            (e.target as L.Path).setStyle({
+              fillOpacity: 0.9,
+              weight: 2,
+              color: "#1e293b",
+            });
+            (e.target as L.Path).bringToFront();
+          },
+          mouseout: (e) => {
+            const name = feat.properties.name || "";
+            const rm = findRegionLanguageFamily(iso, name);
+            const f = rm ? rm.languageFamily : countryLanguageFamily[iso] || null;
+            const col = f ? getLanguageFamilyColor(f) : "hsl(200,10%,78%)";
+            (e.target as L.Path).setStyle({
+              fillColor: col,
+              fillOpacity: 0.65,
+              weight: 1,
+              color: "#64748b",
+            });
+          },
+          click: () => {
+            if (regionMatch && onRegionClickRef.current) {
+              onRegionClickRef.current(iso, regionMatch.region);
+            } else if (onCountryClickRef.current) {
+              onCountryClickRef.current(iso);
+            }
+          },
+        });
+      },
+    }).addTo(map);
+
+    drillLayerRef.current = drillLayer;
+
+    // Zoom to country bounds
+    const bounds = drillLayer.getBounds();
+    if (bounds.isValid()) {
+      map.flyToBounds(bounds, { padding: [40, 40], duration: 1, maxZoom: 7 });
+    }
+
+    setDrilledCountry(iso);
+    setDrilledCountryName(countryName);
+
+    // Also notify parent
+    if (onCountryClickRef.current) {
+      onCountryClickRef.current(iso);
+    }
+  }, []);
+
+  // Return to world view
+  const backToWorld = useCallback(() => {
+    const map = mapRef.current;
+    const geo = geoDataRef.current;
+    if (!map || !geo) return;
+
+    if (drillLayerRef.current) {
+      map.removeLayer(drillLayerRef.current);
+      drillLayerRef.current = null;
+    }
+
+    buildWorldLayer(map, geo);
+    map.flyTo([20, 0], 2, { duration: 1 });
+    setDrilledCountry(null);
+    setDrilledCountryName("");
+  }, [buildWorldLayer]);
+
+  // Init map
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
 
@@ -68,7 +267,6 @@ export default function FlatMapView({
       maxBoundsViscosity: 1.0,
     });
 
-    // CartoDB Positron tiles — clean, minimal style
     L.tileLayer(
       "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
       {
@@ -90,90 +288,8 @@ export default function FlatMapView({
           topology.objects.subdivisions as any
         ) as any;
 
-        const layer = L.geoJSON(geo, {
-          style: (feat: any) => {
-            const iso = (feat.properties.iso_a2 || "").toLowerCase();
-            const name = feat.properties.name || "";
-
-            // Try to match a regional language first
-            const regionMatch = findRegionLanguageFamily(iso, name);
-            const family = regionMatch
-              ? regionMatch.languageFamily
-              : countryLanguageFamily[iso] || null;
-            const color = family
-              ? getLanguageFamilyColor(family)
-              : "hsl(200,10%,78%)";
-
-            return {
-              fillColor: color,
-              fillOpacity: 0.6,
-              color: "#94a3b8",
-              weight: 0.4,
-              opacity: 0.6,
-            };
-          },
-          onEachFeature: (feat: any, layer: L.Layer) => {
-            const iso = (feat.properties.iso_a2 || "").toLowerCase();
-            const subdivisionName = feat.properties.name || "Unknown";
-            const countryName = feat.properties.admin || iso.toUpperCase();
-
-            const regionMatch = findRegionLanguageFamily(iso, subdivisionName);
-            const family = regionMatch
-              ? regionMatch.languageFamily
-              : countryLanguageFamily[iso] || null;
-            const familyLabel = family
-              ? family.charAt(0).toUpperCase() + family.slice(1)
-              : "";
-
-            let tooltip = `<div style="font-weight:600">${subdivisionName}</div>`;
-            tooltip += `<div style="font-size:11px;opacity:0.6">${countryName}</div>`;
-            if (regionMatch) {
-              tooltip += `<div style="font-size:11px;margin-top:2px">${regionMatch.language}</div>`;
-            }
-            if (familyLabel) {
-              const c = getLanguageFamilyColor(family!);
-              tooltip += `<div style="display:flex;align-items:center;gap:4px;margin-top:2px"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${c};flex-shrink:0"></span><span style="font-size:10px;opacity:0.7">${familyLabel}</span></div>`;
-            }
-
-            (layer as L.Path).bindTooltip(tooltip, {
-              sticky: true,
-              direction: "top",
-              className: "medglobe-tooltip",
-            });
-
-            layer.on({
-              mouseover: (e) => {
-                (e.target as L.Path).setStyle({
-                  fillOpacity: 0.85,
-                  weight: 1.5,
-                  color: "#1e293b",
-                });
-                (e.target as L.Path).bringToFront();
-              },
-              mouseout: (e) => {
-                const sel = selectedCountryRef.current;
-                const isSelected =
-                  sel && iso === sel.toLowerCase();
-                (e.target as L.Path).setStyle({
-                  fillOpacity: isSelected ? 0.8 : 0.6,
-                  weight: isSelected ? 1.5 : 0.4,
-                  color: isSelected ? "#1e293b" : "#94a3b8",
-                });
-              },
-              click: () => {
-                if (!iso) return;
-                // If we matched a regional language, trigger region click
-                if (regionMatch && onRegionClickRef.current) {
-                  onRegionClickRef.current(iso, regionMatch.region);
-                } else if (onCountryClickRef.current) {
-                  onCountryClickRef.current(iso);
-                }
-              },
-            });
-          },
-        }).addTo(map);
-
-        layerRef.current = layer;
+        geoDataRef.current = geo;
+        buildWorldLayer(map, geo);
         setLoaded(true);
       });
 
@@ -181,7 +297,7 @@ export default function FlatMapView({
       map.remove();
       mapRef.current = null;
     };
-  }, []);
+  }, [buildWorldLayer]);
 
   // Focus on searched country
   useEffect(() => {
@@ -190,31 +306,6 @@ export default function FlatMapView({
     }
   }, [focusLat, focusLng]);
 
-  // Update selected country styling
-  useEffect(() => {
-    if (!layerRef.current) return;
-    layerRef.current.eachLayer((layer: any) => {
-      if (!layer.feature) return;
-      const iso = (layer.feature.properties.iso_a2 || "").toLowerCase();
-      const isSelected =
-        selectedCountry && iso === selectedCountry.toLowerCase();
-      const name = layer.feature.properties.name || "";
-      const regionMatch = findRegionLanguageFamily(iso, name);
-      const family = regionMatch
-        ? regionMatch.languageFamily
-        : countryLanguageFamily[iso] || null;
-      const color = family
-        ? getLanguageFamilyColor(family)
-        : "hsl(200,10%,78%)";
-      layer.setStyle({
-        fillColor: color,
-        fillOpacity: isSelected ? 0.8 : 0.6,
-        weight: isSelected ? 1.5 : 0.4,
-        color: isSelected ? "#1e293b" : "#94a3b8",
-      });
-    });
-  }, [selectedCountry]);
-
   return (
     <div className="relative w-full overflow-hidden rounded-xl border border-border shadow-lg">
       <div
@@ -222,10 +313,22 @@ export default function FlatMapView({
         className="w-full z-0"
         style={{ height: "min(65vh, 600px)" }}
       />
+
+      {/* Back button when drilled in */}
+      {drilledCountry && (
+        <button
+          onClick={backToWorld}
+          className="absolute top-3 left-3 z-[1000] flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-background/90 backdrop-blur border border-border shadow-md text-sm font-medium text-foreground hover:bg-accent transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span>{drilledCountryName || "Back to World"}</span>
+        </button>
+      )}
+
       {!loaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-background/50">
           <div className="text-sm text-muted-foreground animate-pulse">
-            Loading subdivision map…
+            Loading map…
           </div>
         </div>
       )}
